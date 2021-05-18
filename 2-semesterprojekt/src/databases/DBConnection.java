@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import modelLayer.DBConnection;
-
 public class DBConnection {
 
 	private Connection connection = null;
@@ -18,8 +16,6 @@ public class DBConnection {
 	private static final int serverPort = 1433;
 	private static final String userName = "LAPTOP-JNG5M54Q/Theis Nielsen Haahr";
 	private static final String password = "secret";
-	
-	
 
 	private DBConnection() {
 		String connectionString = String.format("jdbc:sqlserver://%s:%d;databaseName=%s;user=%s;password=%s",
@@ -45,7 +41,7 @@ public class DBConnection {
 		}
 		return dbConnection;
 	}
-	
+
 	public Connection getConnection() {
 		return connection;
 	}
