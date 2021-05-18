@@ -31,6 +31,7 @@ public class DBConnection {
 			System.err.println("Could not load JDBC driver");
 			e.printStackTrace();
 		} catch (SQLException e) {
+			e.printStackTrace();
 			System.out.println("fejl SQL"); //TEST MÅ GERNE SLETTES
 //			System.err.println("Could not connect to database " + dbName + "@" + serverAddress + ":" + serverPort
 //					+ " as user " + userName + " using password ******");
