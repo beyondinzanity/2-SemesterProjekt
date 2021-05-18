@@ -21,7 +21,7 @@ public class DBConnection {
 //		String connectionString = String.format("jdbc:sqlserver://%s:%d;databaseName=%s;user=%s;password=%s",
 //				serverAddress, serverPort, dbName, userName, password);
 		String connectionString2 = String.format("jdbc:sqlserver://%s:%d;databaseName=%s;user=%s;",
-				serverAddress, serverPort, dbName, userName); //TEST MÅ GERNE SLETTES
+				serverAddress, serverPort, dbName, userName); //TEST MÅ GERNE SLETTES!
 		try {
 			Class.forName(driverClass);
 			connection = DriverManager.getConnection(connectionString2); //TEST MÅ GERNE SLETTES!
@@ -31,8 +31,9 @@ public class DBConnection {
 			System.err.println("Could not load JDBC driver");
 			e.printStackTrace();
 		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println("fejl SQL"); //TEST MÅ GERNE SLETTES
+			e.printStackTrace(); //TEST MÅ GERNE SLETTES!
+			System.out.println("fejl SQL"); //TEST MÅ GERNE SLETTES!
+			
 //			System.err.println("Could not connect to database " + dbName + "@" + serverAddress + ":" + serverPort
 //					+ " as user " + userName + " using password ******");
 //			System.out.println("Connection string was: "
