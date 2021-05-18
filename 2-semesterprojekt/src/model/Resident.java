@@ -19,6 +19,12 @@ public class Resident extends Person {
 		// TODO Auto-generated method stub
 		id = int1;
 	}
+
+
+	public String getName() {
+		// TODO Auto-generated method stub
+		return fname; 
+	}
 	 
 	
 	

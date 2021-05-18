@@ -6,8 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import model.Resident;
-import modelLayer.Customer;
-import modelLayer.DBConnection;
+import databases.DBConnection;
 
 public class ResidentDB {
 	

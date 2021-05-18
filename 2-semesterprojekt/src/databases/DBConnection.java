@@ -12,12 +12,12 @@ public class DBConnection {
 	private static DBConnection dbConnection;
 
 	private static final String driverClass = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	private static final String dbName = "dmab0920_1086246";
-	private static final String serverAddress = "hildur.ucn.dk";
+	private static final String dbName = "GuldBoSund_Database";
+	private static final String serverAddress = "LAPTOP-JNG5M54Q\\SQLEXPRESS";
 	// private static final String serverAddress = "192.168.56.2";
 	private static final int serverPort = 1433;
-	private static final String userName = "dmab0920_1086246";
-	private static final String password = "Password1!";
+	private static final String userName = "LAPTOP-JNG5M54Q/Theis Nielsen Haahr";
+	private static final String password = "secret";
 	
 	
 
