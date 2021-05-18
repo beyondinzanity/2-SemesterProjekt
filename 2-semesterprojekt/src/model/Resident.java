@@ -1,8 +1,21 @@
 package model;
 
-public class Resident {
-
+public class Resident extends Person {
+	
+	int id;
 	int apartmentNumber;
+	int adressId;
+	
+	
+	public Resident(String ssn, int apartmentNumber, String fname, String lname, String phoneNr, String email, int addressId ) {
+		super(fname, lname, ssn, phoneNr, email);
+		
+		this.apartmentNumber = apartmentNumber;
+		this.adressId = addressId;
+	}
+	 
+	
+	
 	
 	
 }
