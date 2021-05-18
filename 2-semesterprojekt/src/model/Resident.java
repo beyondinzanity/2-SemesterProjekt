@@ -13,6 +13,12 @@ public class Resident extends Person {
 		this.apartmentNumber = apartmentNumber;
 		this.adressId = addressId;
 	}
+
+
+	public void setId(int int1) {
+		// TODO Auto-generated method stub
+		id = int1;
+	}
 	 
 	
 	
