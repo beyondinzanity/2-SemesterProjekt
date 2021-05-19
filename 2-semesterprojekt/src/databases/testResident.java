@@ -5,7 +5,7 @@ import model.Resident;
 public class testResident {
 
 	static ResidentDB db;
-	private static Resident Resident;
+	private static Resident resident;
 
 	public static Resident residentRun() throws Exception {
 		return db.findCustomerByEmail("Felix@gmail.dk");
