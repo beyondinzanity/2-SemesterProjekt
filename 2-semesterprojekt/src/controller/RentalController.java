@@ -14,10 +14,7 @@ public class RentalController {
 	}
 	
 	public Resident findResident(int ssn) {
-		
-		
-		
-		
+		return null;
 	}
 	
 	

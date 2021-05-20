@@ -16,6 +16,6 @@ public class testResident {
 
 		Resident a = residentRun();
 
-		System.out.println(a.getName());
+		//System.out.println(a.getName());
 	}
 }

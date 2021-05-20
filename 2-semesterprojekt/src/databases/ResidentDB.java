@@ -49,8 +49,8 @@ public class ResidentDB implements IResidentDB {
 		Resident resident = null;
 
 		try {
-			resident = new Resident(rs.getString("ssn"), rs.getInt("apartmentNumber"), rs.getString("fname"), rs.getString("lname"), rs.getString("phoneNr"), rs.getString("email"), rs.getInt("FKaddressId"));
-			resident.setId(rs.getInt("id"));
+			resident = new Resident(rs.getString("ssn"), rs.getInt("apartmentNumber"), rs.getString("fname"), rs.getString("lname"), rs.getString("phoneNr"), rs.getString("email"));
+			//resident.setId(rs.getInt("id")); //Hvad sker der her?
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
