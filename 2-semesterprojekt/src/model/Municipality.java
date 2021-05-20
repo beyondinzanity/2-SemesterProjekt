@@ -2,8 +2,8 @@ package model;
 
 public class Municipality {
 
-	String name;
-	String region;
+	private String name;
+	private String region;
 
 	public Municipality(String name, String region) {
 		this.name = name;

@@ -2,14 +2,13 @@ package model;
 
 public class Person {
 
-	String fname;
-	String lname;
-	String ssn;
-	String phoneNumber;
-	String email;
+	private String fname;
+	private String lname;
+	private String ssn;
+	private String phoneNumber;
+	private String email;
 
 	public Person(String fname, String lname, String ssn, String phoneNumber, String email) {
-
 		this.fname = fname;
 		this.lname = lname;
 		this.ssn = ssn;

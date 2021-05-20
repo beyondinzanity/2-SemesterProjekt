@@ -2,7 +2,7 @@ package model;
 
 public class Employee extends Person {
 
-	int employeeNumber;
+	private int employeeNumber;
 
 	public Employee(int employeeNumber, String fname, String lname, String ssn, String phoneNumber, String email) {
 		super(fname, lname, ssn, phoneNumber, email);

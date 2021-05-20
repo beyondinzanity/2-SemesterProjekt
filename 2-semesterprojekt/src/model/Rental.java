@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Rental {
 
-	Date startDate; 
-	Date endDate; 
-	int rentalNumber;
+	private Date startDate;
+	private Date endDate;
+	private int rentalNumber;
 }
