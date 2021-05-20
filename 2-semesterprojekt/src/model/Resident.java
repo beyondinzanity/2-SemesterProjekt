@@ -1,33 +1,18 @@
 package model;
 
 public class Resident extends Person {
-	
-	int id;
+
 	int apartmentNumber;
-	int adressId;
-	
-	
-	public Resident(String ssn, int apartmentNumber, String fname, String lname, String phoneNr, String email, int addressId ) {
-		super(fname, lname, ssn, phoneNr, email);
-		
+	String streetName;
+	int houseNumber;
+
+	public Resident(int apartmentNumber, String streetName, int houseNumber, String ssn, String fname, String lname,
+			String phoneNumber, String email) {
+		super(fname, lname, ssn, phoneNumber, email);
+
 		this.apartmentNumber = apartmentNumber;
-		this.adressId = addressId;
+		this.streetName = streetName;
+		this.houseNumber = houseNumber;
 	}
 
-
-	public void setId(int int1) {
-		// TODO Auto-generated method stub
-		id = int1;
-	}
-
-
-	public String getName() {
-		// TODO Auto-generated method stub
-		return fname; 
-	}
-	 
-	
-	
-	
-	
 }
