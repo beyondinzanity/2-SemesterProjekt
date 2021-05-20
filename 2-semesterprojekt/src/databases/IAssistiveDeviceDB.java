@@ -1,6 +1,6 @@
 package databases;
 
 public interface IAssistiveDeviceDB {
-	public AssistiveDevice
+	//TODO Add Methods
 
 }
