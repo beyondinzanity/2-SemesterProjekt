@@ -1,9 +1,8 @@
 package model;
 
 public class ZipCity {
-	
-	int postalCode;
-	String city;
 
-	
+	private int postalCode;
+	private String city;
+
 }

@@ -3,10 +3,9 @@ package model;
 import java.util.Date;
 
 public class AssistiveDeviceInstance {
-	
-	Date registredDate; 
-	String note; 
-	int barcode;
-	
+
+	private Date registredDate;
+	private String note;
+	private int barcode;
 
 }
