@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import model.Resident;
 import databases.DBConnection;
 
-public class ResidentDB {
+public class ResidentDB implements IResidentDB {
 	
 	private static final String FIND_BY_ID = "select * from Customer where id = ?";
 	private static final String FIND_BY_EMAIL = "select * from Resident where email = ?";
@@ -57,6 +57,18 @@ public class ResidentDB {
 
 		return resident;
 
+	}
+
+	@Override
+	public Resident findResidentBySsn(int ssn) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Resident findResidentByName(String name) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
