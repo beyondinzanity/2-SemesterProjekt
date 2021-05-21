@@ -32,6 +32,7 @@ public class AssistiveDeviceInstanceDB implements IAssistiveDeviceInstanceDB {
 			
 			if(rs.next()) {
 				res = buildAssistiveDeviceInstanceObject(rs);
+				System.out.println(res);
 			}
 		} catch (SQLException s){
 			s.printStackTrace();
