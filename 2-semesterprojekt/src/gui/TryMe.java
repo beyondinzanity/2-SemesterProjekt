@@ -18,16 +18,16 @@ public class TryMe {
 	public static void main(String[] args) throws DataAccessException, SQLException {
 		 AssistiveDeviceInstanceDB ass = new AssistiveDeviceInstanceDB();
 		 AssistiveDeviceDB ass2 = new AssistiveDeviceDB();
-		// ResidentDB ass3 = new ResidentDB();
+		ResidentDB ass3 = new ResidentDB();
 		 
-		 //Resident a = ass3.findResidentBySsn(1804646469);
+		
+		Resident a = ass3.findResidentBySsn(1804646469);
 		 
-		//System.out.println(a.getZipCity().getCity() + " " + a.getFname());
+		System.out.println(a.getFname() +  a.getZipCity().getCity());
 		 
-	    ZipCityDB db = new ZipCityDB();
-		ZipCity a = db.findZipCityById(1);
+	     
 		 
-	    System.out.println(a.getCity());
+	
 		 
 		 
 		 for (AssistiveDeviceInstance q : ass.findInstancesByDeviceId(1)) {

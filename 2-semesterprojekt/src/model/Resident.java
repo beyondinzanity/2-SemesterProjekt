@@ -15,8 +15,7 @@ public class Resident extends Person {
 		this.apartmentNumber = apartmentNumber;
 		this.streetName = streetName;
 		this.houseNumber = houseNumber; 
-		this.city = zipCity; 
-		
+		this.city = zipCity;
 	}
 	
 	public void setId(int id) {

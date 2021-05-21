@@ -20,24 +20,6 @@ public class ZipCityDB {
 		
 	}
 	
-	
-	
-	public ZipCity findZipCityById(int id) throws DataAccessException {
-		
-		try {
-			findZipCityByIdPS.setInt(1, id);
-			ResultSet rs = findZipCityByIdPS.executeQuery();
-			ZipCity res = buildObject(rs);
-			return res;
-			
-		} catch (SQLException s) {
-			throw new DataAccessException("Could not retrieve data from ZipCity", s);
-		}
-	
-	}
-
-
-
 	private ZipCity buildObject(ResultSet rs) {
 		ZipCity city = null;
 
@@ -50,6 +32,34 @@ public class ZipCityDB {
 		
 		return city;
 	}
+
+	
+	
+	
+	public ZipCity findZipCityById(int id) throws DataAccessException {
+		
+		ZipCity res =  null;
+		
+		try {
+			findZipCityByIdPS.setInt(1, id);
+			ResultSet rs = findZipCityByIdPS.executeQuery();
+			
+			if(rs.next()) {
+				res = buildObject(rs);
+			}
+		
+			
+			
+		} catch (SQLException s) {
+			throw new DataAccessException("Could not retrieve data from ZipCity", s);
+		}
+	
+		return res;
+		
+	}
+
+
+
 
 		
 	
