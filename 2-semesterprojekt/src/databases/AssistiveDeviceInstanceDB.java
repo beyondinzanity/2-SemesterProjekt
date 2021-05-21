@@ -10,7 +10,7 @@ import model.Resident;
 
 public class AssistiveDeviceInstanceDB implements IAssistiveDeviceInstanceDB {
 
-	private static final String FIND_BY_DEVICE_ID = "select * from AssistiveDeviceInstance where id = ?";
+	private static final String FIND_BY_DEVICE_ID = "select * from AssistiveDeviceInstance where FKassistiveDeviceId = ?";
 	private PreparedStatement findAssistiveDeviceInstanceByDeviceIdPS;
 
 	public AssistiveDeviceInstanceDB() throws DataAccessException, SQLException {
@@ -33,6 +33,7 @@ public class AssistiveDeviceInstanceDB implements IAssistiveDeviceInstanceDB {
 			while (rs.next()) {
 				res = buildAssistiveDeviceInstanceObject(rs);
 			}
+			
 		} catch (SQLException s) {
 			s.printStackTrace();
 		}
