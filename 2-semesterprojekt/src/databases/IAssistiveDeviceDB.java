@@ -1,9 +1,11 @@
 package databases;
 
+import java.util.List;
+
 import model.AssistiveDevice;
 
 public interface IAssistiveDeviceDB {
 	//TODO Add Methods
-	public AssistiveDevice findAssistiveDevice();
+	public List<AssistiveDevice> findAssistiveDevices(int assistiveDeviceHmi) throws DataAccessException;
 
 }
