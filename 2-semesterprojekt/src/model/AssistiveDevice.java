@@ -1,16 +1,21 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AssistiveDevice {
 	private int id;
 	private int hmiNumber;
 	private String name;
 	private String type;
+	private List<AssistiveDeviceInstance> deviceInstanceList;
 
 	public AssistiveDevice(int hmiNumber, String name, String type) {
 		super();
 		this.hmiNumber = hmiNumber;
 		this.name = name;
 		this.type = type;
+		deviceInstanceList = new ArrayList<>();
 	}
 
 	public int getId() {
@@ -44,6 +49,16 @@ public class AssistiveDevice {
 	public void setType(String type) {
 		this.type = type;
 	}
+
+	public List<AssistiveDeviceInstance> getDeviceInstanceList() {
+		return deviceInstanceList;
+	}
+
+	public void setDeviceInstanceList(List<AssistiveDeviceInstance> deviceInstanceList) {
+		this.deviceInstanceList = deviceInstanceList;
+	}
+	
+	
 	
 	
 
