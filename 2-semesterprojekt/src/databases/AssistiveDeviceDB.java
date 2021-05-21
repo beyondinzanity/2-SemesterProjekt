@@ -10,14 +10,18 @@ import java.util.List;
 import model.AssistiveDevice;
 
 public class AssistiveDeviceDB implements IAssistiveDeviceDB {
+	private AssistiveDeviceInstanceDB assistiveDeviceInstanceDB;
 	private static final String FIND_BY_DEVICE_ID = "select * from AssistiveDevice where hmiNumber = ?";
+	private static final String FIND_BY_DEVICE_NAME = "select * from AssistiveDevice where name like ? or hmiNumber like ?";
 	private PreparedStatement findAssistiveDevicesByHmiNumberPS;
+	private PreparedStatement findAssistiveDevicesByNamePS;
 
 	public AssistiveDeviceDB() throws DataAccessException, SQLException {
 
 		Connection con = DBConnection.getInstance().getConnection();
 
 		findAssistiveDevicesByHmiNumberPS = con.prepareStatement(FIND_BY_DEVICE_ID);
+		findAssistiveDevicesByNamePS = con.prepareStatement(FIND_BY_DEVICE_NAME);
 
 	}
 	@Override
@@ -34,7 +38,23 @@ public class AssistiveDeviceDB implements IAssistiveDeviceDB {
 		}
 	}
 	
-	private List<AssistiveDevice> buildObjects(ResultSet rs) throws SQLException {
+	@Override
+	public List<AssistiveDevice> findAssistiveDevicesByName(String assistiveDeviceName) throws DataAccessException {
+		// TODO Auto-generated method stub
+		assistiveDeviceName = "%" + assistiveDeviceName + "%";
+		try {
+			findAssistiveDevicesByNamePS.setString(1, assistiveDeviceName);
+			findAssistiveDevicesByNamePS.setString(2, assistiveDeviceName);
+			ResultSet rs = findAssistiveDevicesByNamePS.executeQuery();
+			List<AssistiveDevice> res = buildObjects(rs);
+			return res;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DataAccessException("Could not retrieve data from AssistiveDevice", e);
+		}
+	}
+	
+	private List<AssistiveDevice> buildObjects(ResultSet rs) throws SQLException, DataAccessException {
 		List<AssistiveDevice> res = new ArrayList<>();
 		while(rs.next()) {
 			res.add(buildAssistiveDeviceObject(rs));
@@ -42,12 +62,13 @@ public class AssistiveDeviceDB implements IAssistiveDeviceDB {
 		return res;
 	}
 	
-	private AssistiveDevice buildAssistiveDeviceObject(ResultSet rs) {
+	private AssistiveDevice buildAssistiveDeviceObject(ResultSet rs) throws DataAccessException, SQLException {
 		AssistiveDevice assistiveDevice = null;
+		assistiveDeviceInstanceDB = new AssistiveDeviceInstanceDB();
 		
 		try {
 			assistiveDevice = new AssistiveDevice(rs.getInt("hmiNumber"), rs.getString("name"), rs.getString("type"));
-			
+			assistiveDevice.setDeviceInstanceList(assistiveDeviceInstanceDB.findInstancesByDeviceId(rs.getInt("id")));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
