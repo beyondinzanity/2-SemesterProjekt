@@ -22,7 +22,7 @@ public class AssistiveDeviceInstanceDB implements IAssistiveDeviceInstanceDB {
 	}
 	
 	@Override
-	public model.AssistiveDeviceInstance findInstanceByDeviceId(int deviceId) {
+	public AssistiveDeviceInstance findInstanceByDeviceId(int deviceId) {
 		// TODO Auto-generated method stub
 		AssistiveDeviceInstance res = null;
 		
