@@ -2,8 +2,10 @@ package gui;
 
 import java.sql.SQLException;
 
+import databases.AssistiveDeviceDB;
 import databases.AssistiveDeviceInstanceDB;
 import databases.DataAccessException;
+import model.AssistiveDevice;
 import model.AssistiveDeviceInstance;
 
 public class TryMe {
@@ -11,10 +13,14 @@ public class TryMe {
 	
 	public static void main(String[] args) throws DataAccessException, SQLException {
 		 AssistiveDeviceInstanceDB ass = new AssistiveDeviceInstanceDB();
-		 for (AssistiveDeviceInstance q : ass.findInstanceByDeviceId(1)) {
+		 AssistiveDeviceDB ass2 = new AssistiveDeviceDB();
+		 for (AssistiveDeviceInstance q : ass.findInstancesByDeviceId(1)) {
 			 System.out.println(q.getBarcode() + ", " + q.getRegisteredDate() + ", " + q.getNote());
-			 
-		}
+		 }
+		 
+		 for (AssistiveDevice q : ass2.findAssistiveDevices(102771)) {
+			 System.out.println();
+		 }
 		// System.out.println(ass.findInstanceByDeviceId(1).getBarcode() + " " + ass.findInstanceByDeviceId(1).getRegisteredDate() + " " + ass.findInstanceByDeviceId(1).getNote());
 		
 	}

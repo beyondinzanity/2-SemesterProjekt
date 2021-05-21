@@ -23,7 +23,7 @@ public class AssistiveDeviceInstanceDB implements IAssistiveDeviceInstanceDB {
 	}
 
 	@Override
-	public List<AssistiveDeviceInstance> findInstanceByDeviceId(int deviceId) throws DataAccessException{
+	public List<AssistiveDeviceInstance> findInstancesByDeviceId(int deviceId) throws DataAccessException{
 		// TODO Auto-generated method stub
 		try {
 			findAssistiveDeviceInstanceByDeviceIdPS.setInt(1, deviceId);
@@ -31,8 +31,8 @@ public class AssistiveDeviceInstanceDB implements IAssistiveDeviceInstanceDB {
 			List<AssistiveDeviceInstance> res = buildObjects(rs);
 			return res;
 			
-		} catch (SQLException s) {
-			throw new DataAccessException("Could not retrieve data from AssistiveDeviceInstance!", s);
+		} catch (SQLException e) {
+			throw new DataAccessException("Could not retrieve data from AssistiveDeviceInstance!", e);
 		}
 	}
 	
@@ -51,8 +51,8 @@ public class AssistiveDeviceInstanceDB implements IAssistiveDeviceInstanceDB {
 		try {
 			assistiveDeviceInstance = new AssistiveDeviceInstance(rs.getString("barcode"), rs.getDate("registeredDate"),
 					rs.getString("note"));
-		} catch (SQLException s) {
-			s.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return assistiveDeviceInstance;
 	}
