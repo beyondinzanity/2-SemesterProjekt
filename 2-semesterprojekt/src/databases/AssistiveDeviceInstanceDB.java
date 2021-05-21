@@ -4,9 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.AssistiveDeviceInstance;
-import model.Resident;
 
 public class AssistiveDeviceInstanceDB implements IAssistiveDeviceInstanceDB {
 
@@ -22,22 +23,26 @@ public class AssistiveDeviceInstanceDB implements IAssistiveDeviceInstanceDB {
 	}
 
 	@Override
-	public AssistiveDeviceInstance findInstanceByDeviceId(int deviceId) {
+	public List<AssistiveDeviceInstance> findInstanceByDeviceId(int deviceId) throws DataAccessException{
 		// TODO Auto-generated method stub
-		AssistiveDeviceInstance res = null;
-
 		try {
 			findAssistiveDeviceInstanceByDeviceIdPS.setInt(1, deviceId);
 			ResultSet rs = findAssistiveDeviceInstanceByDeviceIdPS.executeQuery();
-
-			while (rs.next()) {
-				res = buildAssistiveDeviceInstanceObject(rs);
-			}
+			List<AssistiveDeviceInstance> res = buildObjects(rs);
+			return res;
 			
 		} catch (SQLException s) {
-			s.printStackTrace();
+			throw new DataAccessException("Could not retrieve data from AssistiveDeviceInstance!", s);
+		}
+	}
+	
+	private List<AssistiveDeviceInstance> buildObjects(ResultSet rs) throws SQLException {
+		List<AssistiveDeviceInstance> res = new ArrayList<>();
+		while(rs.next()) {
+			res.add(buildAssistiveDeviceInstanceObject(rs));
 		}
 		return res;
+		
 	}
 
 	private AssistiveDeviceInstance buildAssistiveDeviceInstanceObject(ResultSet rs) {

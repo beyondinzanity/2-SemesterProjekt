@@ -1,8 +1,10 @@
 package databases;
 
+import java.util.List;
+
 import model.AssistiveDeviceInstance;
 
 public interface IAssistiveDeviceInstanceDB {
-	public AssistiveDeviceInstance findInstanceByDeviceId(int deviceId);
+	public List<AssistiveDeviceInstance> findInstanceByDeviceId(int deviceId) throws DataAccessException;
 	
 }
