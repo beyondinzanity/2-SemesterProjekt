@@ -11,8 +11,8 @@ public class TryMe {
 	
 	public static void main(String[] args) throws DataAccessException, SQLException {
 		 AssistiveDeviceInstanceDB ass = new AssistiveDeviceInstanceDB();
-		 AssistiveDeviceInstance instance = ass.findInstanceByDeviceId(1);
-		 System.out.println(instance.getBarcode() + " " + instance.getRegisteredDate() + " " + instance.getNote());
+		 
+		 System.out.println(ass.findInstanceByDeviceId(1).getBarcode() + " " + ass.findInstanceByDeviceId(1).getRegisteredDate() + " " + ass.findInstanceByDeviceId(1).getNote());
 		
 	}
 }
