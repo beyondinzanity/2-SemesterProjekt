@@ -6,30 +6,57 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import model.Resident;
+import model.ZipCity;
 import databases.DBConnection;
 
 public class ResidentDB implements IResidentDB {
 	
-	private static final String FIND_BY_ID = "select * from Customer where id = ?";
-	private static final String FIND_BY_EMAIL = "select * from Resident where email = ?";
-	private PreparedStatement findCustomerByIdPS;
-	private PreparedStatement findCustomerByEmailPS;
+	private static final String FIND_BY_SSN = "select * from Resident where ssn = ?";
+	private PreparedStatement findCustomerBySsnPS;
 
-	public ResidentDB() throws Exception {
+	public ResidentDB() throws DataAccessException, SQLException {
+		
+		
 
 		Connection con = DBConnection.getInstance().getConnection();
 
-		findCustomerByIdPS = con.prepareStatement(FIND_BY_ID);
-		findCustomerByEmailPS = con.prepareStatement(FIND_BY_EMAIL);
+		findCustomerBySsnPS = con.prepareStatement(FIND_BY_SSN);
 
 	}
 	
-	public Resident findCustomerByEmail(String email) throws Exception {
+
+	private Resident buildResidentObject(ResultSet rs) throws SQLException, DataAccessException {
+		
+		
+		Resident resident = null;
+		
+		
+		ZipCityDB db = new ZipCityDB();
+		ZipCity zipCity = db.findZipCityById(rs.getInt("FKZipCityId")); 
+		
+		
+		
+		
+
+		try {
+			resident = new Resident(rs.getString("fname"), rs.getString("lname"), rs.getString("ssn"), rs.getString("phoneNumber"),
+					rs.getString("email"), rs.getInt("apartmentNumber"), rs.getString("streetName"), rs.getInt("houseNumber"), zipCity);
+			resident.setId(rs.getInt("id")); 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return resident;
+
+	}
+
+	@Override
+	public Resident findResidentBySsn(int ssn) throws DataAccessException {
 		Resident res = null;
 
 		try {
-			findCustomerByEmailPS.setString(1, email);
-			ResultSet rs = findCustomerByEmailPS.executeQuery();
+			findCustomerBySsnPS.setInt(1, ssn);
+			ResultSet rs = findCustomerBySsnPS.executeQuery();
 
 			if (rs.next()) {
 
@@ -43,26 +70,7 @@ public class ResidentDB implements IResidentDB {
 
 		return res;
 
-	}
-
-	private Resident buildResidentObject(ResultSet rs) {
-		Resident resident = null;
-
-		try {
-			resident = new Resident(rs.getString("ssn"), rs.getInt("apartmentNumber"), rs.getString("fname"), rs.getString("lname"), rs.getString("phoneNr"), rs.getString("email"));
-			//resident.setId(rs.getInt("id")); //Hvad sker der her?
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		return resident;
-
-	}
-
-	@Override
-	public Resident findResidentBySsn(int ssn) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
+	
 	}
 
 	@Override

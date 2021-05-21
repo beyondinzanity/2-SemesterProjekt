@@ -5,8 +5,12 @@ import java.sql.SQLException;
 import databases.AssistiveDeviceDB;
 import databases.AssistiveDeviceInstanceDB;
 import databases.DataAccessException;
+import databases.ResidentDB;
+import databases.ZipCityDB;
 import model.AssistiveDevice;
 import model.AssistiveDeviceInstance;
+import model.Resident;
+import model.ZipCity;
 
 public class TryMe {
 	//private static AssistiveDeviceInstanceDB ass;
@@ -14,6 +18,18 @@ public class TryMe {
 	public static void main(String[] args) throws DataAccessException, SQLException {
 		 AssistiveDeviceInstanceDB ass = new AssistiveDeviceInstanceDB();
 		 AssistiveDeviceDB ass2 = new AssistiveDeviceDB();
+		// ResidentDB ass3 = new ResidentDB();
+		 
+		 //Resident a = ass3.findResidentBySsn(1804646469);
+		 
+		//System.out.println(a.getZipCity().getCity() + " " + a.getFname());
+		 
+	    ZipCityDB db = new ZipCityDB();
+		ZipCity a = db.findZipCityById(1);
+		 
+	    System.out.println(a.getCity());
+		 
+		 
 		 for (AssistiveDeviceInstance q : ass.findInstancesByDeviceId(1)) {
 			 System.out.println(q.getBarcode() + ", " + q.getRegisteredDate() + ", " + q.getNote());
 		 }
@@ -23,5 +39,6 @@ public class TryMe {
 		 }
 		// System.out.println(ass.findInstanceByDeviceId(1).getBarcode() + " " + ass.findInstanceByDeviceId(1).getRegisteredDate() + " " + ass.findInstanceByDeviceId(1).getNote());
 		
+		 
 	}
 }
