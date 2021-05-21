@@ -30,7 +30,7 @@ public class AssistiveDeviceInstanceDB implements IAssistiveDeviceInstanceDB {
 			findAssistiveDeviceInstanceByDeviceIdPS.setInt(1, deviceId);
 			ResultSet rs = findAssistiveDeviceInstanceByDeviceIdPS.executeQuery();
 
-			if (rs.next()) {
+			while (rs.next()) {
 				res = buildAssistiveDeviceInstanceObject(rs);
 			}
 		} catch (SQLException s) {
