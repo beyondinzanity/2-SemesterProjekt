@@ -23,7 +23,7 @@ public class TryMe {
 		
 		Resident a = ass3.findResidentBySsn(1804646469);
 		 
-		System.out.println(a.getFname() +  a.getZipCity().getCity());
+		System.out.println(a.getFname() + " " +  a.getZipCity().getCity());
 		 
 	     
 		 

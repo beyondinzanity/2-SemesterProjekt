@@ -60,7 +60,8 @@ public class AssistiveDeviceDB implements IAssistiveDeviceDB {
 			res.add(buildAssistiveDeviceObject(rs));
 		}
 		return res;
-	}
+	}  
+	
 	
 	private AssistiveDevice buildAssistiveDeviceObject(ResultSet rs) throws DataAccessException, SQLException {
 		AssistiveDevice assistiveDevice = null;
