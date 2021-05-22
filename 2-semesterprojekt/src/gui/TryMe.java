@@ -34,7 +34,7 @@ public class TryMe {
 			 System.out.println(q.getBarcode() + ", " + q.getRegisteredDate() + ", " + q.getNote());
 		 }
 		 
-		 for (AssistiveDevice q : ass2.findAssistiveDevices(102771)) {
+		 for (AssistiveDevice q : ass2.findAssistiveDevices("102771")) {
 			 System.out.println(q.getHmiNumber() + ", " + q.getName() + ", " + q.getType());
 		 }
 		// System.out.println(ass.findInstanceByDeviceId(1).getBarcode() + " " + ass.findInstanceByDeviceId(1).getRegisteredDate() + " " + ass.findInstanceByDeviceId(1).getNote());

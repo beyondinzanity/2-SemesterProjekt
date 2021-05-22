@@ -10,12 +10,17 @@ public class AssistiveDevice {
 	private String type;
 	private List<AssistiveDeviceInstance> deviceInstanceList;
 
-	public AssistiveDevice(int hmiNumber, String name, String type) {
+	public AssistiveDevice(int hmiNumber, String name, String type) { //used if created with raw data (don't know the ID)
 		super();
 		this.hmiNumber = hmiNumber;
 		this.name = name;
 		this.type = type;
 		deviceInstanceList = new ArrayList<>();
+	}
+	
+	public AssistiveDevice(int id, int hmiNumber, String name, String type) { //used if created from database
+		this(hmiNumber, name, type);
+		this.id = id; 
 	}
 
 	public int getId() {

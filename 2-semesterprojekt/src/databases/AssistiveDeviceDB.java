@@ -25,26 +25,12 @@ public class AssistiveDeviceDB implements IAssistiveDeviceDB {
 
 	}
 	@Override
-	public List<AssistiveDevice> findAssistiveDevices(int assistiveDeviceHmi) throws DataAccessException {
+	public List<AssistiveDevice> findAssistiveDevices(String userSearch) throws DataAccessException {
 		// TODO Auto-generated method stub
+		userSearch = "%" + userSearch + "%";
 		try {
-			findAssistiveDevicesByHmiNumberPS.setInt(1, assistiveDeviceHmi);
-			ResultSet rs = findAssistiveDevicesByHmiNumberPS.executeQuery();
-			List<AssistiveDevice> res = buildObjects(rs);
-			return res;
-			
-		} catch (SQLException e) {
-			throw new DataAccessException("Could not retrieve data from AssistiveDevice", e);
-		}
-	}
-	
-	@Override
-	public List<AssistiveDevice> findAssistiveDevicesByName(String assistiveDeviceName) throws DataAccessException {
-		// TODO Auto-generated method stub
-		assistiveDeviceName = "%" + assistiveDeviceName + "%";
-		try {
-			findAssistiveDevicesByNamePS.setString(1, assistiveDeviceName);
-			findAssistiveDevicesByNamePS.setString(2, assistiveDeviceName);
+			findAssistiveDevicesByNamePS.setString(1, userSearch);
+			findAssistiveDevicesByNamePS.setString(2, userSearch);
 			ResultSet rs = findAssistiveDevicesByNamePS.executeQuery();
 			List<AssistiveDevice> res = buildObjects(rs);
 			return res;
@@ -68,8 +54,8 @@ public class AssistiveDeviceDB implements IAssistiveDeviceDB {
 		assistiveDeviceInstanceDB = new AssistiveDeviceInstanceDB();
 		
 		try {
-			assistiveDevice = new AssistiveDevice(rs.getInt("hmiNumber"), rs.getString("name"), rs.getString("type"));
-			assistiveDevice.setDeviceInstanceList(assistiveDeviceInstanceDB.findInstancesByDeviceId(rs.getInt("id")));
+			assistiveDevice = new AssistiveDevice(rs.getInt("id"), rs.getInt("hmiNumber"), rs.getString("name"), rs.getString("type"));
+			assistiveDevice.setDeviceInstanceList(assistiveDeviceInstanceDB.findInstancesByDeviceId(assistiveDevice.getId()));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

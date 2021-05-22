@@ -5,14 +5,18 @@ import java.awt.Font;
 import java.awt.Label;
 import java.awt.List;
 import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
+import controller.RentalController;
+import databases.DataAccessException;
 
 public class CreateRentalPanel extends JPanel {
-	
+	private RentalController rentalController;
 	
 	public void switchPanel(JPanel panel) {
 		removeAll();
@@ -25,6 +29,7 @@ public class CreateRentalPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public CreateRentalPanel() {
+		rentalController = new RentalController();
 		setBounds(0, 0, 920, 550);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
@@ -46,11 +51,24 @@ public class CreateRentalPanel extends JPanel {
 		button_2.setBounds(27, 53, 240, 22);
 		add(button_2);
 		
-		TextField textField = new TextField();
-		textField.setBounds(27, 94, 292, 22);
-		add(textField);
+		TextField userSearchTxt = new TextField();
+		userSearchTxt.setBounds(27, 94, 292, 22);
+		add(userSearchTxt);
 		
 		Button button_3 = new Button("S\u00F8g");
+		button_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					System.out.println(rentalController.getAssistiveDeviceController().findAssistiveDevices(userSearchTxt.getText()));
+				} catch (DataAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 		button_3.setBounds(325, 94, 52, 22);
 		add(button_3);
 		
