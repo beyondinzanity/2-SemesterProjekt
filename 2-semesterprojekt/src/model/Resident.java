@@ -2,7 +2,7 @@ package model;
 
 public class Resident extends Person {
 	
-	int id;
+	int residentId;
 	int apartmentNumber;
 	String streetName;
 	int houseNumber;
@@ -16,6 +16,10 @@ public class Resident extends Person {
 		this.streetName = streetName;
 		this.houseNumber = houseNumber; 
 		this.city = zipCity;
+	}
+	
+	public int getResidentId() {
+		return residentId;
 	}
 	
 	public void setId(int id) {

@@ -7,6 +7,7 @@ public class AssistiveDeviceInstance {
 	private String barcode;
 	private Date registeredDate;
 	private String note;
+	private int assistiveDeviceId; 
 
 	public AssistiveDeviceInstance(String barcode, Date registeredDate, String note) {
 		this.barcode = barcode;
@@ -23,8 +24,21 @@ public class AssistiveDeviceInstance {
 		return id;
 	}
 
+<<<<<<< Updated upstream
 	public void setId(int id) {
 		this.id = id;
+=======
+//	public int getId() {
+//		return id;
+//	}
+//
+//	public void setId(int id) {
+//		this.id = id;
+//	}
+	
+	public int getAssistiveDeviceId() {
+		return assistiveDeviceId;
+>>>>>>> Stashed changes
 	}
 
 	public String getBarcode() {

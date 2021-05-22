@@ -1,11 +1,23 @@
-package controller;
+package Controller;
 
+import java.sql.SQLException;
+
+import databases.DataAccessException;
+import databases.ResidentDB;
 import model.Resident;
 
 public class ResidentController {
+	private ResidentDB residentDB;
 	
-	public Resident findResident(int ssn) {
-		return null;
+	public ResidentController() throws DataAccessException, SQLException {
+		residentDB = new ResidentDB();
+	}
+	
+	
+	
+	public Resident findResident(int ssn) throws DataAccessException {
+		
+		return residentDB.findResidentBySsn(ssn); 
 	}
 
 }

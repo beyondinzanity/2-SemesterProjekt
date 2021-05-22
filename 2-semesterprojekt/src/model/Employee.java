@@ -2,7 +2,9 @@ package model;
 
 public class Employee extends Person {
 
+	private int employeeId;
 	private int employeeNumber;
+	
 
 	public Employee(int employeeNumber, String fname, String lname, String ssn, String phoneNumber, String email) {
 		super(fname, lname, ssn, phoneNumber, email);
@@ -15,6 +17,11 @@ public class Employee extends Person {
 
 	public void setEmployeeNumber(int employeeNumber) {
 		this.employeeNumber = employeeNumber;
+	}
+	
+	public int getEmployeeId() {
+		return employeeId;
+		
 	}
 
 }

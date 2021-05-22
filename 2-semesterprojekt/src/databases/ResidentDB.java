@@ -12,32 +12,21 @@ import databases.DBConnection;
 public class ResidentDB implements IResidentDB {
 	
 	private static final String FIND_BY_SSN = "select * from Resident where ssn = ?";
-	private PreparedStatement findCustomerBySsnPS;
+	private PreparedStatement findResidentBySsnPS;
 
 	public ResidentDB() throws DataAccessException, SQLException {
-		
-		
-
 		Connection con = DBConnection.getInstance().getConnection();
-
-		findCustomerBySsnPS = con.prepareStatement(FIND_BY_SSN);
-
+		findResidentBySsnPS = con.prepareStatement(FIND_BY_SSN);
 	}
 	
 
 	private Resident buildResidentObject(ResultSet rs) throws SQLException, DataAccessException {
 		
-		
 		Resident resident = null;
-		
 		
 		ZipCityDB db = new ZipCityDB();
 		ZipCity zipCity = db.findZipCityById(rs.getInt("FKZipCityId")); 
 		
-		
-		
-		
-
 		try {
 			resident = new Resident(rs.getString("fname"), rs.getString("lname"), rs.getString("ssn"), rs.getString("phoneNumber"),
 					rs.getString("email"), rs.getInt("apartmentNumber"), rs.getString("streetName"), rs.getInt("houseNumber"), zipCity);
@@ -45,9 +34,7 @@ public class ResidentDB implements IResidentDB {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		return resident;
-
 	}
 
 	@Override
@@ -55,8 +42,8 @@ public class ResidentDB implements IResidentDB {
 		Resident res = null;
 
 		try {
-			findCustomerBySsnPS.setInt(1, ssn);
-			ResultSet rs = findCustomerBySsnPS.executeQuery();
+			findResidentBySsnPS.setInt(1, ssn);
+			ResultSet rs = findResidentBySsnPS.executeQuery();
 
 			if (rs.next()) {
 
