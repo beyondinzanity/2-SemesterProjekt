@@ -73,7 +73,6 @@ public class CreateRentalPanel extends JPanel {
 						for (AssistiveDeviceInstance i : q.getDeviceInstanceList()) {
 							System.out.println("\t" + i.getBarcode() + ", " + i.getRegisteredDate() + ", " + i.getNote());
 							userSearchList.add(q.getHmiNumber() + " - " + q.getName() + " - " + q.getType() + " - " + i.getBarcode() + " - " + i.getRegisteredDate() + " - " + i.getNote());
-							userSearchList.addElement(q.getHmiNumber() + " - " + q.getName() + " - " + q.getType() + " - " + i.getBarcode() + " - " + i.getRegisteredDate() + " - " + i.getNote());
 						}
 					}
 				} catch (DataAccessException e) {

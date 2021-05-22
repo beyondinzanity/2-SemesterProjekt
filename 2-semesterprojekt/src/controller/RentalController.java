@@ -1,25 +1,18 @@
-package Controller;
+package controller;
 
 import java.sql.SQLException;
-<<<<<<< Updated upstream
 import java.util.List;
 
 import databases.DataAccessException;
 import model.AssistiveDevice;
-=======
 
 import databases.DataAccessException;
->>>>>>> Stashed changes
 import model.Rental;
 import model.Resident;
 
 public class RentalController {
-<<<<<<< Updated upstream
 	private AssistiveDeviceController assistiveDeviceController;
-	
-=======
 	private ResidentController  residentController;
->>>>>>> Stashed changes
 	Rental rental;
 	
 	public RentalController() throws DataAccessException, SQLException {
