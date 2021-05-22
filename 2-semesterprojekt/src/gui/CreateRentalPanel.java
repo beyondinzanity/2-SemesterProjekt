@@ -14,6 +14,9 @@ import javax.swing.border.EmptyBorder;
 
 import controller.RentalController;
 import databases.DataAccessException;
+import model.AssistiveDevice;
+import model.AssistiveDeviceInstance;
+import javax.swing.JList;
 
 public class CreateRentalPanel extends JPanel {
 	private RentalController rentalController;
@@ -55,11 +58,24 @@ public class CreateRentalPanel extends JPanel {
 		userSearchTxt.setBounds(27, 94, 292, 22);
 		add(userSearchTxt);
 		
+		JList userSearchList = new JList();
+		userSearchList.setBounds(27, 138, 292, 316);
+		add(userSearchList);
+		
 		Button button_3 = new Button("S\u00F8g");
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					System.out.println(rentalController.getAssistiveDeviceController().findAssistiveDevices(userSearchTxt.getText()));
+					userSearchList.removeAll();
+					for (AssistiveDevice q : rentalController.getAssistiveDeviceController().findAssistiveDevices(userSearchTxt.getText())) {
+						System.out.println(q.getHmiNumber() + ", " + q.getName() + ", " + q.getType());
+						
+						for (AssistiveDeviceInstance i : q.getDeviceInstanceList()) {
+							System.out.println("\t" + i.getBarcode() + ", " + i.getRegisteredDate() + ", " + i.getNote());
+							userSearchList.add(q.getHmiNumber() + " - " + q.getName() + " - " + q.getType() + " - " + i.getBarcode() + " - " + i.getRegisteredDate() + " - " + i.getNote());
+							userSearchList.addElement(q.getHmiNumber() + " - " + q.getName() + " - " + q.getType() + " - " + i.getBarcode() + " - " + i.getRegisteredDate() + " - " + i.getNote());
+						}
+					}
 				} catch (DataAccessException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -71,10 +87,6 @@ public class CreateRentalPanel extends JPanel {
 		});
 		button_3.setBounds(325, 94, 52, 22);
 		add(button_3);
-		
-		List list = new List();
-		list.setBounds(27, 122, 350, 332);
-		add(list);
 		
 		Label label = new Label("BEBOER");
 		label.setBounds(463, 53, 105, 22);
@@ -185,6 +197,7 @@ public class CreateRentalPanel extends JPanel {
 		TextField textField_10 = new TextField();
 		textField_10.setBounds(686, 139, 166, 22);
 		add(textField_10);
+		
 
 	}
 }
