@@ -12,6 +12,14 @@ public class Rental {
 	private AssistiveDeviceInstance assistiveDeviceInstance;
 	private Resident resident;
 	
+	public void setResident(Resident resident) {
+		this.resident = resident;
+	}
+	
+	public void setAssistiveDeviceInstance(AssistiveDeviceInstance instance) {
+		this.assistiveDeviceInstance = instance; 
+	}
+	
 	public Resident getResident() {
 		return resident; 
 	}
