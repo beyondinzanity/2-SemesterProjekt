@@ -1,12 +1,14 @@
 package model;
 
+import java.sql.SQLData;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Rental {
 	
 	private int rentalID; 
-	private Date startDate;
-	private Date endDate;
+	private LocalDate startDate;
+	private LocalDate endDate; 
 	private int rentalNumber;
 	private Employee employee;
 	private AssistiveDeviceInstance assistiveDeviceInstance;

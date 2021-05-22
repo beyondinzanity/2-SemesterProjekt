@@ -20,9 +20,11 @@ public class ResidentDB implements IResidentDB {
 	}
 	
 
-	private Resident buildResidentObject(ResultSet rs) throws SQLException, DataAccessException {
+	private Resident buildResidentObject(ResultSet rs) throws SQLException, DataAccessException { 
 		
 		Resident resident = null;
+		
+		//er det her ok at gøre?
 		
 		ZipCityDB db = new ZipCityDB();
 		ZipCity zipCity = db.findZipCityById(rs.getInt("FKZipCityId")); 

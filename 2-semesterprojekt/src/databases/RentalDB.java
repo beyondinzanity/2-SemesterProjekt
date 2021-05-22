@@ -27,7 +27,7 @@ public class RentalDB {
 		insertRental.setDate(2, rental.getStartDate());
 		insertRental.setDate(3, rental.getEndDate());
 		insertRental.setInt(4, rental.getEmployee().getEmployeeId());
-		insertRental.setInt(5, rental.getAssistiveDeviceInstance().getAssistiveDeviceId());
+		insertRental.setInt(5, rental.getAssistiveDeviceInstance().getId());
 		insertRental.setInt(6, rental.getResident().getResidentId());
 	
 		rental.setRentalId(executeInsertWithIdentity(insertRental));
