@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Date;
 
 import model.Rental;
 
@@ -24,8 +25,8 @@ public class RentalDB {
 	public void endRental(Rental rental) throws Exception {
 		
 		insertRental.setInt(1, rental.getRentalNumber());
-		insertRental.setDate(2, rental.getStartDate());
-		insertRental.setDate(3, rental.getEndDate());
+		insertRental.setDate(2, convertDate(rental.getStartDate()));
+		insertRental.setDate(3, convertDate(rental.getEndDate()));
 		insertRental.setInt(4, rental.getEmployee().getEmployeeId());
 		insertRental.setInt(5, rental.getAssistiveDeviceInstance().getId());
 		insertRental.setInt(6, rental.getResident().getResidentId());
@@ -34,8 +35,12 @@ public class RentalDB {
 		
 	}
 	
+	/*
+	 * Converts a LocalDate to a sqlDate
+	 */
 	public java.sql.Date convertDate(LocalDate date) {
-		return null;
+		java.sql.Date sqlDate = java.sql.Date.valueOf(date);
+		return sqlDate;
 	}
 	
     public int executeInsertWithIdentity(PreparedStatement ps) throws Exception {
