@@ -3,12 +3,12 @@ package gui;
 import java.awt.Button;
 import java.awt.Font;
 import java.awt.Label;
-import java.awt.List;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -16,10 +16,9 @@ import controller.RentalController;
 import databases.DataAccessException;
 import model.AssistiveDevice;
 import model.AssistiveDeviceInstance;
-import javax.swing.JList;
 
 public class CreateRentalPanel extends JPanel {
-	private RentalController rentalController;
+	private RentalController rentalController = new RentalController();
 	
 	public void switchPanel(JPanel panel) {
 		removeAll();
@@ -30,9 +29,10 @@ public class CreateRentalPanel extends JPanel {
 	
 	/**
 	 * Create the panel.
+	 * @throws SQLException 
+	 * @throws DataAccessException 
 	 */
-	public CreateRentalPanel() {
-		rentalController = new RentalController();
+	public CreateRentalPanel() throws DataAccessException, SQLException {
 		setBounds(0, 0, 920, 550);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
@@ -72,7 +72,7 @@ public class CreateRentalPanel extends JPanel {
 						
 						for (AssistiveDeviceInstance i : q.getDeviceInstanceList()) {
 							System.out.println("\t" + i.getBarcode() + ", " + i.getRegisteredDate() + ", " + i.getNote());
-							userSearchList.add(q.getHmiNumber() + " - " + q.getName() + " - " + q.getType() + " - " + i.getBarcode() + " - " + i.getRegisteredDate() + " - " + i.getNote());
+							//userSearchList.add(q.getHmiNumber() + " - " + q.getName() + " - " + q.getType() + " - " + i.getBarcode() + " - " + i.getRegisteredDate() + " - " + i.getNote());
 						}
 					}
 				} catch (DataAccessException e) {

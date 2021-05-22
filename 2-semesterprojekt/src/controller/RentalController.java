@@ -1,10 +1,6 @@
 package controller;
 
 import java.sql.SQLException;
-import java.util.List;
-
-import databases.DataAccessException;
-import model.AssistiveDevice;
 
 import databases.DataAccessException;
 import model.Rental;
@@ -15,8 +11,7 @@ public class RentalController {
 	private ResidentController  residentController;
 	Rental rental;
 	
-	public RentalController() throws DataAccessException, SQLException {
-		residentController = new ResidentController();
+	public RentalController() {
 		
 	}
 	
@@ -33,8 +28,11 @@ public class RentalController {
 	
 	public void endRental() {
 		
-		
-		
+	}
+	
+	public ResidentController getResidentController() throws DataAccessException, SQLException {
+		residentController = new ResidentController();
+		return residentController;
 	}
 	
 	public AssistiveDeviceController getAssistiveDeviceController() throws DataAccessException, SQLException {

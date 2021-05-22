@@ -11,19 +11,17 @@ import model.AssistiveDevice;
 
 public class AssistiveDeviceDB implements IAssistiveDeviceDB {
 	private AssistiveDeviceInstanceDB assistiveDeviceInstanceDB;
-	private static final String FIND_BY_DEVICE_ID = "select * from AssistiveDevice where hmiNumber = ?";
 	private static final String FIND_BY_DEVICE_NAME = "select * from AssistiveDevice where name like ? or hmiNumber like ?";
-	private PreparedStatement findAssistiveDevicesByHmiNumberPS;
 	private PreparedStatement findAssistiveDevicesByNamePS;
 
 	public AssistiveDeviceDB() throws DataAccessException, SQLException {
 
 		Connection con = DBConnection.getInstance().getConnection();
 
-		findAssistiveDevicesByHmiNumberPS = con.prepareStatement(FIND_BY_DEVICE_ID);
 		findAssistiveDevicesByNamePS = con.prepareStatement(FIND_BY_DEVICE_NAME);
 
 	}
+	
 	@Override
 	public List<AssistiveDevice> findAssistiveDevices(String userSearch) throws DataAccessException {
 		// TODO Auto-generated method stub

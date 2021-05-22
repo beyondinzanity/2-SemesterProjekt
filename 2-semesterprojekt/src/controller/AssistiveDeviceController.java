@@ -7,7 +7,7 @@ import databases.AssistiveDeviceDB;
 import databases.DataAccessException;
 import model.AssistiveDevice;
 
-public class AssistiveDeviceController {
+public class AssistiveDeviceController { 
 	private AssistiveDeviceDB assistiveDeviceDB;
 	
 	public AssistiveDeviceController() throws DataAccessException, SQLException {
