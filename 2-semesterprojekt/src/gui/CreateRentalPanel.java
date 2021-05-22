@@ -18,7 +18,7 @@ import model.AssistiveDevice;
 import model.AssistiveDeviceInstance;
 
 public class CreateRentalPanel extends JPanel {
-	private RentalController rentalController = new RentalController();
+	private RentalController rentalController;
 	
 	public void switchPanel(JPanel panel) {
 		removeAll();
@@ -29,10 +29,9 @@ public class CreateRentalPanel extends JPanel {
 	
 	/**
 	 * Create the panel.
-	 * @throws SQLException 
-	 * @throws DataAccessException 
 	 */
-	public CreateRentalPanel() throws DataAccessException, SQLException {
+	public CreateRentalPanel() {
+		rentalController = new RentalController();
 		setBounds(0, 0, 920, 550);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);

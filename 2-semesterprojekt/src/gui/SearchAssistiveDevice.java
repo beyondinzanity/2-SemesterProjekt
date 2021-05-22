@@ -9,13 +9,10 @@ import java.awt.TextArea;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import databases.DataAccessException;
 
 public class SearchAssistiveDevice extends JFrame {
 
@@ -48,7 +45,7 @@ public class SearchAssistiveDevice extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SearchAssistiveDevice() throws DataAccessException, SQLException {
+	public SearchAssistiveDevice() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 920, 550);
 		contentPane = new JPanel();

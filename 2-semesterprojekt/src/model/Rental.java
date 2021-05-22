@@ -36,11 +36,11 @@ public class Rental {
 		return rentalNumber;
 	}
 	
-	public Date getStartDate() {
+	public LocalDate getStartDate() {
 		return startDate;
 	}
 	
-	public Date getEndDate() {
+	public LocalDate getEndDate() {
 		return endDate; 
 	}
 	
