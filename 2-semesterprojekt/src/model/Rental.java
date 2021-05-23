@@ -11,9 +11,9 @@ public class Rental {
 	private Employee employee;
 	private AssistiveDeviceInstance assistiveDeviceInstance;
 	private Resident resident;
-	
+
 	public Rental() {
-		
+
 	}
 
 	public Rental(int rentalID, int rentalNumber, LocalDate startDate, LocalDate endDate, Employee employee,
@@ -27,12 +27,12 @@ public class Rental {
 		this.assistiveDeviceInstance = assistiveDeviceInstance;
 		this.resident = resident;
 	}
-	
+
 	public void setResident(Resident resident) {
 		this.resident = resident;
 	}
 
-	public void setAssistiveDeviceInstance(AssistiveDeviceInstance instance) {
+	public void addAssistiveDeviceInstance(AssistiveDeviceInstance instance) {
 		this.assistiveDeviceInstance = instance;
 	}
 
