@@ -63,6 +63,12 @@ public class AssistiveDevice {
 		this.deviceInstanceList = deviceInstanceList;
 	}
 	
+	@Override
+	public String toString() {
+		String res = getHmiNumber() + " - " + getName() + " - " + getType();
+		return res;
+	}
+	
 	
 	
 	

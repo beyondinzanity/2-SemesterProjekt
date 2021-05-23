@@ -50,5 +50,11 @@ public class AssistiveDeviceInstance {
     public void setNote(String note) {
         this.note = note;
     }
+    
+    @Override
+    public String toString() {
+    	String res = getBarcode() + " - " + getRegisteredDate() + " - " + getNote();
+    	return res;
+    }
 
 }

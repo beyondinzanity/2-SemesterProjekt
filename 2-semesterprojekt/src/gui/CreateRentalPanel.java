@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
-import javax.swing.JList;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -19,6 +19,10 @@ import model.AssistiveDeviceInstance;
 
 public class CreateRentalPanel extends JPanel {
 	private RentalController rentalController;
+	
+	public RentalController getRentalController() {
+		return rentalController;
+	}
 	
 	public void switchPanel(JPanel panel) {
 		removeAll();
@@ -57,8 +61,8 @@ public class CreateRentalPanel extends JPanel {
 		userSearchTxt.setBounds(27, 94, 292, 22);
 		add(userSearchTxt);
 		
-		JList userSearchList = new JList();
-		userSearchList.setBounds(27, 138, 292, 316);
+		java.awt.List userSearchList = new java.awt.List();
+		userSearchList.setBounds(27, 129, 350, 325);
 		add(userSearchList);
 		
 		Button button_3 = new Button("S\u00F8g");
@@ -71,7 +75,7 @@ public class CreateRentalPanel extends JPanel {
 						
 						for (AssistiveDeviceInstance i : q.getDeviceInstanceList()) {
 							System.out.println("\t" + i.getBarcode() + ", " + i.getRegisteredDate() + ", " + i.getNote());
-							//userSearchList.add(q.getHmiNumber() + " - " + q.getName() + " - " + q.getType() + " - " + i.getBarcode() + " - " + i.getRegisteredDate() + " - " + i.getNote());
+							userSearchList.add(q.toString() + " - " + i.toString());
 						}
 					}
 				} catch (DataAccessException e) {
@@ -141,6 +145,12 @@ public class CreateRentalPanel extends JPanel {
 		add(label_12);
 		
 		Button button_4 = new Button("Tilf\u00F8j hj\u00E6lpemiddel");
+		button_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AddAssistiveDevicePopup assistiveDevicePopup = new AddAssistiveDevicePopup();
+				assistiveDevicePopup.setVisible(true);
+			}
+		});
 		button_4.setBounds(454, 432, 114, 22);
 		add(button_4);
 		
@@ -195,6 +205,7 @@ public class CreateRentalPanel extends JPanel {
 		TextField textField_10 = new TextField();
 		textField_10.setBounds(686, 139, 166, 22);
 		add(textField_10);
+		
 		
 
 	}
