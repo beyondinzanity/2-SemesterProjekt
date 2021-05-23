@@ -7,10 +7,9 @@ import java.sql.SQLException;
 
 import model.Resident;
 import model.ZipCity;
-import databases.DBConnection;
 
 public class ResidentDB implements IResidentDB {
-	
+
 	private static final String FIND_BY_SSN = "select * from Resident where ssn = ?";
 	private PreparedStatement findResidentBySsnPS;
 
@@ -18,21 +17,21 @@ public class ResidentDB implements IResidentDB {
 		Connection con = DBConnection.getInstance().getConnection();
 		findResidentBySsnPS = con.prepareStatement(FIND_BY_SSN);
 	}
-	
 
-	private Resident buildResidentObject(ResultSet rs) throws SQLException, DataAccessException { 
-		
+	private Resident buildResidentObject(ResultSet rs) throws SQLException, DataAccessException {
+
 		Resident resident = null;
-		
-		//er det her ok at gøre?
-		
+
+		// er det her ok at gøre?
+
 		ZipCityDB db = new ZipCityDB();
-		ZipCity zipCity = db.findZipCityById(rs.getInt("FKZipCityId")); 
-		
+		ZipCity zipCity = db.findZipCityById(rs.getInt("FKZipCityId"));
+
 		try {
-			resident = new Resident(rs.getString("fname"), rs.getString("lname"), rs.getString("ssn"), rs.getString("phoneNumber"),
-					rs.getString("email"), rs.getInt("apartmentNumber"), rs.getString("streetName"), rs.getInt("houseNumber"), zipCity);
-			resident.setId(rs.getInt("id")); 
+			resident = new Resident(rs.getString("fname"), rs.getString("lname"), rs.getString("ssn"),
+					rs.getString("phoneNumber"), rs.getString("email"), rs.getInt("apartmentNumber"),
+					rs.getString("streetName"), rs.getInt("houseNumber"), zipCity);
+			resident.setId(rs.getInt("id"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -59,7 +58,6 @@ public class ResidentDB implements IResidentDB {
 
 		return res;
 
-	
 	}
 
 	@Override
