@@ -31,6 +31,10 @@ public class CreateRentalPanel extends JPanel {
 		revalidate();
 	}
 	
+	public void fillAssistiveDeviceData() {
+		
+	}
+	
 	/**
 	 * Create the panel.
 	 */
@@ -162,29 +166,29 @@ public class CreateRentalPanel extends JPanel {
 		button_6.setBounds(728, 471, 115, 22);
 		add(button_6);
 		
-		TextField textField_1 = new TextField();
-		textField_1.setBounds(545, 291, 190, 22);
-		add(textField_1);
+		TextField assistiveDeviceTxt = new TextField();
+		assistiveDeviceTxt.setBounds(545, 291, 190, 22);
+		add(assistiveDeviceTxt);
 		
-		TextField textField_2 = new TextField();
-		textField_2.setBounds(545, 319, 133, 22);
-		add(textField_2);
+		TextField startDateTxt = new TextField();
+		startDateTxt.setBounds(545, 319, 133, 22);
+		add(startDateTxt);
 		
 		Label label_13 = new Label("ID");
 		label_13.setBounds(754, 291, 17, 22);
 		add(label_13);
 		
-		TextField textField_3 = new TextField();
-		textField_3.setBounds(777, 291, 75, 22);
-		add(textField_3);
+		TextField assistiveDeviceIdTxt = new TextField();
+		assistiveDeviceIdTxt.setBounds(777, 291, 75, 22);
+		add(assistiveDeviceIdTxt);
 		
-		TextField textField_4 = new TextField();
-		textField_4.setBounds(545, 347, 133, 22);
-		add(textField_4);
+		TextField endDateTxt = new TextField();
+		endDateTxt.setBounds(545, 347, 133, 22);
+		add(endDateTxt);
 		
-		TextField textField_5 = new TextField();
-		textField_5.setBounds(545, 375, 133, 22);
-		add(textField_5);
+		TextField rentalIdTxt = new TextField();
+		rentalIdTxt.setBounds(545, 375, 133, 22);
+		add(rentalIdTxt);
 		
 		TextField textField_6 = new TextField();
 		textField_6.setBounds(686, 167, 166, 22);
@@ -205,8 +209,6 @@ public class CreateRentalPanel extends JPanel {
 		TextField textField_10 = new TextField();
 		textField_10.setBounds(686, 139, 166, 22);
 		add(textField_10);
-		
-		
 
 	}
 }
