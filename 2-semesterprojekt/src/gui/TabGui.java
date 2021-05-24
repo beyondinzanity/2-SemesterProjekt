@@ -263,6 +263,7 @@ public class TabGui extends JFrame {
 		CreateRentalTab.add(rentalResidentApartmentNrTxt);
 		
 		TextField rentalResidentMunicipalityTxt = new TextField();
+		rentalResidentMunicipalityTxt.setText("IKKE IMPLEMENTERET");
 		rentalResidentMunicipalityTxt.setBounds(664, 150, 220, 22);
 		CreateRentalTab.add(rentalResidentMunicipalityTxt);
 		
@@ -368,11 +369,11 @@ public class TabGui extends JFrame {
 		CreateRentalTab.add(rentalLblNewLabel_7);
 		
 		JLabel rentalLblNewLabel_8 = new JLabel("START DATO");
-		rentalLblNewLabel_8.setBounds(446, 264, 72, 14);
+		rentalLblNewLabel_8.setBounds(446, 264, 91, 14);
 		CreateRentalTab.add(rentalLblNewLabel_8);
 		
 		JLabel rentalLblNewLabel_9 = new JLabel("SLUT DATO");
-		rentalLblNewLabel_9.setBounds(446, 292, 72, 14);
+		rentalLblNewLabel_9.setBounds(446, 292, 91, 14);
 		CreateRentalTab.add(rentalLblNewLabel_9);
 		
 		JLabel rentalLblNewLabel_10 = new JLabel("UDLEJNINGS ID");
@@ -405,8 +406,8 @@ public class TabGui extends JFrame {
 				rentalResidentNameTxt.setText(rentalController.getRental().getResident().getFname() + " " + rentalController.getRental().getResident().getLname());
 				rentalResidentSsnTxt.setText(rentalController.getRental().getResident().getSsn());
 				rentalResidentAddressTxt.setText(rentalController.getRental().getResident().getStreetName());
-				rentalResidentApartmentNrTxt.setText(rentalController.getRental().getResident().getHouseNumber());
-				rentalResidentMunicipalityTxt.setText(rentalController.getRental().getResident().getSsn());
+				rentalResidentApartmentNrTxt.setText(String.valueOf(rentalController.getRental().getResident().getHouseNumber()));
+				//rentalResidentMunicipalityTxt.setText(rentalController.getRental().getResident().get);
 				
 			}
 		});

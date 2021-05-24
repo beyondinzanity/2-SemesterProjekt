@@ -10,6 +10,11 @@ public class Employee extends Person {
 		super(fname, lname, ssn, phoneNumber, email);
 		this.employeeNumber = employeeNumber;
 	}
+	
+	public Employee(int employeeId, int employeeNumber, String fname, String lname, String ssn, String phoneNumber, String email) {
+		this(employeeNumber, fname, lname, ssn, phoneNumber, email);
+		this.employeeId = employeeId;
+	}
 
 	public int getEmployeeNumber() {
 		return employeeNumber;

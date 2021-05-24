@@ -30,6 +30,7 @@ public class RentalController {
 		
 		assistiveDeviceController = new AssistiveDeviceController();
 		residentController = new ResidentController();
+		rentalDB = new RentalDB();
 		assistiveDeviceList = new ArrayList<>();
 		residentList = new ArrayList<>();
 	}
@@ -39,7 +40,7 @@ public class RentalController {
 	}
 
 	public void setEmployee() {
-		employee = new Employee(1432, "Hans", "Nielsen", "1211650337", "12345678", "hansNiels@gmail.com");
+		employee = new Employee(1, 1432, "Hans", "Nielsen", "1211650337", "12345678", "hansNiels@gmail.com");
 		rental.setEmployee(employee);
 	}
 	

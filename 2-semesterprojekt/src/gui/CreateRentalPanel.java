@@ -33,7 +33,7 @@ public class CreateRentalPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 * @throws SQLException 
-	 * @throws DataAccessException 
+	 * @throws Exception 
 	 */
 	public CreateRentalPanel() throws DataAccessException, SQLException {
 		rentalController = new RentalController();
