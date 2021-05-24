@@ -19,16 +19,10 @@ import model.AssistiveDeviceInstance;
 
 public class CreateRentalPanel extends JPanel {
 	private RentalController rentalController;
+	//private static SearchAssistiveDevice searchAssistiveDevice = new SearchAssistiveDevice();
 	
 	public RentalController getRentalController() {
 		return rentalController;
-	}
-	
-	public void switchPanel(JPanel panel) {
-		removeAll();
-		add(panel);
-		repaint();
-		revalidate();
 	}
 	
 	public void fillAssistiveDeviceData() {
@@ -40,6 +34,7 @@ public class CreateRentalPanel extends JPanel {
 	 */
 	public CreateRentalPanel() {
 		rentalController = new RentalController();
+		
 		setBounds(0, 0, 920, 550);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
@@ -47,7 +42,7 @@ public class CreateRentalPanel extends JPanel {
 		Button button = new Button("S\u00F8g Hj\u00E6lpemiddel");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//switchPanel();
+				SearchAssistiveDevice.switchPanel(SearchAssistiveDevice.getContentPanel());
 			}
 		});
 		button.setBounds(27, 25, 115, 22);

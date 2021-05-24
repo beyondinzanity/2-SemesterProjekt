@@ -16,8 +16,8 @@ import javax.swing.border.EmptyBorder;
 
 public class SearchAssistiveDevice extends JFrame {
 
-	private JPanel contentPane;
-	private JPanel createRentalPane = new CreateRentalPanel();
+	private static JPanel contentPane;
+	private JPanel createRentalPanel = new CreateRentalPanel();
 
 	/**
 	 * Launch the application.
@@ -34,8 +34,13 @@ public class SearchAssistiveDevice extends JFrame {
 			}
 		});
 	}
+	
+	
+	public static JPanel getContentPanel() {
+		return contentPane;
+	}
 
-	public void switchPanel(JPanel panel) {
+	public static void switchPanel(JPanel panel) {
 		contentPane.removeAll();
 		contentPane.add(panel);
 		contentPane.repaint();
@@ -64,7 +69,7 @@ public class SearchAssistiveDevice extends JFrame {
 		Button button_2 = new Button("Opret Udl\u00E5n");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				switchPanel(createRentalPane);
+				switchPanel(createRentalPanel);
 			}
 		});
 
