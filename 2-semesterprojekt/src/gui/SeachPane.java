@@ -8,9 +8,12 @@ import java.awt.TextArea;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import databases.DataAccessException;
 
 public class SeachPane extends JPanel {
 
@@ -34,7 +37,16 @@ public class SeachPane extends JPanel {
 		Button button_2 = new Button("Opret Udl\u00E5n");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JPanel createRentalPanel = new CreateRentalPanel();
+				JPanel createRentalPanel = null;
+				try {
+					createRentalPanel = new CreateRentalPanel();
+				} catch (DataAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				switchPanel(createRentalPanel);
 			}
 

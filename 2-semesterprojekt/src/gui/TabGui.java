@@ -1,22 +1,26 @@
 package gui;
 
-import java.awt.BorderLayout;
+import java.awt.Button;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.List;
+import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTabbedPane;
-import javax.swing.JButton;
-import java.awt.TextField;
-import java.awt.Button;
-import java.awt.List;
 import javax.swing.JLabel;
-import java.awt.Font;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
+import javax.swing.border.EmptyBorder;
+
+import controller.RentalController;
+import databases.DataAccessException;
 
 public class TabGui extends JFrame {
-
+	RentalController rentalController;
 	private JPanel contentPane;
 
 	/**
@@ -34,11 +38,23 @@ public class TabGui extends JFrame {
 			}
 		});
 	}
+	
+	public void addAssistiveDeviceInstance(int hmi, String barcode) throws DataAccessException, SQLException {
+		System.out.println("tabGui addAssistiveDevice");
+		rentalController.addAssistiveDeviceInstance(hmi, barcode);
+	}
+	
+	public RentalController getRentalController() {
+		return rentalController;
+	}
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
+	 * @throws DataAccessException 
 	 */
-	public TabGui() {
+	public TabGui() throws DataAccessException, SQLException {
+		rentalController = new RentalController();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 950, 510);
 		contentPane = new JPanel();
@@ -234,6 +250,22 @@ public class TabGui extends JFrame {
 		CreateRentalTab.add(rentalTextField_8);
 		
 		Button rentalButton = new Button("Tilf\u00F8j Hj\u00E6lpemiddel");
+		rentalButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				rentalController.createRental();
+				AddAssistiveDevicePopup assistiveDevicePopup = null;
+				try {
+					assistiveDevicePopup = new AddAssistiveDevicePopup();
+				} catch (DataAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				assistiveDevicePopup.setVisible(true);
+			}
+		});
 		rentalButton.setBounds(464, 372, 96, 22);
 		CreateRentalTab.add(rentalButton);
 		

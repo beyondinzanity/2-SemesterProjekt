@@ -7,18 +7,22 @@ import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import controller.RentalController;
 import databases.DataAccessException;
 import model.AssistiveDevice;
 import model.AssistiveDeviceInstance;
 
 public class AddAssistiveDevicePopup extends JFrame {
-	private CreateRentalPanel createRentalPanel = new CreateRentalPanel();
+	private CreateRentalPanel createRentalPanel;
+	private LinkedHashMap<String, Integer> map = new LinkedHashMap<String, Integer>();
+	private ArrayList<String> barcodes = new ArrayList<>();
+	private TabGui tab = new TabGui();
 	private JPanel contentPane;
 
 	/**
@@ -39,8 +43,11 @@ public class AddAssistiveDevicePopup extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
+	 * @throws DataAccessException 
 	 */
-	public AddAssistiveDevicePopup() {
+	public AddAssistiveDevicePopup() throws DataAccessException, SQLException {
+		createRentalPanel = new CreateRentalPanel();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 400);
 		contentPane = new JPanel();
@@ -56,7 +63,25 @@ public class AddAssistiveDevicePopup extends JFrame {
 		acceptButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//TODO Add assistiveDevice to CreateRentalPanel and save selected
+				
 				System.out.println("Selected Index: " + userSearchList.getSelectedIndex());
+				System.out.println("ITEM: " + map.get(barcodes.get(userSearchList.getSelectedIndex())));
+				System.out.println(map.get(barcodes.get(userSearchList.getSelectedIndex())) + ", " + barcodes.get(userSearchList.getSelectedIndex()));
+				String barcode = barcodes.get(userSearchList.getSelectedIndex());
+				int hmi = map.get(barcodes.get(userSearchList.getSelectedIndex()));
+				
+				try {
+					System.out.println("Før");
+					tab.addAssistiveDeviceInstance(hmi, barcode);
+					System.out.println("Efter");
+				} catch (DataAccessException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 		acceptButton.setBounds(404, 314, 70, 22);
@@ -81,12 +106,14 @@ public class AddAssistiveDevicePopup extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					userSearchList.removeAll();
-					for (AssistiveDevice q : createRentalPanel.getRentalController().getAssistiveDeviceController().findAssistiveDevices(userSearchTxt.getText())) {
+					for (AssistiveDevice q : tab.getRentalController().findAssistiveDevices(userSearchTxt.getText())) {
 						System.out.println(q.getHmiNumber() + ", " + q.getName() + ", " + q.getType());
 						
 						for (AssistiveDeviceInstance i : q.getDeviceInstanceList()) {
 							System.out.println("\t" + i.getBarcode() + ", " + i.getRegisteredDate() + ", " + i.getNote());
 							userSearchList.add(q.toString() + " - " + i.toString());
+							barcodes.add(i.getBarcode());
+							map.put(i.getBarcode(), q.getHmiNumber());
 						}
 					}
 				} catch (DataAccessException e1) {

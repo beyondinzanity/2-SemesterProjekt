@@ -3,6 +3,7 @@ package controller;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import databases.DataAccessException;
@@ -17,12 +18,15 @@ public class RentalController {
 	private RentalDB rentalDB;
 	
 	private ResidentController residentController; 
-	private List<AssistiveDevice> assistiveDevices;
+	private List<AssistiveDevice> assistiveDeviceList;
 	Rental rental;
 
 
-	public RentalController() {
-
+	public RentalController() throws DataAccessException, SQLException {
+		assistiveDeviceController = new AssistiveDeviceController();
+		residentController = new ResidentController();
+		assistiveDeviceList = new ArrayList<>();
+		createRental();
 	}
 
 	public void createRental() {
@@ -50,47 +54,48 @@ public class RentalController {
 
 	}
 
-	public List<AssistiveDevice> findAssistiveDevice(String userInput) throws DataAccessException, SQLException {
-		assistiveDevices = getAssistiveDeviceController().findAssistiveDevices(userInput);
-
-		return assistiveDevices;
-
+	public List<AssistiveDevice> findAssistiveDevices(String userInput) throws DataAccessException, SQLException {
+		assistiveDeviceList = assistiveDeviceController.findAssistiveDevices(userInput);
+		return assistiveDeviceList;
 	}
 
-	public AssistiveDeviceInstance addAssistiveDeviceInstance(int hmi, String barcode)
-			throws DataAccessException, SQLException {
+	public AssistiveDeviceInstance addAssistiveDeviceInstance(int hmi, String barcode) throws DataAccessException, SQLException {
 		AssistiveDevice assistiveDevice = null;
 		AssistiveDeviceInstance instance = null;
-		boolean assistiveDeviceFound = false;
-		boolean assistiveDeviceInstanceFound = false;
-		while (assistiveDeviceFound == false) {
+		boolean assistiveDeviceNotFound = true;
+		boolean assistiveDeviceInstanceNotFound = true;
+		while (assistiveDeviceNotFound) {
+			System.out.println("Why here??");
+			System.out.println(assistiveDeviceList.size());
+			for (int i = 0; i <= assistiveDeviceList.size() - 1; i++) {
 
-			for (int i = 0; i < assistiveDevices.size(); i++) {
-
-				if (hmi == assistiveDevices.get(i).getHmiNumber()) {
-					assistiveDeviceFound = true;
-					assistiveDevice = assistiveDevices.get(i);
+				if (hmi == assistiveDeviceList.get(i).getHmiNumber()) {
+					assistiveDeviceNotFound = false;
+					assistiveDevice = assistiveDeviceList.get(i);
 
 				}
+				System.out.println("1. loop");
 			}
 
 		}
 
-		while (assistiveDeviceInstanceFound == false) {
+		while (assistiveDeviceInstanceNotFound) {
 
-			for (int i = 0; i < assistiveDevice.getDeviceInstanceList().size(); i++) {
+			for (int i = 0; i <= assistiveDevice.getDeviceInstanceList().size() - 1; i++) {
 
 				if (barcode.equals(assistiveDevice.getDeviceInstanceList().get(i).getBarcode())) {
-					assistiveDeviceInstanceFound = true;
+					assistiveDeviceInstanceNotFound = false;
 					instance = assistiveDevice.getDeviceInstanceList().get(i);
 
 				}
+				System.out.println("2. loop");
 
 			}
 
 		}
 
 		rental.addAssistiveDeviceInstance(instance);
+		System.out.println("Added Instance --> " + instance.getBarcode());
 		return instance;
 
 	}

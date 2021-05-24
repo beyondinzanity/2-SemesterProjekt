@@ -32,8 +32,10 @@ public class CreateRentalPanel extends JPanel {
 	
 	/**
 	 * Create the panel.
+	 * @throws SQLException 
+	 * @throws DataAccessException 
 	 */
-	public CreateRentalPanel() {
+	public CreateRentalPanel() throws DataAccessException, SQLException {
 		rentalController = new RentalController();
 		
 		setBounds(0, 0, 920, 550);
@@ -156,7 +158,16 @@ public class CreateRentalPanel extends JPanel {
 		Button button_4 = new Button("Tilf\u00F8j hj\u00E6lpemiddel");
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddAssistiveDevicePopup assistiveDevicePopup = new AddAssistiveDevicePopup();
+				AddAssistiveDevicePopup assistiveDevicePopup = null;
+				try {
+					assistiveDevicePopup = new AddAssistiveDevicePopup();
+				} catch (DataAccessException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				assistiveDevicePopup.setVisible(true);
 			}
 		});

@@ -18,7 +18,7 @@ public class AssistiveDeviceController {
 	}
 
 	public List<AssistiveDevice> findAssistiveDevices(String userSearch) throws DataAccessException {
-		return assistiveDeviceDB.findAssistiveDevices(userSearch);
+		return assistiveDeviceDB.findAssistiveDevices(userSearch); 
 
 	}
 
