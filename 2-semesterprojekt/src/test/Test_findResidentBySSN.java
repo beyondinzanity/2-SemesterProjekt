@@ -2,6 +2,8 @@ package test;
 
 import static org.junit.Assert.assertEquals;
 
+import java.sql.SQLException;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,20 +11,21 @@ import databases.DataAccessException;
 import databases.ResidentDB;
 
 public class Test_findResidentBySSN {
-	ResidentDB residentdb;
 
 	@BeforeEach
-	void setup() throws DataAccessException {
+	void setup() throws DataAccessException, SQLException {
 
 	}
 
 	@Test
-	void testid1() throws DataAccessException {
+	void testid1() throws DataAccessException, SQLException {
 		// Arrange
+		ResidentDB db = new ResidentDB();
 		String bruhSSN = "4700540903";
+
 		// Act
-		residentdb.findResidentBySsn("4700540903");
+
 		// Assert
-		assertEquals(bruhSSN, residentdb.findResidentBySsn("4700540903"));
+		assertEquals(bruhSSN, db.findResidentBySsn("4700540903").getSsn());
 	}
 }
