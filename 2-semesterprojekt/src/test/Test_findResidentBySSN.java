@@ -21,11 +21,28 @@ public class Test_findResidentBySSN {
 	void testid1() throws DataAccessException, SQLException {
 		// Arrange
 		ResidentDB db = new ResidentDB();
-		String bruhSSN = "4700540903";
+		String expectedSSN = "4700540903";
 
 		// Act
 
 		// Assert
-		assertEquals(bruhSSN, db.findResidentBySsn("4700540903").getSsn());
+		assertEquals(expectedSSN, db.findResidentBySsn("4700540903").getSsn());
+	}
+
+	@Test
+	void testid2() throws DataAccessException, SQLException {
+		// Arrange
+		ResidentDB db = new ResidentDB();
+		String expectedSSN = "3990322401";
+
+		// Act
+
+		// Assert
+		assertEquals(expectedSSN, db.findResidentBySsn("3990322401").getSsn());
+	}
+
+	@Test
+	void testid3() throws DataAccessException, SQLException {
+
 	}
 }
