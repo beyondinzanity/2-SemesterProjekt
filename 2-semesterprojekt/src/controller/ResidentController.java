@@ -8,16 +8,14 @@ import model.Resident;
 
 public class ResidentController {
 	private ResidentDB residentDB;
-	
+
 	public ResidentController() throws DataAccessException, SQLException {
 		residentDB = new ResidentDB();
 	}
-	
-	
-	
-	public Resident findResident(int ssn) throws DataAccessException {
-		
-		return residentDB.findResidentBySsn(ssn); 
+
+	public Resident findResident(String ssn) throws DataAccessException {
+
+		return residentDB.findResidentBySsn(ssn);
 	}
 
 }
