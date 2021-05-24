@@ -67,23 +67,23 @@ public class TabGui extends JFrame {
 		SearchAssistiveDeviceTab.add(list);
 		
 		TextField textField = new TextField();
-		textField.setBounds(703, 38, 181, 22);
+		textField.setBounds(664, 38, 220, 22);
 		SearchAssistiveDeviceTab.add(textField);
 		
 		TextField textField_1 = new TextField();
-		textField_1.setBounds(703, 66, 181, 22);
+		textField_1.setBounds(664, 66, 220, 22);
 		SearchAssistiveDeviceTab.add(textField_1);
 		
 		TextField textField_2 = new TextField();
-		textField_2.setBounds(703, 94, 181, 22);
+		textField_2.setBounds(664, 94, 220, 22);
 		SearchAssistiveDeviceTab.add(textField_2);
 		
 		TextField textField_3 = new TextField();
-		textField_3.setBounds(703, 122, 181, 22);
+		textField_3.setBounds(664, 122, 220, 22);
 		SearchAssistiveDeviceTab.add(textField_3);
 		
 		TextField textField_4 = new TextField();
-		textField_4.setBounds(703, 150, 181, 22);
+		textField_4.setBounds(664, 150, 220, 22);
 		SearchAssistiveDeviceTab.add(textField_4);
 		
 		TextField textField_5 = new TextField();
@@ -129,35 +129,35 @@ public class TabGui extends JFrame {
 		SearchAssistiveDeviceTab.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("NAVN");
-		lblNewLabel_2.setBounds(587, 42, 75, 14);
+		lblNewLabel_2.setBounds(587, 42, 46, 14);
 		SearchAssistiveDeviceTab.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("CPR-NR");
-		lblNewLabel_3.setBounds(587, 71, 79, 14);
+		lblNewLabel_3.setBounds(587, 71, 51, 14);
 		SearchAssistiveDeviceTab.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("ADDRESSE");
-		lblNewLabel_4.setBounds(587, 98, 75, 14);
+		lblNewLabel_4.setBounds(587, 98, 64, 14);
 		SearchAssistiveDeviceTab.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("BOLIG NR.");
-		lblNewLabel_5.setBounds(587, 126, 79, 14);
+		lblNewLabel_5.setBounds(587, 126, 64, 14);
 		SearchAssistiveDeviceTab.add(lblNewLabel_5);
 		
 		JLabel lblNewLabel_6 = new JLabel("KOMMUNE");
-		lblNewLabel_6.setBounds(591, 154, 75, 14);
+		lblNewLabel_6.setBounds(587, 154, 75, 14);
 		SearchAssistiveDeviceTab.add(lblNewLabel_6);
 		
 		JLabel lblNewLabel_7 = new JLabel("NAVN");
-		lblNewLabel_7.setBounds(446, 232, 46, 14);
+		lblNewLabel_7.setBounds(446, 236, 46, 14);
 		SearchAssistiveDeviceTab.add(lblNewLabel_7);
 		
 		JLabel lblNewLabel_8 = new JLabel("TYPE");
-		lblNewLabel_8.setBounds(446, 268, 46, 14);
+		lblNewLabel_8.setBounds(446, 263, 46, 14);
 		SearchAssistiveDeviceTab.add(lblNewLabel_8);
 		
 		JLabel lblNewLabel_9 = new JLabel("STATUS");
-		lblNewLabel_9.setBounds(446, 288, 46, 14);
+		lblNewLabel_9.setBounds(446, 291, 46, 14);
 		SearchAssistiveDeviceTab.add(lblNewLabel_9);
 		
 		JLabel lblNewLabel_10 = new JLabel("HMI");
@@ -182,7 +182,7 @@ public class TabGui extends JFrame {
 		
 		//RENTAL TAB!
 		JPanel CreateRentalTab = new JPanel();
-		tabbedPane.addTab("New tab", null, CreateRentalTab, null);
+		tabbedPane.addTab("Opret Udl\u00E5n", null, CreateRentalTab, null);
 		CreateRentalTab.setLayout(null);
 		
 		TextField rentalUserSearchTxt = new TextField();
@@ -198,44 +198,40 @@ public class TabGui extends JFrame {
 		CreateRentalTab.add(rentalList);
 		
 		TextField rentalTextField = new TextField();
-		rentalTextField.setBounds(703, 38, 181, 22);
+		rentalTextField.setBounds(664, 38, 220, 22);
 		CreateRentalTab.add(rentalTextField);
 		
 		TextField rentalTextField_1 = new TextField();
-		rentalTextField_1.setBounds(703, 66, 181, 22);
+		rentalTextField_1.setBounds(664, 66, 220, 22);
 		CreateRentalTab.add(rentalTextField_1);
 		
 		TextField rentalTextField_2 = new TextField();
-		rentalTextField_2.setBounds(703, 94, 181, 22);
+		rentalTextField_2.setBounds(664, 94, 220, 22);
 		CreateRentalTab.add(rentalTextField_2);
 		
 		TextField rentalTextField_3 = new TextField();
-		rentalTextField_3.setBounds(703, 122, 181, 22);
+		rentalTextField_3.setBounds(664, 122, 220, 22);
 		CreateRentalTab.add(rentalTextField_3);
 		
 		TextField rentalTextField_4 = new TextField();
-		rentalTextField_4.setBounds(703, 150, 181, 22);
+		rentalTextField_4.setBounds(664, 150, 220, 22);
 		CreateRentalTab.add(rentalTextField_4);
 		
 		TextField rentalTextField_5 = new TextField();
-		rentalTextField_5.setBounds(524, 232, 154, 22);
+		rentalTextField_5.setBounds(543, 232, 211, 22);
 		CreateRentalTab.add(rentalTextField_5);
 		
 		TextField rentalTextField_6 = new TextField();
-		rentalTextField_6.setBounds(524, 260, 154, 22);
+		rentalTextField_6.setBounds(543, 260, 135, 22);
 		CreateRentalTab.add(rentalTextField_6);
 		
 		TextField rentalTextField_7 = new TextField();
-		rentalTextField_7.setBounds(524, 288, 154, 22);
+		rentalTextField_7.setBounds(543, 288, 135, 22);
 		CreateRentalTab.add(rentalTextField_7);
 		
 		TextField rentalTextField_8 = new TextField();
-		rentalTextField_8.setBounds(524, 316, 154, 22);
+		rentalTextField_8.setBounds(543, 316, 135, 22);
 		CreateRentalTab.add(rentalTextField_8);
-		
-		TextField rentalTextField_9 = new TextField();
-		rentalTextField_9.setBounds(524, 344, 154, 22);
-		CreateRentalTab.add(rentalTextField_9);
 		
 		Button rentalButton = new Button("Tilf\u00F8j Hj\u00E6lpemiddel");
 		rentalButton.setBounds(464, 372, 96, 22);
@@ -276,40 +272,36 @@ public class TabGui extends JFrame {
 		CreateRentalTab.add(rentalLblNewLabel_5);
 		
 		JLabel rentalLblNewLabel_6 = new JLabel("KOMMUNE");
-		rentalLblNewLabel_6.setBounds(591, 154, 75, 14);
+		rentalLblNewLabel_6.setBounds(587, 154, 75, 14);
 		CreateRentalTab.add(rentalLblNewLabel_6);
 		
-		JLabel rentalLblNewLabel_7 = new JLabel("NAVN");
-		rentalLblNewLabel_7.setBounds(446, 232, 46, 14);
+		JLabel rentalLblNewLabel_7 = new JLabel("HJ\u00C6LPEMIDDEL");
+		rentalLblNewLabel_7.setBounds(446, 236, 91, 14);
 		CreateRentalTab.add(rentalLblNewLabel_7);
 		
-		JLabel rentalLblNewLabel_8 = new JLabel("TYPE");
-		rentalLblNewLabel_8.setBounds(446, 268, 46, 14);
+		JLabel rentalLblNewLabel_8 = new JLabel("START DATO");
+		rentalLblNewLabel_8.setBounds(446, 264, 72, 14);
 		CreateRentalTab.add(rentalLblNewLabel_8);
 		
-		JLabel rentalLblNewLabel_9 = new JLabel("STATUS");
-		rentalLblNewLabel_9.setBounds(446, 288, 46, 14);
+		JLabel rentalLblNewLabel_9 = new JLabel("SLUT DATO");
+		rentalLblNewLabel_9.setBounds(446, 292, 72, 14);
 		CreateRentalTab.add(rentalLblNewLabel_9);
 		
-		JLabel rentalLblNewLabel_10 = new JLabel("HMI");
-		rentalLblNewLabel_10.setBounds(446, 316, 46, 14);
+		JLabel rentalLblNewLabel_10 = new JLabel("UDLEJNINGS ID");
+		rentalLblNewLabel_10.setBounds(446, 320, 91, 14);
 		CreateRentalTab.add(rentalLblNewLabel_10);
-		
-		JLabel rentalLblNewLabel_11 = new JLabel("EJER");
-		rentalLblNewLabel_11.setBounds(446, 344, 46, 14);
-		CreateRentalTab.add(rentalLblNewLabel_11);
 		
 		JLabel rentalLblNewLabel_12 = new JLabel("ID #");
 		rentalLblNewLabel_12.setBounds(509, 178, 46, 14);
 		CreateRentalTab.add(rentalLblNewLabel_12);
 		
-		JTextArea rentalTextArea = new JTextArea();
-		rentalTextArea.setBounds(703, 232, 181, 134);
-		CreateRentalTab.add(rentalTextArea);
+		TextField textField_10 = new TextField();
+		textField_10.setBounds(811, 232, 73, 22);
+		CreateRentalTab.add(textField_10);
 		
-		JLabel rentalLblNewLabel_13 = new JLabel("NOTE");
-		rentalLblNewLabel_13.setBounds(703, 208, 46, 14);
-		CreateRentalTab.add(rentalLblNewLabel_13);
+		JLabel lblNewLabel_14 = new JLabel("ID");
+		lblNewLabel_14.setBounds(786, 235, 19, 14);
+		CreateRentalTab.add(lblNewLabel_14);
 		
 		JPanel SearchResidentTab = new JPanel();
 		tabbedPane.addTab("New tab", null, SearchResidentTab, null);

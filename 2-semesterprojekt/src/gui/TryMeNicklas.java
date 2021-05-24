@@ -14,7 +14,7 @@ public class TryMeNicklas {
 		//AssistiveDeviceInstanceDB ass = new AssistiveDeviceInstanceDB();
 		AssistiveDeviceDB ass2 = new AssistiveDeviceDB();
 		
-		for (AssistiveDevice q : ass2.findAssistiveDevices("kr")) {
+		for (AssistiveDevice q : ass2.findAssistiveDevices("k")) {
 			System.out.println(q.getHmiNumber() + ", " + q.getName() + ", " + q.getType());
 			
 			for (AssistiveDeviceInstance i : q.getDeviceInstanceList()) {
