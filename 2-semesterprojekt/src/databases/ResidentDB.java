@@ -4,13 +4,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.Resident;
 import model.ZipCity;
 
 public class ResidentDB implements IResidentDB {
 
-	private static final String FIND_BY_SSN = "select * from Resident where ssn = ?";
+	private static final String FIND_BY_SSN = "select * from Resident where ssn like ?";
 	private PreparedStatement findResidentBySsnPS;
 
 	public ResidentDB() throws DataAccessException, SQLException {
@@ -38,30 +40,30 @@ public class ResidentDB implements IResidentDB {
 		return resident;
 	}
 
-	@Override
-	public Resident findResidentBySsn(String ssn) throws DataAccessException {
-		Resident res = null;
-
-		try {
-			findResidentBySsnPS.setString(1, ssn);
-			ResultSet rs = findResidentBySsnPS.executeQuery();
-
-			if (rs.next()) {
-
-				res = buildResidentObject(rs);
-
-			}
-
-		} catch (SQLException s) {
-			s.printStackTrace();
+	private List<Resident> buildResidentObjects(ResultSet rs) throws SQLException, DataAccessException {
+		List<Resident> res = new ArrayList<>();
+		while (rs.next()) {
+			res.add(buildResidentObject(rs));
 		}
-
 		return res;
-
 	}
 
 	@Override
-	public Resident findResidentByName(String name) throws DataAccessException {
+	public List<Resident> findResidentBySsn(String ssn) throws DataAccessException {
+		ssn = "%" + ssn + "%";
+		try {
+			findResidentBySsnPS.setString(1, ssn);
+			ResultSet rs = findResidentBySsnPS.executeQuery();
+			List<Resident> res = buildResidentObjects(rs);
+			return res;
+		} catch (SQLException s) {
+			s.printStackTrace();
+			throw new DataAccessException("Could not retrieve data from Resident", s);
+		}
+	}
+
+	@Override
+	public List<Resident> findResidentByName(String name) throws DataAccessException {
 		// TODO Auto-generated method stub
 		return null;
 	}

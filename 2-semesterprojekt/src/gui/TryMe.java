@@ -1,6 +1,7 @@
 package gui;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import controller.RentalController;
 import databases.AssistiveDeviceDB;
@@ -22,9 +23,9 @@ public class TryMe {
 		AssistiveDeviceDB ass2 = new AssistiveDeviceDB();
 		ResidentDB ass3 = new ResidentDB();
 
-		Resident a = ass3.findResidentBySsn("1804646469");
-
-		System.out.println(a.getFname() + " " + a.getZipCity().getCity());
+		for (Resident res : ass3.findResidentBySsn("1")) {
+			System.out.println(res.getSsn());
+		}
 
 		for (AssistiveDeviceInstance q : ass.findInstancesByDeviceId(1)) {
 			System.out.println(q.getBarcode() + ", " + q.getRegisteredDate() + ", " + q.getNote());
@@ -35,8 +36,10 @@ public class TryMe {
 		}
 
 		RentalController rentalController = new RentalController();
-		Resident a1 = rentalController.getResidentController().findResident("1804646469");
-		System.out.println(a1.getEmail() + " " + a1.getZipCity().getCity());
+		List<Resident> a1 = rentalController.getResidentController().findResidentBySsn("2");
+		for (Resident res : a1) {
+			System.out.println(res.getEmail() + " " + res.getZipCity().getCity());			
+		}
 
 	}
 }

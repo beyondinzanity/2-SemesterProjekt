@@ -55,6 +55,12 @@ public class Rental {
 		return rentalNumber;
 	}
 
+	public int setRentalNumber(int rentalNumber) {
+		// TODO Auto-generated method stub
+		this.rentalNumber = rentalNumber;
+		return this.rentalNumber;
+	}
+
 	public LocalDate getStartDate() {
 		return startDate;
 	}
@@ -70,4 +76,5 @@ public class Rental {
 	public AssistiveDeviceInstance getAssistiveDeviceInstance() {
 		return assistiveDeviceInstance;
 	}
+
 }

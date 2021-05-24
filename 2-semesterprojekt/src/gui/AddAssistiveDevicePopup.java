@@ -22,7 +22,7 @@ public class AddAssistiveDevicePopup extends JFrame {
 	private CreateRentalPanel createRentalPanel;
 	private LinkedHashMap<String, Integer> map = new LinkedHashMap<String, Integer>();
 	private ArrayList<String> barcodes = new ArrayList<>();
-	private TabGui tab = new TabGui();
+	private ArrayList<String> assistiveDeviceNames = new ArrayList<>();
 	private JPanel contentPane;
 
 	/**
@@ -68,19 +68,23 @@ public class AddAssistiveDevicePopup extends JFrame {
 				System.out.println("ITEM: " + map.get(barcodes.get(userSearchList.getSelectedIndex())));
 				System.out.println(map.get(barcodes.get(userSearchList.getSelectedIndex())) + ", " + barcodes.get(userSearchList.getSelectedIndex()));
 				String barcode = barcodes.get(userSearchList.getSelectedIndex());
+				String assistiveDeviceName = assistiveDeviceNames.get(userSearchList.getSelectedIndex());
 				int hmi = map.get(barcodes.get(userSearchList.getSelectedIndex()));
 				
 				try {
-					System.out.println("Før");
-					tab.addAssistiveDeviceInstance(hmi, barcode);
-					System.out.println("Efter");
+					TabGui.addAssistiveDeviceInstance(hmi, barcode);
 				} catch (DataAccessException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				} catch (SQLException e1) {
+				} catch (SQLException e1) { 
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				
+				TabGui.rentalAssistiveDeviceTxt.setText(String.valueOf(assistiveDeviceName));
+				TabGui.rentalAssistiveDeviceIdTxt.setText(String.valueOf(hmi));
+				
+				AddAssistiveDevicePopup.this.setVisible(false);
 				
 			}
 		});
@@ -106,13 +110,14 @@ public class AddAssistiveDevicePopup extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					userSearchList.removeAll();
-					for (AssistiveDevice q : tab.getRentalController().findAssistiveDevices(userSearchTxt.getText())) {
+					for (AssistiveDevice q : TabGui.getRentalController().findAssistiveDevices(userSearchTxt.getText())) {
 						System.out.println(q.getHmiNumber() + ", " + q.getName() + ", " + q.getType());
 						
 						for (AssistiveDeviceInstance i : q.getDeviceInstanceList()) {
 							System.out.println("\t" + i.getBarcode() + ", " + i.getRegisteredDate() + ", " + i.getNote());
 							userSearchList.add(q.toString() + " - " + i.toString());
 							barcodes.add(i.getBarcode());
+							assistiveDeviceNames.add(q.getName());
 							map.put(i.getBarcode(), q.getHmiNumber());
 						}
 					}

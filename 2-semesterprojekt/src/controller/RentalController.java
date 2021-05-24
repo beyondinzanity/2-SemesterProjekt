@@ -15,26 +15,39 @@ import model.Resident;
 
 public class RentalController {
 	private AssistiveDeviceController assistiveDeviceController;
-	private RentalDB rentalDB;	
-	private ResidentController residentController; 
+	private RentalDB rentalDB;
+	private ResidentController residentController;
 	private List<AssistiveDevice> assistiveDeviceList;
+	private List<Resident> residentList;
 	Rental rental;
 
 	public RentalController() throws DataAccessException, SQLException {
 		assistiveDeviceController = new AssistiveDeviceController();
 		residentController = new ResidentController();
 		assistiveDeviceList = new ArrayList<>();
+		residentList = new ArrayList<>();
 		createRental();
-
 	}
 
 	public void createRental() {
 		rental = new Rental();
 	}
 
-	public void setResident(String ssn) throws DataAccessException {
-		Resident resident = findResident(ssn);
+	public String setResident(String ssn) throws DataAccessException {
+		Resident resident = null;
+		boolean residentNotFound = true;		
+		while(residentNotFound == true) {	
+			for (int i = 0; i <= residentList.size() - 1; i++) {
+				if(ssn.equals(residentList.get(i).getSsn())) {
+					residentNotFound = false;
+					System.out.println("Found resident --> " + ssn);
+					resident = residentList.get(i);
+				}
+			}
+		}
+		
 		rental.setResident(resident);
+		return "Added " + resident.getSsn();
 
 	}
 
@@ -44,28 +57,19 @@ public class RentalController {
 		String startD = startDate;
 		// convert String to LocalDate
 		LocalDate localSDate = LocalDate.parse(startD, formatter);
-
 		String endD = endDate;
-
 		LocalDate localEDate = LocalDate.parse(endD, formatter);
-
 		rental.setDate(localSDate, localEDate);
-
 	}
 
-	public List<AssistiveDevice> findAssistiveDevices(String userInput) throws DataAccessException, SQLException {
-		assistiveDeviceList = assistiveDeviceController.findAssistiveDevices(userInput);
-		return assistiveDeviceList;
 
-	}
-
-	public AssistiveDeviceInstance addAssistiveDeviceInstance(int hmi, String barcode) throws DataAccessException, SQLException {
+	public AssistiveDeviceInstance addAssistiveDeviceInstance(int hmi, String barcode)
+			throws DataAccessException, SQLException {
 		AssistiveDevice assistiveDevice = null;
 		AssistiveDeviceInstance instance = null;
 		boolean assistiveDeviceNotFound = true;
 		boolean assistiveDeviceInstanceNotFound = true;
 		while (assistiveDeviceNotFound) {
-			System.out.println("Why here??");
 			System.out.println(assistiveDeviceList.size());
 			for (int i = 0; i <= assistiveDeviceList.size() - 1; i++) {
 
@@ -100,14 +104,25 @@ public class RentalController {
 
 	}
 
-	public Resident findResident(String ssn) throws DataAccessException {
-		Resident resident = residentController.findResident(ssn);
-		return resident;
+	public List<AssistiveDevice> findAssistiveDevices(String userInput) throws DataAccessException, SQLException {
+		assistiveDeviceList = assistiveDeviceController.findAssistiveDevices(userInput);
+		return assistiveDeviceList;
+		
+	}
+
+	public List<Resident> findResidentBySsn(String ssn) throws DataAccessException, SQLException {
+		residentList = residentController.findResidentBySsn(ssn);
+		return residentList;
 	}
 
 	public void endRental() throws Exception {
 		rentalDB.endRental(this.rental);
+		createRental();
 
+	}
+	
+	public Rental getRental() {
+		return rental;
 	}
 
 	public ResidentController getResidentController() throws DataAccessException, SQLException {
@@ -118,7 +133,13 @@ public class RentalController {
 	public AssistiveDeviceController getAssistiveDeviceController() throws DataAccessException, SQLException {
 		assistiveDeviceController = new AssistiveDeviceController();
 		return assistiveDeviceController;
+	}
 
+	public int setRentalNumber(int rentalNumber) {
+		// TODO Auto-generated method stub
+		int rentNr = rental.setRentalNumber(rentalNumber);
+		return rentNr;
+		
 	}
 
 }

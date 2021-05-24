@@ -1,9 +1,11 @@
 package databases;
 
+import java.util.List;
+
 import model.Resident;
 
 public interface IResidentDB {
-	public Resident findResidentBySsn(String ssn) throws DataAccessException;
-	public Resident findResidentByName(String name) throws DataAccessException;
+	public List<Resident> findResidentBySsn(String ssn) throws DataAccessException;
+	public List<Resident> findResidentByName(String name) throws DataAccessException;
 
 }

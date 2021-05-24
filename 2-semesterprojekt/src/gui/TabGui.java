@@ -8,6 +8,7 @@ import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,9 +19,13 @@ import javax.swing.border.EmptyBorder;
 
 import controller.RentalController;
 import databases.DataAccessException;
+import model.Resident;
 
 public class TabGui extends JFrame {
-	RentalController rentalController;
+	private static RentalController rentalController;
+	public static TextField rentalAssistiveDeviceTxt;
+	public static TextField rentalAssistiveDeviceIdTxt;
+	private ArrayList<String> ssnList = new ArrayList<>();
 	private JPanel contentPane;
 
 	/**
@@ -39,12 +44,19 @@ public class TabGui extends JFrame {
 		});
 	}
 	
-	public void addAssistiveDeviceInstance(int hmi, String barcode) throws DataAccessException, SQLException {
-		System.out.println("tabGui addAssistiveDevice");
+	public JFrame getMain() {
+		return TabGui.this;
+	}
+	
+	public static void addAssistiveDeviceInstance(int hmi, String barcode) throws DataAccessException, SQLException {
 		rentalController.addAssistiveDeviceInstance(hmi, barcode);
 	}
 	
-	public RentalController getRentalController() {
+	public void addResident(String ssn) throws DataAccessException {
+		rentalController.setResident(ssn);
+	}
+	
+	public static RentalController getRentalController() {
 		return rentalController;
 	}
 
@@ -74,13 +86,13 @@ public class TabGui extends JFrame {
 		userSearchTxt.setBounds(10, 10, 260, 22);
 		SearchAssistiveDeviceTab.add(userSearchTxt);
 		
+		List userSearchList = new List();
+		userSearchList.setBounds(10, 38, 319, 356);
+		SearchAssistiveDeviceTab.add(userSearchList);
+		
 		Button searchButton = new Button("S\u00F8g");
 		searchButton.setBounds(276, 10, 53, 22);
 		SearchAssistiveDeviceTab.add(searchButton);
-		
-		List list = new List();
-		list.setBounds(10, 38, 319, 356);
-		SearchAssistiveDeviceTab.add(list);
 		
 		TextField textField = new TextField();
 		textField.setBounds(664, 38, 220, 22);
@@ -204,55 +216,79 @@ public class TabGui extends JFrame {
 		TextField rentalUserSearchTxt = new TextField();
 		rentalUserSearchTxt.setBounds(10, 10, 260, 22);
 		CreateRentalTab.add(rentalUserSearchTxt);
+
+		List rentalUserSearchList = new List();
+		rentalUserSearchList.setBounds(10, 38, 319, 356);
+		CreateRentalTab.add(rentalUserSearchList);
 		
 		Button rentalSearchButton = new Button("S\u00F8g");
+		rentalSearchButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					rentalUserSearchList.removeAll();
+					for (Resident res : TabGui.getRentalController().findResidentBySsn(rentalUserSearchTxt.getText())) {
+						rentalUserSearchList.add(res.getSsn() + " - " + res.getFname() + " " + res.getLname());
+						ssnList.add(res.getSsn());
+					}
+					
+				} catch (DataAccessException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace(); 
+				}
+				
+				
+			}
+		});
 		rentalSearchButton.setBounds(276, 10, 53, 22);
 		CreateRentalTab.add(rentalSearchButton);
 		
-		List rentalList = new List();
-		rentalList.setBounds(10, 38, 319, 356);
-		CreateRentalTab.add(rentalList);
 		
-		TextField rentalTextField = new TextField();
-		rentalTextField.setBounds(664, 38, 220, 22);
-		CreateRentalTab.add(rentalTextField);
+		TextField rentalResidentNameTxt = new TextField();
+		rentalResidentNameTxt.setBounds(664, 38, 220, 22);
+		CreateRentalTab.add(rentalResidentNameTxt);
 		
-		TextField rentalTextField_1 = new TextField();
-		rentalTextField_1.setBounds(664, 66, 220, 22);
-		CreateRentalTab.add(rentalTextField_1);
+		TextField rentalResidentSsnTxt = new TextField();
+		rentalResidentSsnTxt.setBounds(664, 66, 220, 22);
+		CreateRentalTab.add(rentalResidentSsnTxt);
 		
-		TextField rentalTextField_2 = new TextField();
-		rentalTextField_2.setBounds(664, 94, 220, 22);
-		CreateRentalTab.add(rentalTextField_2);
+		TextField rentalResidentAddressTxt = new TextField();
+		rentalResidentAddressTxt.setBounds(664, 94, 220, 22);
+		CreateRentalTab.add(rentalResidentAddressTxt);
 		
-		TextField rentalTextField_3 = new TextField();
-		rentalTextField_3.setBounds(664, 122, 220, 22);
-		CreateRentalTab.add(rentalTextField_3);
+		TextField rentalResidentApartmentNrTxt = new TextField();
+		rentalResidentApartmentNrTxt.setBounds(664, 122, 220, 22);
+		CreateRentalTab.add(rentalResidentApartmentNrTxt);
 		
-		TextField rentalTextField_4 = new TextField();
-		rentalTextField_4.setBounds(664, 150, 220, 22);
-		CreateRentalTab.add(rentalTextField_4);
+		TextField rentalResidentMunicipalityTxt = new TextField();
+		rentalResidentMunicipalityTxt.setBounds(664, 150, 220, 22);
+		CreateRentalTab.add(rentalResidentMunicipalityTxt);
 		
-		TextField rentalTextField_5 = new TextField();
-		rentalTextField_5.setBounds(543, 232, 211, 22);
-		CreateRentalTab.add(rentalTextField_5);
+		rentalAssistiveDeviceTxt = new TextField();
+		rentalAssistiveDeviceTxt.setBounds(543, 232, 211, 22);
+		CreateRentalTab.add(rentalAssistiveDeviceTxt);
 		
-		TextField rentalTextField_6 = new TextField();
-		rentalTextField_6.setBounds(543, 260, 135, 22);
-		CreateRentalTab.add(rentalTextField_6);
+		rentalAssistiveDeviceIdTxt = new TextField();
+		rentalAssistiveDeviceIdTxt.setBounds(811, 232, 73, 22);
+		CreateRentalTab.add(rentalAssistiveDeviceIdTxt);
 		
-		TextField rentalTextField_7 = new TextField();
-		rentalTextField_7.setBounds(543, 288, 135, 22);
-		CreateRentalTab.add(rentalTextField_7);
+		TextField rentalStartDateTxt = new TextField();
+		rentalStartDateTxt.setBounds(543, 260, 135, 22);
+		CreateRentalTab.add(rentalStartDateTxt);
 		
-		TextField rentalTextField_8 = new TextField();
-		rentalTextField_8.setBounds(543, 316, 135, 22);
-		CreateRentalTab.add(rentalTextField_8);
+		TextField rentalEndDateTxt = new TextField();
+		rentalEndDateTxt.setBounds(543, 288, 135, 22);
+		CreateRentalTab.add(rentalEndDateTxt);
+		
+		TextField rentalRentalIdTxt = new TextField();
+		rentalRentalIdTxt.setBounds(543, 316, 135, 22);
+		CreateRentalTab.add(rentalRentalIdTxt);
 		
 		Button rentalButton = new Button("Tilf\u00F8j Hj\u00E6lpemiddel");
 		rentalButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				rentalController.createRental();
 				AddAssistiveDevicePopup assistiveDevicePopup = null;
 				try {
 					assistiveDevicePopup = new AddAssistiveDevicePopup();
@@ -266,7 +302,7 @@ public class TabGui extends JFrame {
 				assistiveDevicePopup.setVisible(true);
 			}
 		});
-		rentalButton.setBounds(464, 372, 96, 22);
+		rentalButton.setBounds(436, 372, 124, 22);
 		CreateRentalTab.add(rentalButton);
 		
 		Button rentalButton_1 = new Button("Annuller udlejning");
@@ -274,6 +310,20 @@ public class TabGui extends JFrame {
 		CreateRentalTab.add(rentalButton_1);
 		
 		Button rentalButton_2 = new Button("Gem udlejning");
+		rentalButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				rentalController.setDate(rentalStartDateTxt.getText(), rentalEndDateTxt.getText());
+
+				System.out.println("Resident: " + rentalController.getRental().getResident());
+				System.out.println("AssistiveDeviceInstance: " + rentalController.getRental().getAssistiveDeviceInstance());
+				System.out.println("Employee: " + rentalController.getRental().getEmployee());
+				System.out.println("StartDate: " + rentalController.getRental().getStartDate());
+				System.out.println("EndDate: " + rentalController.getRental().getEndDate());
+				System.out.println("RentalNumber: " + rentalController.getRental().getRentalNumber());
+				
+				
+			}
+		});
 		rentalButton_2.setBounds(791, 399, 106, 22);
 		CreateRentalTab.add(rentalButton_2);
 		
@@ -324,19 +374,37 @@ public class TabGui extends JFrame {
 		CreateRentalTab.add(rentalLblNewLabel_10);
 		
 		JLabel rentalLblNewLabel_12 = new JLabel("ID #");
-		rentalLblNewLabel_12.setBounds(509, 178, 46, 14);
+		rentalLblNewLabel_12.setBounds(558, 176, 46, 14);
 		CreateRentalTab.add(rentalLblNewLabel_12);
 		
-		TextField textField_10 = new TextField();
-		textField_10.setBounds(811, 232, 73, 22);
-		CreateRentalTab.add(textField_10);
-		
-		JLabel lblNewLabel_14 = new JLabel("ID");
-		lblNewLabel_14.setBounds(786, 235, 19, 14);
+		JLabel lblNewLabel_14 = new JLabel("HMI");
+		lblNewLabel_14.setBounds(768, 235, 37, 14);
 		CreateRentalTab.add(lblNewLabel_14);
+		
+		Button button_3 = new Button("Tilf\u00F8j valgt person");
+		button_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				rentalController.createRental();
+				int randomRentalNumber = (int) System.currentTimeMillis();
+				rentalController.setRentalNumber(randomRentalNumber);
+				String ssn = ssnList.get(rentalUserSearchList.getSelectedIndex());
+				try {
+					addResident(ssn);
+				} catch (DataAccessException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				rentalRentalIdTxt.setText(String.valueOf(randomRentalNumber));
+				
+			}
+		});
+		button_3.setBounds(433, 172, 106, 22);
+		CreateRentalTab.add(button_3);
 		
 		JPanel SearchResidentTab = new JPanel();
 		tabbedPane.addTab("New tab", null, SearchResidentTab, null);
 		SearchResidentTab.setLayout(null);
 	}
+	
+
 }

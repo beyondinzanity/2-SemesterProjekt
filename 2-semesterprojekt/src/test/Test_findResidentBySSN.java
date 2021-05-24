@@ -26,7 +26,7 @@ public class Test_findResidentBySSN {
 		// Act
 
 		// Assert
-		assertEquals(expectedSSN, db.findResidentBySsn("4700540903").getSsn());
+		assertEquals(expectedSSN, db.findResidentBySsn("4700540903").get(0).getSsn());
 	}
 
 	@Test
@@ -38,7 +38,7 @@ public class Test_findResidentBySSN {
 		// Act
 
 		// Assert
-		assertEquals(expectedSSN, db.findResidentBySsn("3990322401").getSsn());
+		assertEquals(expectedSSN, db.findResidentBySsn("3990322401").get(0).getSsn());
 	}
 
 	@Test

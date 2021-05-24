@@ -1,6 +1,7 @@
 package controller;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import databases.DataAccessException;
 import databases.ResidentDB;
@@ -14,8 +15,8 @@ public class ResidentController {
 	}
 
 
-	public Resident findResident(String ssn) throws DataAccessException {
-
+	public List<Resident> findResidentBySsn(String ssn) throws DataAccessException {
+		System.out.println("ResidentController - findResidentBySsn");
 		return residentDB.findResidentBySsn(ssn);
 	}
 }
