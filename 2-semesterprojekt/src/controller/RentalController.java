@@ -15,11 +15,10 @@ import model.Resident;
 public class RentalController {
 	private AssistiveDeviceController assistiveDeviceController;
 	private RentalDB rentalDB;
-	
-	private ResidentController residentController; 
+
+	private ResidentController residentController;
 	private List<AssistiveDevice> assistiveDevices;
 	Rental rental;
-
 
 	public RentalController() {
 
@@ -50,8 +49,8 @@ public class RentalController {
 
 	}
 
-	public List<AssistiveDevice> findAssistiveDevice(String userInput) throws DataAccessException, SQLException {
-		assistiveDevices = getAssistiveDeviceController().findAssistiveDevices(userInput);
+	public List<AssistiveDevice> findAssistiveDevice(String userSearch) throws DataAccessException, SQLException {
+		assistiveDevices = getAssistiveDeviceController().findAssistiveDevices(userSearch);
 
 		return assistiveDevices;
 
@@ -95,16 +94,14 @@ public class RentalController {
 
 	}
 
-
 	public Resident findResident(String ssn) throws DataAccessException {
 		Resident resident = residentController.findResident(ssn);
 		return resident;
 	}
 
-
 	public void endRental() throws Exception {
 		rentalDB.endRental(this.rental);
-		
+
 	}
 
 	public ResidentController getResidentController() throws DataAccessException, SQLException {
@@ -118,5 +115,4 @@ public class RentalController {
 
 	}
 
-	
 }
