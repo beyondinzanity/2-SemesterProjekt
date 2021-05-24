@@ -39,11 +39,11 @@ public class ResidentDB implements IResidentDB {
 	}
 
 	@Override
-	public Resident findResidentBySsn(int ssn) throws DataAccessException {
+	public Resident findResidentBySsn(String ssn) throws DataAccessException {
 		Resident res = null;
 
 		try {
-			findResidentBySsnPS.setInt(1, ssn);
+			findResidentBySsnPS.setString(1, ssn);
 			ResultSet rs = findResidentBySsnPS.executeQuery();
 
 			if (rs.next()) {
