@@ -29,6 +29,7 @@ public class CreateRentalPanel extends JPanel {
 		
 	}
 	
+	
 	/**
 	 * Create the panel.
 	 */
@@ -42,9 +43,18 @@ public class CreateRentalPanel extends JPanel {
 		Button button = new Button("S\u00F8g Hj\u00E6lpemiddel");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SearchAssistiveDevice.switchPanel(SearchAssistiveDevice.getContentPanel());
+				
+				
+				JPanel a = new SeachPane();
+				switchPanel(a);
+				
+			
+				
+				//SearchAssistiveDevice.switchPanel(SearchAssistiveDevice.contentPane);
+				
 			}
 		});
+	
 		button.setBounds(27, 25, 115, 22);
 		add(button);
 		
@@ -206,4 +216,15 @@ public class CreateRentalPanel extends JPanel {
 		add(textField_10);
 
 	}
+	private void switchPanel(JPanel panel) {
+		// TODO Auto-generated method stub
+		
+		SearchAssistiveDevice b = new SearchAssistiveDevice();
+		
+		removeAll();
+		b.add(panel);
+		b.repaint();
+		b.revalidate();
+	}
+
 }

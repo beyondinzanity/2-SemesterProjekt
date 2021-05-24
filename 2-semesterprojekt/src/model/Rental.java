@@ -27,6 +27,12 @@ public class Rental {
 		this.assistiveDeviceInstance = assistiveDeviceInstance;
 		this.resident = resident;
 	}
+	
+	public void setDate(LocalDate startDate, LocalDate endDate) {
+		this.startDate = startDate;
+		this.endDate = endDate;
+		
+	}
 
 	public void setResident(Resident resident) {
 		this.resident = resident;
