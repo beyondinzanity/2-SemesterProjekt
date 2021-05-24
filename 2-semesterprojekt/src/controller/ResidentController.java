@@ -12,19 +12,10 @@ public class ResidentController {
 	public ResidentController() throws DataAccessException, SQLException {
 		residentDB = new ResidentDB();
 	}
-<<<<<<< Updated upstream
+
 
 	public Resident findResident(String ssn) throws DataAccessException {
 
 		return residentDB.findResidentBySsn(ssn);
-=======
-	
-	
-	
-	public Resident findResident(String ssn) throws DataAccessException {
-		
-		return residentDB.findResidentBySsn(ssn); 
->>>>>>> Stashed changes
 	}
-
 }

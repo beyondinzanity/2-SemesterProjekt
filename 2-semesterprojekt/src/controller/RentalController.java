@@ -14,16 +14,13 @@ import model.Resident;
 
 public class RentalController {
 	private AssistiveDeviceController assistiveDeviceController;
-<<<<<<< Updated upstream
-	private ResidentController residentController;
+	private RentalDB rentalDB;
+	
+	private ResidentController residentController; 
+	private List<AssistiveDevice> assistiveDevices;
 	Rental rental;
 
-=======
-	private ResidentController  residentController;
-	private RentalDB rentalDB;
-	Rental rental; 
-	
->>>>>>> Stashed changes
+
 	public RentalController() {
 
 	}
@@ -31,61 +28,83 @@ public class RentalController {
 	public void createRental() {
 		rental = new Rental();
 	}
-<<<<<<< Updated upstream
 
-=======
-	
 	public void setResident(String ssn) throws DataAccessException {
-		Resident resident = findResident(ssn); 
+		Resident resident = findResident(ssn);
 		rental.setResident(resident);
-		
-		
+
 	}
-	
+
 	public void setDate(String startDate, String endDate) {
-		
+
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
 		String startD = startDate;
-        //convert String to LocalDate
+		// convert String to LocalDate
 		LocalDate localSDate = LocalDate.parse(startD, formatter);
-		
-		String endD = endDate; 
-		
+
+		String endD = endDate;
+
 		LocalDate localEDate = LocalDate.parse(endD, formatter);
-		
+
 		rental.setDate(localSDate, localEDate);
-		
+
 	}
-	
+
 	public List<AssistiveDevice> findAssistiveDevice(String userInput) throws DataAccessException, SQLException {
-		List<AssistiveDevice> assistiveDevices = getAssistiveDeviceController().findAssistiveDevices(userInput);
-		
+		assistiveDevices = getAssistiveDeviceController().findAssistiveDevices(userInput);
+
 		return assistiveDevices;
-		
+
 	}
-	
-	public void addAssistiveDeviceInstance(String barcode) throws DataAccessException, SQLException {
-		AssistiveDeviceInstance res = getAssistiveDeviceController().findAssistiveDeviceInstance(barcode);
-		
-		rental.addAssistiveDeviceInstance(res);
+
+	public AssistiveDeviceInstance addAssistiveDeviceInstance(int hmi, String barcode)
+			throws DataAccessException, SQLException {
+		AssistiveDevice assistiveDevice = null;
+		AssistiveDeviceInstance instance = null;
+		boolean assistiveDeviceFound = false;
+		boolean assistiveDeviceInstanceFound = false;
+		while (assistiveDeviceFound == false) {
+
+			for (int i = 0; i < assistiveDevices.size(); i++) {
+
+				if (hmi == assistiveDevices.get(i).getHmiNumber()) {
+					assistiveDeviceFound = true;
+					assistiveDevice = assistiveDevices.get(i);
+
+				}
+			}
+
+		}
+
+		while (assistiveDeviceInstanceFound == false) {
+
+			for (int i = 0; i < assistiveDevice.getDeviceInstanceList().size(); i++) {
+
+				if (barcode.equals(assistiveDevice.getDeviceInstanceList().get(i).getBarcode())) {
+					assistiveDeviceInstanceFound = true;
+					instance = assistiveDevice.getDeviceInstanceList().get(i);
+
+				}
+
+			}
+
+		}
+
+		rental.addAssistiveDeviceInstance(instance);
+		return instance;
+
 	}
-	
->>>>>>> Stashed changes
+
+
 	public Resident findResident(String ssn) throws DataAccessException {
 		Resident resident = residentController.findResident(ssn);
 		return resident;
 	}
-<<<<<<< Updated upstream
 
-	public void endRental() {
 
-=======
-	
 	public void endRental() throws Exception {
 		rentalDB.endRental(this.rental);
 		
-		
->>>>>>> Stashed changes
 	}
 
 	public ResidentController getResidentController() throws DataAccessException, SQLException {
@@ -98,12 +117,6 @@ public class RentalController {
 		return assistiveDeviceController;
 
 	}
-<<<<<<< Updated upstream
-=======
-	
-	
-	
-	
->>>>>>> Stashed changes
 
+	
 }
