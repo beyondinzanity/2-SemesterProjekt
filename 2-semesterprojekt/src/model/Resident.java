@@ -24,12 +24,19 @@ public class Resident extends Person {
 	
 	public void setId(int id) {
 		residentId = id;
-		
 	}
 
 	public ZipCity getZipCity() {
 		// TODO Auto-generated method stub
 		return city;
+	}
+	
+	public String getStreetName() {
+		return streetName;
+	}
+	
+	public int getHouseNumber() {
+		return houseNumber;
 	}
 		
 		

@@ -77,4 +77,10 @@ public class Rental {
 		return assistiveDeviceInstance;
 	}
 
+	public void setEmployee(Employee employee) {
+		// TODO Auto-generated method stub
+		this.employee = employee;
+		
+	}
+
 }

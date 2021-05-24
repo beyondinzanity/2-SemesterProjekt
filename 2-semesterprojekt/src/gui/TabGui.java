@@ -321,6 +321,12 @@ public class TabGui extends JFrame {
 				System.out.println("EndDate: " + rentalController.getRental().getEndDate());
 				System.out.println("RentalNumber: " + rentalController.getRental().getRentalNumber());
 				
+				try {
+					rentalController.endRental();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
 			}
 		});
@@ -385,7 +391,8 @@ public class TabGui extends JFrame {
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				rentalController.createRental();
-				int randomRentalNumber = (int) System.currentTimeMillis();
+				rentalController.setEmployee();
+				int randomRentalNumber = (int) (System.currentTimeMillis() * -1);
 				rentalController.setRentalNumber(randomRentalNumber);
 				String ssn = ssnList.get(rentalUserSearchList.getSelectedIndex());
 				try {
@@ -395,6 +402,11 @@ public class TabGui extends JFrame {
 					e1.printStackTrace();
 				}
 				rentalRentalIdTxt.setText(String.valueOf(randomRentalNumber));
+				rentalResidentNameTxt.setText(rentalController.getRental().getResident().getFname() + " " + rentalController.getRental().getResident().getLname());
+				rentalResidentSsnTxt.setText(rentalController.getRental().getResident().getSsn());
+				rentalResidentAddressTxt.setText(rentalController.getRental().getResident().getStreetName());
+				rentalResidentApartmentNrTxt.setText(rentalController.getRental().getResident().getHouseNumber());
+				rentalResidentMunicipalityTxt.setText(rentalController.getRental().getResident().getSsn());
 				
 			}
 		});

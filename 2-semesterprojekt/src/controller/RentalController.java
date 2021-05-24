@@ -10,6 +10,7 @@ import databases.DataAccessException;
 import databases.RentalDB;
 import model.AssistiveDevice;
 import model.AssistiveDeviceInstance;
+import model.Employee;
 import model.Rental;
 import model.Resident;
 
@@ -19,20 +20,29 @@ public class RentalController {
 	private ResidentController residentController;
 	private List<AssistiveDevice> assistiveDeviceList;
 	private List<Resident> residentList;
+	private Employee employee;
 	Rental rental;
 
 	public RentalController() throws DataAccessException, SQLException {
+		createRental();
+
+		
+		
 		assistiveDeviceController = new AssistiveDeviceController();
 		residentController = new ResidentController();
 		assistiveDeviceList = new ArrayList<>();
 		residentList = new ArrayList<>();
-		createRental();
 	}
 
 	public void createRental() {
 		rental = new Rental();
 	}
 
+	public void setEmployee() {
+		employee = new Employee(1432, "Hans", "Nielsen", "1211650337", "12345678", "hansNiels@gmail.com");
+		rental.setEmployee(employee);
+	}
+	
 	public String setResident(String ssn) throws DataAccessException {
 		Resident resident = null;
 		boolean residentNotFound = true;		
