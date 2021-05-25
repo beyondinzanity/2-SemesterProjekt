@@ -21,7 +21,7 @@ public class RentalController {
 	private List<AssistiveDevice> assistiveDeviceList;
 	private List<Resident> residentList;
 	private Employee employee;
-	Rental rental;
+	private Rental rental;
 
 	public RentalController() throws DataAccessException, SQLException {
 		createRental();
@@ -85,11 +85,8 @@ public class RentalController {
 				if (hmi == assistiveDeviceList.get(i).getHmiNumber()) {
 					assistiveDeviceNotFound = false;
 					assistiveDevice = assistiveDeviceList.get(i);
-
 				}
-				System.out.println("1. loop");
 			}
-
 		}
 
 		while (assistiveDeviceInstanceNotFound) {
@@ -99,12 +96,8 @@ public class RentalController {
 				if (barcode.equals(assistiveDevice.getDeviceInstanceList().get(i).getBarcode())) {
 					assistiveDeviceInstanceNotFound = false;
 					instance = assistiveDevice.getDeviceInstanceList().get(i);
-
 				}
-				System.out.println("2. loop");
-
 			}
-
 		}
 
 		rental.addAssistiveDeviceInstance(instance);
