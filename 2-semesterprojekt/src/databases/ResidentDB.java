@@ -39,8 +39,11 @@ public class ResidentDB implements IResidentDB {
 			resident.setId(rs.getInt("id"));
 			
 			//Sets residen
-			resident.setResidencyList(residencyDB.findResidencyByResidentId(resident.getResidentId()));
+			int someResidentId = resident.getResidentId();
+			System.out.println(someResidentId);
 			
+			List<Residency> someList = residencyDB.findResidencyByResidentId(someResidentId);
+			resident.setResidencyList(someList);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -83,10 +86,9 @@ public class ResidentDB implements IResidentDB {
 		try {
 			findResidentByIdPS.setInt(1, id);
 			ResultSet rs = findResidentByIdPS.executeQuery();
-			System.out.println("findResident");
-			System.out.println(rs);
 			if(rs.next()) {
 				res = buildResidentObject(rs);		
+				
 			}
 		} catch (SQLException s) {
 			throw new DataAccessException("Could not retrieve data from Resident", s);
