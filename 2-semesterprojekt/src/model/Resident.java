@@ -1,12 +1,16 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Resident extends Person {
 	
 	int residentId;
 	int apartmentNumber;
 	String streetName;
 	int houseNumber;
-	ZipCity city; 
+	ZipCity city;
+	List<Residency> residencies;
 	
 
 	public Resident(String fname, String lname, String ssn, String phoneNumber, String email, int apartmentNumber, String streetName, int houseNumber, ZipCity zipCity) {
@@ -16,6 +20,11 @@ public class Resident extends Person {
 		this.streetName = streetName;
 		this.houseNumber = houseNumber; 
 		this.city = zipCity;
+		residencies = new ArrayList<>();
+	}
+	
+	public void addResidency(Residency residency) {
+		residencies.add(residency);
 	}
 	
 	public int getResidentId() {

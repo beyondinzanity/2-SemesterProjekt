@@ -5,8 +5,12 @@ import java.sql.SQLException;
 import databases.AssistiveDeviceDB;
 import databases.AssistiveDeviceInstanceDB;
 import databases.DataAccessException;
+import databases.MunicipalityDB;
+import databases.ResidencyDB;
 import model.AssistiveDevice;
 import model.AssistiveDeviceInstance;
+import model.Municipality;
+import model.Residency;
 
 public class TryMeNicklas {
 
@@ -21,6 +25,15 @@ public class TryMeNicklas {
 				System.out.println("\t" + i.getBarcode() + ", " + i.getRegisteredDate() + ", " + i.getNote());
 			}
 		}
+		
+//		MunicipalityDB db = new MunicipalityDB();
+//		Municipality a = db.findMunicipality(1);
+//		System.out.println(a.getName());
+		
+		ResidencyDB rdb = new ResidencyDB();
+		Residency residency = rdb.findResidency(2);
+		System.out.println(residency.getResident().getFname()+ residency.getMunicipality().getName());
+		
 	}
 
 }

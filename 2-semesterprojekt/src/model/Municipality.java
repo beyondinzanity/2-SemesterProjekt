@@ -1,11 +1,12 @@
 package model;
 
 public class Municipality {
-
+	
+	private int id;
 	private String name;
 	private String region;
 
-	public Municipality(String name, String region) {
+	public Municipality(int id, String name, String region) {
 		this.name = name;
 		this.region = region;
 	}
