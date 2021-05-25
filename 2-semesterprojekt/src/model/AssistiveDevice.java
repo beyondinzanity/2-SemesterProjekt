@@ -11,7 +11,6 @@ public class AssistiveDevice {
 	private List<AssistiveDeviceInstance> deviceInstanceList;
 
 	public AssistiveDevice(int hmiNumber, String name, String type) { //used if created with raw data (don't know the ID)
-		super();
 		this.hmiNumber = hmiNumber;
 		this.name = name;
 		this.type = type;
@@ -69,8 +68,4 @@ public class AssistiveDevice {
 		return res;
 	}
 	
-	
-	
-	
-
 }

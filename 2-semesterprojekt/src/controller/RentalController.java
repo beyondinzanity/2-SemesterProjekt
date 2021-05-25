@@ -41,20 +41,20 @@ public class RentalController {
 		employee = new Employee(1, 1432, "Hans", "Nielsen", "1211650337", "12345678", "hansNiels@gmail.com");
 		rental.setEmployee(employee);
 	}
-	
+
 	public String setResident(String ssn) throws DataAccessException {
 		Resident resident = null;
-		boolean residentNotFound = true;		
-		while(residentNotFound == true) {	
+		boolean residentNotFound = true;
+		while (residentNotFound == true) {
 			for (int i = 0; i <= residentList.size() - 1; i++) {
-				if(ssn.equals(residentList.get(i).getSsn())) {
+				if (ssn.equals(residentList.get(i).getSsn())) {
 					residentNotFound = false;
 					System.out.println("Found resident --> " + ssn);
 					resident = residentList.get(i);
 				}
 			}
 		}
-		
+
 		rental.setResident(resident);
 		return "Added " + resident.getSsn();
 
@@ -70,7 +70,6 @@ public class RentalController {
 		LocalDate localEDate = LocalDate.parse(endD, formatter);
 		rental.setDate(localSDate, localEDate);
 	}
-
 
 	public AssistiveDeviceInstance addAssistiveDeviceInstance(int hmi, String barcode)
 			throws DataAccessException, SQLException {
@@ -109,7 +108,7 @@ public class RentalController {
 	public List<AssistiveDevice> findAssistiveDevices(String userInput) throws DataAccessException, SQLException {
 		assistiveDeviceList = assistiveDeviceController.findAssistiveDevices(userInput);
 		return assistiveDeviceList;
-		
+
 	}
 
 	public List<Resident> findResidentBySsn(String ssn) throws DataAccessException, SQLException {
@@ -122,7 +121,7 @@ public class RentalController {
 		createRental();
 
 	}
-	
+
 	public Rental getRental() {
 		return rental;
 	}
@@ -141,7 +140,6 @@ public class RentalController {
 		// TODO Auto-generated method stub
 		int rentNr = rental.setRentalNumber(rentalNumber);
 		return rentNr;
-		
-	}
 
+	}
 }
