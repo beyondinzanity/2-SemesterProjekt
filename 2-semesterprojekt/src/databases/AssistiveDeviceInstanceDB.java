@@ -49,8 +49,7 @@ public class AssistiveDeviceInstanceDB implements IAssistiveDeviceInstanceDB {
 		AssistiveDeviceInstance assistiveDeviceInstance = null;
 
 		try {
-			assistiveDeviceInstance = new AssistiveDeviceInstance(rs.getInt("id"), rs.getString("barcode"), rs.getDate("registeredDate"),
-					rs.getString("note"));
+			assistiveDeviceInstance = new AssistiveDeviceInstance(rs.getInt("id"), rs.getString("barcode"), rs.getDate("registeredDate"), rs.getString("note"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
