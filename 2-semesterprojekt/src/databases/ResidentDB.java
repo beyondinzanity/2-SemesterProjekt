@@ -12,12 +12,13 @@ import model.Resident;
 import model.ZipCity;
 
 public class ResidentDB implements IResidentDB {
-
 	private static final String FIND_BY_SSN = "select * from Resident where ssn like ?";
 	private static final String FIND_BY_ID = "select * from Resident where id = ?";
 	private PreparedStatement findResidentBySsnPS;
 	private PreparedStatement findResidentByIdPS;
-
+	private ZipCityDB zipCityDB;
+	private	ResidencyDB residencyDB;
+	
 	public ResidentDB() throws DataAccessException, SQLException {
 		Connection con = DBConnection.getInstance().getConnection();
 		findResidentBySsnPS = con.prepareStatement(FIND_BY_SSN);
@@ -25,11 +26,10 @@ public class ResidentDB implements IResidentDB {
 	}
 
 	private Resident buildResidentObject(ResultSet rs) throws SQLException, DataAccessException {
-
 		Resident resident = null;
-		// er det her ok at gøre?
-		ZipCityDB db = new ZipCityDB();
-		ZipCity zipCity = db.findZipCityById(rs.getInt("FKZipCityId"));
+		zipCityDB = new ZipCityDB();
+		residencyDB = new ResidencyDB();
+		ZipCity zipCity = zipCityDB.findZipCityById(rs.getInt("FKZipCityId"));
 		
 		try {
 			 
@@ -37,6 +37,9 @@ public class ResidentDB implements IResidentDB {
 					rs.getString("phoneNumber"), rs.getString("email"), rs.getInt("apartmentNumber"),
 					rs.getString("streetName"), rs.getInt("houseNumber"), zipCity);
 			resident.setId(rs.getInt("id"));
+			
+			//Sets residen
+			resident.setResidencyList(residencyDB.findResidencyByResidentId(resident.getResidentId()));
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -74,15 +77,16 @@ public class ResidentDB implements IResidentDB {
 	}
 	
 	public Resident findResidentById(int id) throws DataAccessException {
+		
 		Resident res = null;
+		
 		try {
 			findResidentByIdPS.setInt(1, id);
 			ResultSet rs = findResidentByIdPS.executeQuery();
 			if(rs.next()) {
-				res = buildResidentObject(rs);				
+				res = buildResidentObject(rs);		
 			}
 		} catch (SQLException s) {
-			s.printStackTrace();
 			throw new DataAccessException("Could not retrieve data from Resident", s);
 		}
 		
@@ -90,3 +94,16 @@ public class ResidentDB implements IResidentDB {
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

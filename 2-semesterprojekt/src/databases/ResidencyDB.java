@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import model.AssistiveDevice;
 import model.Municipality;
 import model.Residency;
 import model.Resident;
@@ -16,35 +19,43 @@ public class ResidencyDB {
 	private PreparedStatement findResidencyByResidentIdPS;
 	
 	public ResidencyDB() throws SQLException {
+		
 		Connection con = DBConnection.getInstance().getConnection();
+		
 		findResidencyByResidentIdPS = con.prepareStatement(FIND_BY_ID);
 	}
 	
 	
-	public Residency findResidencyByResidentId(int id) throws DataAccessException {
-		Residency residency = null;
+	public List<Residency> findResidencyByResidentId(int id) throws DataAccessException {
 		try {
 			findResidencyByResidentIdPS.setInt(1, id);
 			ResultSet rs = findResidencyByResidentIdPS.executeQuery();
-			if(rs.next()) {
-				residency = buildResidencyObject(rs); 				
-			}
+			List<Residency> res = buildResidencyObjects(rs);
+			return res;
 		} catch (SQLException s) {
 			s.printStackTrace();
 			throw new DataAccessException("Could not retrieve data from Residency", s);
 		}
-		return residency;
+	}
+	
+	private List<Residency> buildResidencyObjects(ResultSet rs) throws DataAccessException, SQLException {
+		List<Residency> res = new ArrayList<>();
+		while(rs.next()) {
+			res.add(buildResidencyObject(rs));
+		}
+		return res;
 	}
 	
 	private Residency buildResidencyObject(ResultSet rs) throws DataAccessException, SQLException{			
 		Residency residency = null;
 		municipalityDB = new MunicipalityDB();
 		residentDB = new ResidentDB();
-
 		try {
-			residency = new Residency(rs.getInt("id"), rs.getDate("fromDate").toLocalDate(), null);
+			residency = new Residency(rs.getInt("id"), rs.getDate("fromDate").toLocalDate(), (rs.getDate("toDate") != null ? rs.getDate("toDate").toLocalDate() : null));
 			residency.setMunicipality(municipalityDB.findMunicipality(rs.getInt("FKmunicipalityId")));
 			residency.setResident(residentDB.findResidentById(rs.getInt("FKresidentId")));
+			System.out.println("hej");
+			System.out.println("BuildObject Residency");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("Error in buildObject ResidencyDB");

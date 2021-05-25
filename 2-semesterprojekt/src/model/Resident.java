@@ -27,6 +27,14 @@ public class Resident extends Person {
 		residencies.add(residency);
 	}
 	
+	public void setResidencyList(List<Residency> residencyList) {
+		residencies = residencyList;
+	}
+	
+	public List<Residency> getResidencyList(){
+		return residencies;
+	}
+	
 	public int getResidentId() {
 		return residentId;
 	}
