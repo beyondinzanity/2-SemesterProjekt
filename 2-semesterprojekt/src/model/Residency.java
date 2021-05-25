@@ -1,39 +1,46 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Residency {
 
 	private int id;
-	private Date fromDate;
-	private Date toDate;
+	private LocalDate fromDate;
+	private LocalDate toDate;
 	private Municipality municipality; 
 	private Resident resident;
 	
-	public Residency(int id, Date fromDate, Date toDate, Municipality municipality, Resident resident) {
+	public Residency(int id, LocalDate fromDate, LocalDate toDate) {
 		this.id = id;
 		this.fromDate = fromDate;
 		this.toDate = toDate;
+	}
+	
+	public Residency(int id, LocalDate fromDate, LocalDate toDate, Resident resident, Municipality municipality) {
+		this(id, fromDate, toDate);
 		this.municipality = municipality;
 		this.resident = resident;
 		
 	}
 	
 	
-	public Date getFromDate() {
+	
+	
+	public LocalDate getFromDate() {
 		return fromDate;
 	}
 	
 	public void setId(int id) {
 		this.id = id;
 	}
-	public void setFromDate(Date fromDate) {
+	public void setFromDate(LocalDate fromDate) {
 		this.fromDate = fromDate;
 	}
-	public Date getToDate() {
+	public LocalDate getToDate() {
 		return toDate;
 	}
-	public void setToDate(Date toDate) {
+	public void setToDate(LocalDate toDate) {
 		this.toDate = toDate;
 	}
 	public Municipality getMunicipality() {

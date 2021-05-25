@@ -74,16 +74,19 @@ public class ResidentDB implements IResidentDB {
 	}
 	
 	public Resident findResidentById(int id) throws DataAccessException {
+		Resident res = null;
 		try {
 			findResidentByIdPS.setInt(1, id);
 			ResultSet rs = findResidentByIdPS.executeQuery();
-			Resident res = buildResidentObject(rs);
-			return res;
+			if(rs.next()) {
+				res = buildResidentObject(rs);				
+			}
 		} catch (SQLException s) {
 			s.printStackTrace();
 			throw new DataAccessException("Could not retrieve data from Resident", s);
 		}
 		
+		return res;
 	}
 
 }

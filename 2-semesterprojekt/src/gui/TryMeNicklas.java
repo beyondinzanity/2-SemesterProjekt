@@ -3,13 +3,10 @@ package gui;
 import java.sql.SQLException;
 
 import databases.AssistiveDeviceDB;
-import databases.AssistiveDeviceInstanceDB;
 import databases.DataAccessException;
-import databases.MunicipalityDB;
 import databases.ResidencyDB;
 import model.AssistiveDevice;
 import model.AssistiveDeviceInstance;
-import model.Municipality;
 import model.Residency;
 
 public class TryMeNicklas {
@@ -29,10 +26,18 @@ public class TryMeNicklas {
 //		MunicipalityDB db = new MunicipalityDB();
 //		Municipality a = db.findMunicipality(1);
 //		System.out.println(a.getName());
+//		
+//		ResidentDB resDB = new ResidentDB();
+//		Resident b = resDB.findResidentById(2);
+//		System.out.println(b.getFname());
 		
 		ResidencyDB rdb = new ResidencyDB();
-		Residency residency = rdb.findResidency(2);
-		System.out.println(residency.getResident().getFname()+ residency.getMunicipality().getName());
+		Residency residency = rdb.findResidencyByResidentId(2);
+
+		System.out.println(residency.getMunicipality().getName());
+		System.out.println(residency.getResident().getFname());
+		
+		//System.out.println(residency.getResident().getFname()+ residency.getMunicipality().getName());
 		
 	}
 
