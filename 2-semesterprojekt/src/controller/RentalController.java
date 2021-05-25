@@ -26,8 +26,6 @@ public class RentalController {
 	public RentalController() throws DataAccessException, SQLException {
 		createRental();
 
-		
-		
 		assistiveDeviceController = new AssistiveDeviceController();
 		residentController = new ResidentController();
 		rentalDB = new RentalDB();
