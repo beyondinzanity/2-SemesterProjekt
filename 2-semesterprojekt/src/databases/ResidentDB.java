@@ -83,6 +83,8 @@ public class ResidentDB implements IResidentDB {
 		try {
 			findResidentByIdPS.setInt(1, id);
 			ResultSet rs = findResidentByIdPS.executeQuery();
+			System.out.println("findResident");
+			System.out.println(rs);
 			if(rs.next()) {
 				res = buildResidentObject(rs);		
 			}
