@@ -19,7 +19,6 @@ import model.AssistiveDevice;
 import model.AssistiveDeviceInstance;
 
 public class AddAssistiveDevicePopup extends JFrame {
-	private CreateRentalPanel createRentalPanel;
 	private LinkedHashMap<String, Integer> map = new LinkedHashMap<String, Integer>();
 	private ArrayList<String> barcodes = new ArrayList<>();
 	private ArrayList<String> assistiveDeviceNames = new ArrayList<>();
@@ -47,7 +46,6 @@ public class AddAssistiveDevicePopup extends JFrame {
 	 * @throws DataAccessException 
 	 */
 	public AddAssistiveDevicePopup() throws DataAccessException, SQLException {
-		createRentalPanel = new CreateRentalPanel();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 400);
 		contentPane = new JPanel();
