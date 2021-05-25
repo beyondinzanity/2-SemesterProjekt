@@ -37,11 +37,8 @@ public class ResidentDB implements IResidentDB {
 					rs.getString("phoneNumber"), rs.getString("email"), rs.getInt("apartmentNumber"),
 					rs.getString("streetName"), rs.getInt("houseNumber"), zipCity);
 			resident.setId(rs.getInt("id"));
-			
 			//Sets residen
 			int someResidentId = resident.getResidentId();
-			System.out.println(someResidentId);
-			
 			List<Residency> someList = residencyDB.findResidencyByResidentId(someResidentId);
 			resident.setResidencyList(someList);
 		} catch (SQLException e) {

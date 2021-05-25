@@ -26,10 +26,23 @@ public class TryMeNicklas {
 		
 		ResidentDB residentDB = new ResidentDB();
 		Resident resident = residentDB.findResidentById(2);
-		System.out.println(resident.getEmail());
 		
+		System.out.println(resident.getFname());
 		for(Residency r : resident.getResidencyList()) {
-			System.out.println(r.getResident().getFname() + ", " + r.getMunicipality().getName());
+			System.out.println(r.getMunicipality().getName());
+		}
+		
+		System.out.println("---------------------------");
+		
+		for (Resident r : residentDB.findResidentBySsn("2")) {
+			System.out.println(r.getFname() + " " + r.getLname());
+			for (Residency e : r.getResidencyList()) {
+				System.out.println("\tMunicipalityName: " + e.getMunicipality().getName());
+				System.out.println("\tMunicipalityRegion: " + e.getMunicipality().getRegion());
+				System.out.println("\tMunicipalityFromDate: " + e.getFromDate());
+				System.out.println("\tMunicipalityToDate: " + e.getToDate());
+			}
+			System.out.println("--------- loop 2 end ---------");
 		}
 		
 		//System.out.println(residency.getResident().getFname()+ residency.getMunicipality().getName());

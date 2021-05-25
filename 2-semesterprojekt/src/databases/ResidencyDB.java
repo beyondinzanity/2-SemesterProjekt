@@ -31,6 +31,7 @@ public class ResidencyDB {
 			findResidencyByResidentIdPS.setInt(1, id);
 			ResultSet rs = findResidencyByResidentIdPS.executeQuery();
 			List<Residency> res = buildResidencyObjects(rs);
+
 			return res;
 		} catch (SQLException s) {
 			s.printStackTrace();
@@ -42,7 +43,7 @@ public class ResidencyDB {
 		List<Residency> res = new ArrayList<>();
 		while(rs.next()) {
 			res.add(buildResidencyObject(rs));
-
+			
 		}
 		return res;
 	}
@@ -54,10 +55,6 @@ public class ResidencyDB {
 		try {
 			residency = new Residency(rs.getInt("id"), rs.getDate("fromDate").toLocalDate(), (rs.getDate("toDate") != null ? rs.getDate("toDate").toLocalDate() : null));
 			residency.setMunicipality(municipalityDB.findMunicipality(rs.getInt("FKmunicipalityId")));
-			int residentId = rs.getInt("FKresidentId");
-			Resident res = residentDB.findResidentById(residentId);
-			System.out.println("ss");
-			residency.setResident(res);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("Error in buildObject ResidencyDB");

@@ -263,7 +263,6 @@ public class TabGui extends JFrame {
 		CreateRentalTab.add(rentalResidentApartmentNrTxt);
 		
 		TextField rentalResidentMunicipalityTxt = new TextField();
-		rentalResidentMunicipalityTxt.setText("IKKE IMPLEMENTERET");
 		rentalResidentMunicipalityTxt.setBounds(664, 150, 220, 22);
 		CreateRentalTab.add(rentalResidentMunicipalityTxt);
 		
@@ -407,7 +406,7 @@ public class TabGui extends JFrame {
 				rentalResidentSsnTxt.setText(rentalController.getRental().getResident().getSsn());
 				rentalResidentAddressTxt.setText(rentalController.getRental().getResident().getStreetName());
 				rentalResidentApartmentNrTxt.setText(String.valueOf(rentalController.getRental().getResident().getHouseNumber()));
-				//rentalResidentMunicipalityTxt.setText(rentalController.getRental().getResident().get);
+				rentalResidentMunicipalityTxt.setText(rentalController.getRental().getResident().getResidencyList().get(rentalController.getRental().getResident().getResidencyList().size() - 1).getMunicipality().getName());
 				
 			}
 		});
