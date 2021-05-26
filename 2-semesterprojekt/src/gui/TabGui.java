@@ -32,7 +32,8 @@ public class TabGui extends JFrame {
 	public static TextField rentalAssistiveDeviceIdTxt;
 	private ArrayList<String> ssnList = new ArrayList<>();
 	private JPanel contentPane;
-	JLabel connectionLbl;
+	JLabel connectionLblSearch;
+	JLabel connectionLblRental;
 	
 
 	/**
@@ -221,9 +222,9 @@ public class TabGui extends JFrame {
 		lblNewLabel_13.setBounds(703, 208, 46, 14);
 		SearchAssistiveDeviceTab.add(lblNewLabel_13);
 		
-		connectionLbl = new JLabel("Connected");
-		connectionLbl.setBounds(10, 400, 319, 21);
-		SearchAssistiveDeviceTab.add(connectionLbl);
+		connectionLblSearch = new JLabel("");
+		connectionLblSearch.setBounds(10, 400, 319, 21);
+		SearchAssistiveDeviceTab.add(connectionLblSearch);
 		
 		
 		
@@ -434,6 +435,10 @@ public class TabGui extends JFrame {
 		button_3.setBounds(433, 172, 106, 22);
 		CreateRentalTab.add(button_3);
 		
+		connectionLblRental = new JLabel("");
+		connectionLblRental.setBounds(10, 400, 319, 21);
+		CreateRentalTab.add(connectionLblRental);
+		
 		JPanel SearchResidentTab = new JPanel();
 		tabbedPane.addTab("New tab", null, SearchResidentTab, null);
 		SearchResidentTab.setLayout(null);
@@ -454,13 +459,16 @@ public class TabGui extends JFrame {
 				try {
 					if(rentalController.isDbConnected()) {
 						String connectionTime = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS).format(dtf);
-						connectionLbl.setText("Connection succesfull at  " + connectionTime);
-						connectionLbl.setForeground(Color.green);
+						connectionLblSearch.setText("Connection succesfull at  " + connectionTime);
+						connectionLblSearch.setForeground(Color.green);
+						connectionLblRental.setText("Connection succesfull at  " + connectionTime);
+						connectionLblRental.setForeground(Color.green);
 					}else {
 						String connectionTime = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS).format(dtf);
-						connectionLbl.setText("Connection failed at  " + connectionTime);
-						connectionLbl.setForeground(Color.red);
-						
+						connectionLblSearch.setText("Connection failed at  " + connectionTime);
+						connectionLblSearch.setForeground(Color.red);
+						connectionLblRental.setText("Connection failed at  " + connectionTime);
+						connectionLblRental.setForeground(Color.red);
 					}	
 						Thread.sleep(3000);
 						
@@ -472,6 +480,4 @@ public class TabGui extends JFrame {
 		}
 		
 	}
-
-	
 }
