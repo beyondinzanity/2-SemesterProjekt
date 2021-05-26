@@ -11,9 +11,16 @@ public class Rental {
 	private Employee employee;
 	private AssistiveDeviceInstance assistiveDeviceInstance;
 	private Resident resident;
-
+	
 	public Rental() {
+	
+	}
 
+	public Rental(int rentalId, int rentalNumber, LocalDate startDate, LocalDate endDate) {
+		this.rentalID = rentalId;
+		this.rentalNumber = rentalNumber;
+		this.startDate = startDate;
+		this.endDate = endDate;
 	}
 
 	public Rental(int rentalID, int rentalNumber, LocalDate startDate, LocalDate endDate, Employee employee,

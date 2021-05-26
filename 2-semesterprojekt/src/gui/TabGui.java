@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
@@ -325,7 +326,8 @@ public class TabGui extends JFrame {
 					rentalController.endRental();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(TabGui.this, e.getMessage());
+					//e.printStackTrace();
 				}
 				
 			}
