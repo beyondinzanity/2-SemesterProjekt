@@ -79,6 +79,8 @@ public class AddAssistiveDevicePopup extends JFrame {
 					e1.printStackTrace();
 				}
 				
+				//Prøv at skrive this
+				
 				TabGui.rentalAssistiveDeviceTxt.setText(String.valueOf(assistiveDeviceName));
 				TabGui.rentalAssistiveDeviceIdTxt.setText(String.valueOf(hmi));
 				

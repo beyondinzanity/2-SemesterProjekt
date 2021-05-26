@@ -27,6 +27,7 @@ public class ResidentDB implements IResidentDB {
 
 	private Resident buildResidentObject(ResultSet rs) throws SQLException, DataAccessException {
 		Resident resident = null;
+		//Set DB klasserne i constructor
 		zipCityDB = new ZipCityDB();
 		residencyDB = new ResidencyDB();
 		ZipCity zipCity = zipCityDB.findZipCityById(rs.getInt("FKZipCityId"));
@@ -78,7 +79,7 @@ public class ResidentDB implements IResidentDB {
 	
 	public Resident findResidentById(int id) throws DataAccessException {
 		
-		Resident res = null;
+		Resident res = null; 
 		
 		try {
 			findResidentByIdPS.setInt(1, id);

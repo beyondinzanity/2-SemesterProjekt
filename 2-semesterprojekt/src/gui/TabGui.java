@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Button;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.List;
@@ -8,6 +9,9 @@ import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -28,6 +32,8 @@ public class TabGui extends JFrame {
 	public static TextField rentalAssistiveDeviceIdTxt;
 	private ArrayList<String> ssnList = new ArrayList<>();
 	private JPanel contentPane;
+	JLabel connectionLbl;
+	
 
 	/**
 	 * Launch the application.
@@ -36,7 +42,11 @@ public class TabGui extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					
 					TabGui frame = new TabGui();
+					
+					
+					
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -68,6 +78,8 @@ public class TabGui extends JFrame {
 	 */
 	public TabGui() throws DataAccessException, SQLException {
 		rentalController = new RentalController();
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 950, 510);
 		contentPane = new JPanel();
@@ -209,6 +221,14 @@ public class TabGui extends JFrame {
 		lblNewLabel_13.setBounds(703, 208, 46, 14);
 		SearchAssistiveDeviceTab.add(lblNewLabel_13);
 		
+		connectionLbl = new JLabel("Connected");
+		connectionLbl.setBounds(10, 400, 319, 21);
+		SearchAssistiveDeviceTab.add(connectionLbl);
+		
+		
+		
+		
+		
 		//RENTAL TAB!
 		JPanel CreateRentalTab = new JPanel();
 		tabbedPane.addTab("Opret Udl\u00E5n", null, CreateRentalTab, null);
@@ -229,7 +249,7 @@ public class TabGui extends JFrame {
 					rentalUserSearchList.removeAll();
 					for (Resident res : TabGui.getRentalController().findResidentBySsn(rentalUserSearchTxt.getText())) {
 						rentalUserSearchList.add(res.getSsn() + " - " + res.getFname() + " " + res.getLname());
-						ssnList.add(res.getSsn());
+						ssnList.add(res.getSsn()); 
 					}
 					
 				} catch (DataAccessException e1) {
@@ -418,7 +438,41 @@ public class TabGui extends JFrame {
 		JPanel SearchResidentTab = new JPanel();
 		tabbedPane.addTab("New tab", null, SearchResidentTab, null);
 		SearchResidentTab.setLayout(null);
-	}
+		
+		ConnectionThread connectionThread = new ConnectionThread();
+		connectionThread.start();
+		
 	
+		
+	}
 
+
+	public class ConnectionThread extends Thread {
+		
+		public void run() {
+			DateTimeFormatter dtf = DateTimeFormatter.ISO_DATE_TIME;
+			while(true) {
+				try {
+					if(rentalController.isDbConnected()) {
+						String connectionTime = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS).format(dtf);
+						connectionLbl.setText("Connection succesfull at  " + connectionTime);
+						connectionLbl.setForeground(Color.green);
+					}else {
+						String connectionTime = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS).format(dtf);
+						connectionLbl.setText("Connection failed at  " + connectionTime);
+						connectionLbl.setForeground(Color.red);
+						
+					}	
+						Thread.sleep(3000);
+						
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+			
+		}
+		
+	}
+
+	
 }

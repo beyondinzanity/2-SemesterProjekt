@@ -9,7 +9,7 @@ import model.ZipCity;
 
 public class ZipCityDB implements IZipCityDB {
 	private static final String FIND_BY_ZIPCITY_ID = "select * from ZipCity where id = ?";
-	private PreparedStatement findZipCityByIdPS;
+	private PreparedStatement findZipCityByIdPS; 
 
 	public ZipCityDB() throws SQLException {
 		Connection con = DBConnection.getInstance().getConnection();

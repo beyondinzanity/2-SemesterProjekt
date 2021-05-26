@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import databases.DBConnection;
 import databases.DataAccessException;
 import databases.RentalDB;
 import model.AssistiveDevice;
@@ -22,6 +23,7 @@ public class RentalController {
 	private List<Resident> residentList;
 	private Employee employee;
 	private Rental rental;
+	private boolean connectedToDB;
 
 	public RentalController() throws DataAccessException, SQLException {
 		createRental();
@@ -142,4 +144,31 @@ public class RentalController {
 		return rentNr;
 
 	}
+	
+	public boolean isDbConnected() {
+	    connectedToDB = DBConnection.getInstance().isDbConnected();
+	    if(connectedToDB == true) {
+	    	
+	    }else {
+	    	connectedToDB = false;
+	    }
+	    return connectedToDB;
+	    
+		
+	   
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+		
+	
+
+	
 }

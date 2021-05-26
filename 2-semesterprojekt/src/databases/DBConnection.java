@@ -86,4 +86,15 @@ public class DBConnection {
 			throw new DataAccessException("Could not rollback transaction", e);
 		}
 	}
+
+	public boolean isDbConnected() {
+		
+		    try {
+		        return connection != null && !connection.isClosed();
+		    } catch (SQLException ignored) {}
+
+		    return false;
+		
+		
+	}
 }
