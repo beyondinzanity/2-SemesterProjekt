@@ -37,6 +37,7 @@ public class RentalController {
 
 	public void createRental() {
 		rental = new Rental();
+		setEmployee();
 	}
 
 	public void setEmployee() {
@@ -73,8 +74,7 @@ public class RentalController {
 		rental.setDate(localSDate, localEDate);
 	}
 
-	public AssistiveDeviceInstance addAssistiveDeviceInstance(int hmi, String barcode)
-			throws DataAccessException, SQLException {
+	public AssistiveDeviceInstance addAssistiveDeviceInstance(int hmi, String barcode) throws DataAccessException, SQLException {
 		AssistiveDevice assistiveDevice = null;
 		AssistiveDeviceInstance instance = null;
 		boolean assistiveDeviceNotFound = true;

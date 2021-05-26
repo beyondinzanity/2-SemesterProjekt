@@ -413,7 +413,6 @@ public class TabGui extends JFrame {
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				rentalController.createRental();
-				rentalController.setEmployee();
 				int randomRentalNumber = (int) (System.currentTimeMillis() * -1);
 				rentalController.setRentalNumber(randomRentalNumber);
 				String ssn = ssnList.get(rentalUserSearchList.getSelectedIndex());
