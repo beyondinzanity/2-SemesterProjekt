@@ -10,7 +10,6 @@ import java.util.List;
 import model.Residency;
 
 public class ResidencyDB implements IResidencyDB {
-	private ResidentDB residentDB;
 	private MunicipalityDB municipalityDB;
 	private static final String FIND_BY_ID = "select * from Residency where FKresidentId = ?";
 	private PreparedStatement findResidencyByResidentIdPS;
@@ -48,7 +47,6 @@ public class ResidencyDB implements IResidencyDB {
 	private Residency buildResidencyObject(ResultSet rs) throws DataAccessException, SQLException {
 		Residency residency = null;
 		municipalityDB = new MunicipalityDB();
-		residentDB = new ResidentDB();
 		try {
 			residency = new Residency(rs.getInt("id"), rs.getDate("fromDate").toLocalDate(),
 					(rs.getDate("toDate") != null ? rs.getDate("toDate").toLocalDate() : null));
