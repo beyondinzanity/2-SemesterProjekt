@@ -25,7 +25,6 @@ public class Rental {
 
 	public Rental(int rentalID, int rentalNumber, LocalDate startDate, LocalDate endDate, Employee employee,
 			AssistiveDeviceInstance assistiveDeviceInstance, Resident resident) {
-		super();
 		this.rentalID = rentalID;
 		this.rentalNumber = rentalNumber;
 		this.startDate = startDate;
@@ -34,11 +33,11 @@ public class Rental {
 		this.assistiveDeviceInstance = assistiveDeviceInstance;
 		this.resident = resident;
 	}
-	
+
 	public void setDate(LocalDate startDate, LocalDate endDate) {
 		this.startDate = startDate;
 		this.endDate = endDate;
-		
+
 	}
 
 	public void setResident(Resident resident) {
@@ -87,7 +86,7 @@ public class Rental {
 	public void setEmployee(Employee employee) {
 		// TODO Auto-generated method stub
 		this.employee = employee;
-		
+
 	}
 
 }
