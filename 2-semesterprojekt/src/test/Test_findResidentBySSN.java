@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.sql.SQLException;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,28 +22,38 @@ public class Test_findResidentBySSN {
 	void testid1() throws DataAccessException, SQLException {
 		// Arrange
 		ResidentDB db = new ResidentDB();
-		String expectedSSN = "4700540903";
+		String testSSN = "4700540903";
 
 		// Act
 
 		// Assert
-		assertEquals(expectedSSN, db.findResidentBySsn("4700540903").get(0).getSsn());
+		assertEquals(testSSN, db.findResidentBySsn("4700540903").get(0).getSsn());
 	}
 
 	@Test
 	void testid2() throws DataAccessException, SQLException {
 		// Arrange
 		ResidentDB db = new ResidentDB();
-		String expectedSSN = "3990322401";
 
 		// Act
 
 		// Assert
-		assertEquals(expectedSSN, db.findResidentBySsn("3990322401").get(0).getSsn());
+		Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
+			db.findResidentBySsn("1503920574").get(0).getSsn();
+		});
 	}
 
 	@Test
 	void testid3() throws DataAccessException, SQLException {
+		// Arrange
+		ResidentDB db = new ResidentDB();
+		String testSSN = "120493654";
 
+		// Act
+
+		// Assert
+		Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
+			db.findResidentBySsn("120493654").get(0).getSsn();
+		});
 	}
 }

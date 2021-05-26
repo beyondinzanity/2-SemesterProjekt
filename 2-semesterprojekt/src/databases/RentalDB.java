@@ -64,6 +64,7 @@ public class RentalDB {
 				}
 				throw new Exception(error);
 			}
+			
 			//END TRANSACTION
 		} catch (DataAccessException e) {
 			// TODO Auto-generated catch block
