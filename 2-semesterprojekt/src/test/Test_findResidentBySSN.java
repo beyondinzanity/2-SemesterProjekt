@@ -47,13 +47,25 @@ public class Test_findResidentBySSN {
 	void testid3() throws DataAccessException, SQLException {
 		// Arrange
 		ResidentDB db = new ResidentDB();
-		String testSSN = "120493654";
 
 		// Act
 
 		// Assert
 		Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
 			db.findResidentBySsn("120493654").get(0).getSsn();
+		});
+	}
+
+	@Test
+	void testid4() throws DataAccessException, SQLException {
+		// Arrange
+		ResidentDB db = new ResidentDB();
+
+		// Act
+
+		// Assert
+		Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
+			db.findResidentBySsn("12049365432").get(0).getSsn();
 		});
 	}
 }
