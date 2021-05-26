@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.sql.SQLException;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,13 +21,22 @@ public class Test_addAssistiveDeviceInstance {
 	@Test
 	void testid1() throws DataAccessException, SQLException {
 		// Arrange
-		RentalController rt = new RentalController();
+		RentalController rtc = new RentalController();
 		String testBarcode = "1337";
 
 		// Act
-		rt.findAssistiveDevices("Kran");
-		rt.addAssistiveDeviceInstance(102273, "1337");
+		rtc.findAssistiveDevices("Kran");
+		rtc.addAssistiveDeviceInstance(102273, "1337");
 		// Assert
-		assertEquals(testBarcode, rt.getRental().getAssistiveDeviceInstance().getBarcode());
+		assertEquals(testBarcode, rtc.getRental().getAssistiveDeviceInstance().getBarcode());
+	}
+
+	@Test
+	void testid2() throws DataAccessException, SQLException {
+		RentalController rtc = new RentalController();
+
+		Assertions.assertThrows(NullPointerException.class, () -> {
+			rtc.addAssistiveDeviceInstance(0, null);
+		});
 	}
 }

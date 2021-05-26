@@ -48,7 +48,7 @@ public class RentalController {
 	public String setResident(String ssn) throws DataAccessException {
 		Resident resident = null;
 		boolean residentNotFound = true;
-		while (residentNotFound == true) {
+		while (residentNotFound && ssn != null) {
 			for (int i = 0; i <= residentList.size() - 1; i++) {
 				if (ssn.equals(residentList.get(i).getSsn())) {
 					residentNotFound = false;
@@ -74,12 +74,13 @@ public class RentalController {
 		rental.setDate(localSDate, localEDate);
 	}
 
-	public AssistiveDeviceInstance addAssistiveDeviceInstance(int hmi, String barcode) throws DataAccessException, SQLException {
+	public AssistiveDeviceInstance addAssistiveDeviceInstance(int hmi, String barcode)
+			throws DataAccessException, SQLException {
 		AssistiveDevice assistiveDevice = null;
 		AssistiveDeviceInstance instance = null;
 		boolean assistiveDeviceNotFound = true;
 		boolean assistiveDeviceInstanceNotFound = true;
-		while (assistiveDeviceNotFound) {
+		while (assistiveDeviceNotFound && hmi != 0 && barcode != null) {
 			System.out.println(assistiveDeviceList.size());
 			for (int i = 0; i <= assistiveDeviceList.size() - 1; i++) {
 
@@ -90,7 +91,7 @@ public class RentalController {
 			}
 		}
 
-		while (assistiveDeviceInstanceNotFound) {
+		while (assistiveDeviceInstanceNotFound && hmi != 0 && barcode != null) {
 
 			for (int i = 0; i <= assistiveDevice.getDeviceInstanceList().size() - 1; i++) {
 
@@ -144,31 +145,16 @@ public class RentalController {
 		return rentNr;
 
 	}
-	
+
 	public boolean isDbConnected() {
-	    connectedToDB = DBConnection.getInstance().isDbConnected();
-	    if(connectedToDB == true) {
-	    	
-	    }else {
-	    	connectedToDB = false;
-	    }
-	    return connectedToDB;
-	    
-		
-	   
+		connectedToDB = DBConnection.getInstance().isDbConnected();
+		if (connectedToDB == true) {
+
+		} else {
+			connectedToDB = false;
+		}
+		return connectedToDB;
+
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
-		
-	
-
-	
 }

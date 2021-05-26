@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.sql.SQLException;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,19 +21,23 @@ public class Test_setResident {
 	@Test
 	void testid1() throws DataAccessException, SQLException {
 		// Arrange
-		RentalController rt = new RentalController();
+		RentalController rtc = new RentalController();
 		String testFname = "Hening";
 
 		// Act
-		rt.findResidentBySsn("1804646469");
-		rt.setResident("1804646469");
+		rtc.findResidentBySsn("1804646469");
+		rtc.setResident("1804646469");
 
 		// Assert
-		assertEquals(testFname, rt.getRental().getResident().getFname());
+		assertEquals(testFname, rtc.getRental().getResident().getFname());
 	}
 
 	@Test
 	void testid2() throws DataAccessException, SQLException {
+		RentalController rtc = new RentalController();
 
+		Assertions.assertThrows(NullPointerException.class, () -> {
+			rtc.setResident(null);
+		});
 	}
 }
