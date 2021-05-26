@@ -6,6 +6,7 @@ import model.Resident;
 
 public interface IResidentDB {
 	public List<Resident> findResidentBySsn(String ssn) throws DataAccessException;
+
 	public List<Resident> findResidentByName(String name) throws DataAccessException;
 
 }
