@@ -34,6 +34,8 @@ public class TabGui extends JFrame {
 	private JPanel contentPane;
 	JLabel connectionLblSearch;
 	JLabel connectionLblRental;
+	TextField rentalUserSearchTxt;
+	List rentalUserSearchList;
 	
 
 	/**
@@ -64,6 +66,8 @@ public class TabGui extends JFrame {
 	}
 	
 	public void setResident(String ssn) throws DataAccessException {
+		
+		rentalController.createRental();
 		rentalController.setResident(ssn);
 	}
 	
@@ -234,30 +238,40 @@ public class TabGui extends JFrame {
 		tabbedPane.addTab("Opret Udl\u00E5n", null, CreateRentalTab, null);
 		CreateRentalTab.setLayout(null);
 		
-		TextField rentalUserSearchTxt = new TextField();
+		rentalUserSearchTxt = new TextField();
 		rentalUserSearchTxt.setBounds(10, 10, 260, 22);
 		CreateRentalTab.add(rentalUserSearchTxt);
 
-		List rentalUserSearchList = new List();
+		rentalUserSearchList = new List();
 		rentalUserSearchList.setBounds(10, 38, 319, 356);
 		CreateRentalTab.add(rentalUserSearchList);
 		
 		Button rentalSearchButton = new Button("S\u00F8g");
 		rentalSearchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+//				try {
+//					rentalUserSearchList.removeAll();
+////					for (Resident res : TabGui.rentalController.findResidentBySsn(rentalUserSearchTxt.getText())) {
+////						rentalUserSearchList.add(res.getSsn() + " - " + res.getFname() + " " + res.getLname());
+////						ssnList.add(res.getSsn());
+////					}
+//					
+//				} catch (DataAccessException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				} catch (SQLException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace(); 
+//				}
+				
 				try {
-					rentalUserSearchList.removeAll();
-					for (Resident res : TabGui.rentalController.findResidentBySsn(rentalUserSearchTxt.getText())) {
-						rentalUserSearchList.add(res.getSsn() + " - " + res.getFname() + " " + res.getLname());
-						ssnList.add(res.getSsn()); 
-					}
-					
+					findResidentBySsn();
 				} catch (DataAccessException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace(); 
+					e1.printStackTrace();
 				}
 				
 				
@@ -412,9 +426,9 @@ public class TabGui extends JFrame {
 		Button button_3 = new Button("Tilf\u00F8j valgt person");
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				rentalController.createRental();
-				int randomRentalNumber = (int) (System.currentTimeMillis() * -1);
-				rentalController.setRentalNumber(randomRentalNumber);
+				//rentalController.createRental();
+//				int randomRentalNumber = (int) (System.currentTimeMillis() * -1);
+//				rentalController.setRentalNumber(randomRentalNumber);
 				String ssn = ssnList.get(rentalUserSearchList.getSelectedIndex());
 				try {
 					setResident(ssn);
@@ -422,7 +436,7 @@ public class TabGui extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				rentalRentalIdTxt.setText(String.valueOf(randomRentalNumber));
+				rentalRentalIdTxt.setText(String.valueOf(rentalController.getRental().getRentalNumber()));
 				rentalResidentNameTxt.setText(rentalController.getRental().getResident().getFname() + " " + rentalController.getRental().getResident().getLname());
 				rentalResidentSsnTxt.setText(rentalController.getRental().getResident().getSsn());
 				rentalResidentAddressTxt.setText(rentalController.getRental().getResident().getStreetName());
@@ -448,6 +462,19 @@ public class TabGui extends JFrame {
 	
 		
 	}
+	
+	public void findResidentBySsn() throws DataAccessException, SQLException {
+		
+			rentalUserSearchList.removeAll();
+			for (Resident res : TabGui.rentalController.findResidentBySsn(rentalUserSearchTxt.getText())) {
+				rentalUserSearchList.add(res.getSsn() + " - " + res.getFname() + " " + res.getLname());
+				ssnList.add(res.getSsn());
+			}
+			
+			
+	}
+	
+	
 
 
 	public class ConnectionThread extends Thread {
@@ -472,7 +499,7 @@ public class TabGui extends JFrame {
 						Thread.sleep(3000);
 						
 				} catch (InterruptedException e) {
-					e.printStackTrace();
+					e.printStackTrace(); 
 				}
 			}
 			

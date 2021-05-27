@@ -16,7 +16,7 @@ public class ResidentController {
 
 
 	public List<Resident> findResidentBySsn(String ssn) throws DataAccessException {
-		System.out.println("ResidentController - findResidentBySsn");
+		//System.out.println("ResidentController - findResidentBySsn");
 		return residentDB.findResidentBySsn(ssn);
 	}
 }

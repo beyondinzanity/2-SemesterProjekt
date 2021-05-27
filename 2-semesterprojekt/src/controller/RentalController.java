@@ -37,7 +37,10 @@ public class RentalController {
 
 	public void createRental() {
 		rental = new Rental();
-		setEmployee();
+		int randomRentalNumber = (int) (System.currentTimeMillis() * -1);
+		setRentalNumber(randomRentalNumber);
+		setEmployee(); 
+		
 	}
 
 	public void setEmployee() {
@@ -138,10 +141,10 @@ public class RentalController {
 //		return assistiveDeviceController;
 //	}
 
-	public int setRentalNumber(int rentalNumber) {
+	public void setRentalNumber(int rentalNumber) {
 		// TODO Auto-generated method stub
-		int rentNr = rental.setRentalNumber(rentalNumber);
-		return rentNr;
+		rental.setRentalNumber(rentalNumber);
+		
 
 	}
 
