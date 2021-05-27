@@ -26,7 +26,7 @@ public class RentalController {
 	private boolean connectedToDB;
 
 	public RentalController() throws DataAccessException, SQLException {
-		createRental();
+		rental = new Rental();
 
 		assistiveDeviceController = new AssistiveDeviceController();
 		residentController = new ResidentController();

@@ -36,6 +36,14 @@ public class TabGui extends JFrame {
 	JLabel connectionLblRental;
 	TextField rentalUserSearchTxt;
 	List rentalUserSearchList;
+	TextField rentalRentalIdTxt;
+	TextField rentalResidentNameTxt;
+	TextField rentalResidentSsnTxt;
+	TextField rentalResidentAddressTxt;
+	TextField rentalResidentApartmentNrTxt;
+	TextField rentalResidentMunicipalityTxt; 
+	TextField rentalStartDateTxt; 
+	TextField rentalEndDateTxt; 
 	
 
 	/**
@@ -69,6 +77,14 @@ public class TabGui extends JFrame {
 		
 		rentalController.createRental();
 		rentalController.setResident(ssn);
+		
+		rentalRentalIdTxt.setText(String.valueOf(rentalController.getRental().getRentalNumber()));
+		rentalResidentNameTxt.setText(rentalController.getRental().getResident().getFname() + " " + rentalController.getRental().getResident().getLname());
+		rentalResidentSsnTxt.setText(rentalController.getRental().getResident().getSsn());
+		rentalResidentAddressTxt.setText(rentalController.getRental().getResident().getStreetName());
+		rentalResidentApartmentNrTxt.setText(String.valueOf(rentalController.getRental().getResident().getHouseNumber()));
+		rentalResidentMunicipalityTxt.setText(rentalController.getRental().getResident().getResidencyList().get(rentalController.getRental().getResident().getResidencyList().size() - 1).getMunicipality().getName());
+		
 	}
 	
 	public static RentalController getRentalController() {
@@ -281,23 +297,23 @@ public class TabGui extends JFrame {
 		CreateRentalTab.add(rentalSearchButton);
 		
 		
-		TextField rentalResidentNameTxt = new TextField();
+		rentalResidentNameTxt = new TextField();
 		rentalResidentNameTxt.setBounds(664, 38, 220, 22);
 		CreateRentalTab.add(rentalResidentNameTxt);
 		
-		TextField rentalResidentSsnTxt = new TextField();
+		rentalResidentSsnTxt = new TextField();
 		rentalResidentSsnTxt.setBounds(664, 66, 220, 22);
 		CreateRentalTab.add(rentalResidentSsnTxt);
 		
-		TextField rentalResidentAddressTxt = new TextField();
+		rentalResidentAddressTxt = new TextField();
 		rentalResidentAddressTxt.setBounds(664, 94, 220, 22);
 		CreateRentalTab.add(rentalResidentAddressTxt);
 		
-		TextField rentalResidentApartmentNrTxt = new TextField();
+		rentalResidentApartmentNrTxt = new TextField();
 		rentalResidentApartmentNrTxt.setBounds(664, 122, 220, 22);
 		CreateRentalTab.add(rentalResidentApartmentNrTxt);
 		
-		TextField rentalResidentMunicipalityTxt = new TextField();
+		rentalResidentMunicipalityTxt = new TextField();
 		rentalResidentMunicipalityTxt.setBounds(664, 150, 220, 22);
 		CreateRentalTab.add(rentalResidentMunicipalityTxt);
 		
@@ -309,15 +325,15 @@ public class TabGui extends JFrame {
 		rentalAssistiveDeviceIdTxt.setBounds(811, 232, 73, 22);
 		CreateRentalTab.add(rentalAssistiveDeviceIdTxt);
 		
-		TextField rentalStartDateTxt = new TextField();
+		rentalStartDateTxt = new TextField();
 		rentalStartDateTxt.setBounds(543, 260, 135, 22);
 		CreateRentalTab.add(rentalStartDateTxt);
 		
-		TextField rentalEndDateTxt = new TextField();
+		rentalEndDateTxt = new TextField();
 		rentalEndDateTxt.setBounds(543, 288, 135, 22);
 		CreateRentalTab.add(rentalEndDateTxt);
 		
-		TextField rentalRentalIdTxt = new TextField();
+		rentalRentalIdTxt = new TextField();
 		rentalRentalIdTxt.setBounds(543, 316, 135, 22);
 		CreateRentalTab.add(rentalRentalIdTxt);
 		
@@ -347,21 +363,21 @@ public class TabGui extends JFrame {
 		Button rentalButton_2 = new Button("Gem udlejning");
 		rentalButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				rentalController.setDate(rentalStartDateTxt.getText(), rentalEndDateTxt.getText());
+//				rentalController.setDate(rentalStartDateTxt.getText(), rentalEndDateTxt.getText());
 
-				System.out.println("Resident: " + rentalController.getRental().getResident());
-				System.out.println("AssistiveDeviceInstance: " + rentalController.getRental().getAssistiveDeviceInstance());
-				System.out.println("Employee: " + rentalController.getRental().getEmployee());
-				System.out.println("StartDate: " + rentalController.getRental().getStartDate());
-				System.out.println("EndDate: " + rentalController.getRental().getEndDate());
-				System.out.println("RentalNumber: " + rentalController.getRental().getRentalNumber());
+				setDate();
+//				System.out.println("Resident: " + rentalController.getRental().getResident());
+//				System.out.println("AssistiveDeviceInstance: " + rentalController.getRental().getAssistiveDeviceInstance());
+//				System.out.println("Employee: " + rentalController.getRental().getEmployee());
+//				System.out.println("StartDate: " + rentalController.getRental().getStartDate());
+//				System.out.println("EndDate: " + rentalController.getRental().getEndDate());
+//				System.out.println("RentalNumber: " + rentalController.getRental().getRentalNumber());
 				
 				try {
-					rentalController.endRental();
+					endRental();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					JOptionPane.showMessageDialog(TabGui.this, e.getMessage());
-					//e.printStackTrace();
+					e.printStackTrace();
 				}
 				
 			}
@@ -436,13 +452,13 @@ public class TabGui extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				rentalRentalIdTxt.setText(String.valueOf(rentalController.getRental().getRentalNumber()));
-				rentalResidentNameTxt.setText(rentalController.getRental().getResident().getFname() + " " + rentalController.getRental().getResident().getLname());
-				rentalResidentSsnTxt.setText(rentalController.getRental().getResident().getSsn());
-				rentalResidentAddressTxt.setText(rentalController.getRental().getResident().getStreetName());
-				rentalResidentApartmentNrTxt.setText(String.valueOf(rentalController.getRental().getResident().getHouseNumber()));
-				rentalResidentMunicipalityTxt.setText(rentalController.getRental().getResident().getResidencyList().get(rentalController.getRental().getResident().getResidencyList().size() - 1).getMunicipality().getName());
-				
+//				rentalRentalIdTxt.setText(String.valueOf(rentalController.getRental().getRentalNumber()));
+//				rentalResidentNameTxt.setText(rentalController.getRental().getResident().getFname() + " " + rentalController.getRental().getResident().getLname());
+//				rentalResidentSsnTxt.setText(rentalController.getRental().getResident().getSsn());
+//				rentalResidentAddressTxt.setText(rentalController.getRental().getResident().getStreetName());
+//				rentalResidentApartmentNrTxt.setText(String.valueOf(rentalController.getRental().getResident().getHouseNumber()));
+//				rentalResidentMunicipalityTxt.setText(rentalController.getRental().getResident().getResidencyList().get(rentalController.getRental().getResident().getResidencyList().size() - 1).getMunicipality().getName());
+//				
 			}
 		});
 		button_3.setBounds(433, 172, 106, 22);
@@ -472,6 +488,14 @@ public class TabGui extends JFrame {
 			}
 			
 			
+	}
+	
+	public void setDate() {
+		rentalController.setDate(rentalStartDateTxt.getText(), rentalEndDateTxt.getText());
+	}
+	
+	public void endRental() throws Exception {
+		rentalController.endRental();
 	}
 	
 	
