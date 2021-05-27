@@ -129,15 +129,15 @@ public class RentalController {
 		return rental;
 	}
 
-	public ResidentController getResidentController() throws DataAccessException, SQLException {
-		residentController = new ResidentController();
-		return residentController;
-	}
+//	public ResidentController getResidentController() throws DataAccessException, SQLException {
+//		residentController = new ResidentController();
+//		return residentController;
+//	}
 
-	public AssistiveDeviceController getAssistiveDeviceController() throws DataAccessException, SQLException {
-		assistiveDeviceController = new AssistiveDeviceController();
-		return assistiveDeviceController;
-	}
+//	public AssistiveDeviceController getAssistiveDeviceController() throws DataAccessException, SQLException {
+//		assistiveDeviceController = new AssistiveDeviceController();
+//		return assistiveDeviceController;
+//	}
 
 	public int setRentalNumber(int rentalNumber) {
 		// TODO Auto-generated method stub

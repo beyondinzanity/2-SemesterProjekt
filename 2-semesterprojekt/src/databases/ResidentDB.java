@@ -23,13 +23,12 @@ public class ResidentDB implements IResidentDB {
 		Connection con = DBConnection.getInstance().getConnection();
 		findResidentBySsnPS = con.prepareStatement(FIND_BY_SSN);
 		findResidentByIdPS = con.prepareStatement(FIND_BY_ID);
+		zipCityDB = new ZipCityDB();
+		residencyDB = new ResidencyDB();
 	}
 
 	private Resident buildResidentObject(ResultSet rs) throws SQLException, DataAccessException {
 		Resident resident = null;
-		//Set DB klasserne i constructor
-		zipCityDB = new ZipCityDB();
-		residencyDB = new ResidencyDB();
 		ZipCity zipCity = zipCityDB.findZipCityById(rs.getInt("FKZipCityId"));
 		
 		try {

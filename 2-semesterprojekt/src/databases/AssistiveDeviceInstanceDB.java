@@ -53,7 +53,7 @@ public class AssistiveDeviceInstanceDB implements IAssistiveDeviceInstanceDB {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return assistiveDeviceInstance;
+		return assistiveDeviceInstance; 
 	}
 	
 

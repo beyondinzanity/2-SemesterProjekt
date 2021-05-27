@@ -17,6 +17,7 @@ public class ResidencyDB implements IResidencyDB {
 	public ResidencyDB() throws SQLException {
 
 		Connection con = DBConnection.getInstance().getConnection();
+		municipalityDB = new MunicipalityDB();
 
 		findResidencyByResidentIdPS = con.prepareStatement(FIND_BY_ID);
 	}
