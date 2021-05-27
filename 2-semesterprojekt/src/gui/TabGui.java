@@ -55,9 +55,9 @@ public class TabGui extends JFrame {
 		});
 	}
 	
-	public JFrame getMain() {
-		return TabGui.this;
-	}
+//	public JFrame getMain() {
+//		return TabGui.this;
+//	}
 	
 	public static void addAssistiveDeviceInstance(int hmi, String barcode) throws DataAccessException, SQLException {
 		rentalController.addAssistiveDeviceInstance(hmi, barcode);
