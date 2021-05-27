@@ -9,17 +9,16 @@ public class Resident extends Person {
 	private int apartmentNumber;
 	private String streetName;
 	private int houseNumber;
-	private ZipCity city;
+	private ZipCity zipCity;
 	private List<Residency> residencies;
 
 	public Resident(String fname, String lname, String ssn, String phoneNumber, String email, int apartmentNumber,
-			String streetName, int houseNumber, ZipCity zipCity) {
+			String streetName, int houseNumber) {
 
 		super(fname, lname, ssn, phoneNumber, email);
 		this.apartmentNumber = apartmentNumber;
 		this.streetName = streetName;
 		this.houseNumber = houseNumber;
-		this.city = zipCity;
 		residencies = new ArrayList<>();
 	}
 
@@ -43,17 +42,21 @@ public class Resident extends Person {
 		residentId = id;
 	}
 
-	public ZipCity getZipCity() {
-		// TODO Auto-generated method stub
-		return city;
-	}
-
 	public String getStreetName() {
 		return streetName;
 	}
 
 	public int getHouseNumber() {
 		return houseNumber;
+	}
+
+	public ZipCity getZipCity() {
+		// TODO Auto-generated method stub
+		return zipCity;
+	}
+	
+	public void setZipCity(ZipCity city) {
+		this.zipCity = city;
 	}
 
 }

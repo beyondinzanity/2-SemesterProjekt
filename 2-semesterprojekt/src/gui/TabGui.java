@@ -73,9 +73,12 @@ public class TabGui extends JFrame {
 		rentalController.addAssistiveDeviceInstance(hmi, barcode);
 	}
 	
+	private void createRental() {
+		rentalController.createRental();
+	}
+	
 	public void setResident(String ssn) throws DataAccessException {
 		
-		rentalController.createRental();
 		rentalController.setResident(ssn);
 		
 		rentalRentalIdTxt.setText(String.valueOf(rentalController.getRental().getRentalNumber()));
@@ -447,6 +450,7 @@ public class TabGui extends JFrame {
 //				rentalController.setRentalNumber(randomRentalNumber);
 				String ssn = ssnList.get(rentalUserSearchList.getSelectedIndex());
 				try {
+					createRental();
 					setResident(ssn);
 				} catch (DataAccessException e1) {
 					// TODO Auto-generated catch block

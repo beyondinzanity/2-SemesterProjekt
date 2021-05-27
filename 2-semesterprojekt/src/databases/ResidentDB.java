@@ -29,15 +29,17 @@ public class ResidentDB implements IResidentDB {
 
 	private Resident buildResidentObject(ResultSet rs) throws SQLException, DataAccessException {
 		Resident resident = null;
-		ZipCity zipCity = zipCityDB.findZipCityById(rs.getInt("FKZipCityId"));
+		//ZipCity zipCity = zipCityDB.findZipCityById(rs.getInt("FKZipCityId"));
 		
 		try {
 			 
 			resident = new Resident(rs.getString("fname"), rs.getString("lname"), rs.getString("ssn"),
 					rs.getString("phoneNumber"), rs.getString("email"), rs.getInt("apartmentNumber"),
-					rs.getString("streetName"), rs.getInt("houseNumber"), zipCity);
+					rs.getString("streetName"), rs.getInt("houseNumber"));
+			
 			resident.setId(rs.getInt("id"));
-			//Sets residen
+			resident.setZipCity(zipCityDB.findZipCityById(rs.getInt("FKZipCityId")));
+			//Sets resident
 			int someResidentId = resident.getResidentId();
 			List<Residency> someList = residencyDB.findResidencyByResidentId(someResidentId);
 			resident.setResidencyList(someList);
