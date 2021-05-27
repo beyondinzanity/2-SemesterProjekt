@@ -22,6 +22,13 @@ public class AssistiveDeviceDB implements IAssistiveDeviceDB {
 
 	}
 	
+	/**
+	 * Returns a list of AssistiveDevice objects
+	 * 
+	 * 
+	 * @param userSearch
+	 * @return 
+	 */
 	@Override
 	public List<AssistiveDevice> findAssistiveDevices(String userSearch) throws DataAccessException {
 		// TODO Auto-generated method stub
