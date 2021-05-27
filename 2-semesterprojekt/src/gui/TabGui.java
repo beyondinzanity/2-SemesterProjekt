@@ -47,7 +47,6 @@ public class TabGui extends JFrame {
 					TabGui frame = new TabGui();
 					
 					
-					
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -248,7 +247,7 @@ public class TabGui extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					rentalUserSearchList.removeAll();
-					for (Resident res : TabGui.getRentalController().findResidentBySsn(rentalUserSearchTxt.getText())) {
+					for (Resident res : TabGui.rentalController.findResidentBySsn(rentalUserSearchTxt.getText())) {
 						rentalUserSearchList.add(res.getSsn() + " - " + res.getFname() + " " + res.getLname());
 						ssnList.add(res.getSsn()); 
 					}
