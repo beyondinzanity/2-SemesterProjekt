@@ -113,8 +113,7 @@ public class RentalDB implements IRentalDB {
 	}
 
 	@Override
-	public List<Rental> findRentalsByDateAndAssistiveDeviceId(int assistiveDeviceId, LocalDate startDate,
-			LocalDate endDate) throws DataAccessException {
+	public List<Rental> findRentalsByDateAndAssistiveDeviceId(int assistiveDeviceId, LocalDate startDate, LocalDate endDate) throws DataAccessException {
 		try {
 			checkRental.setDate(1, convertDate(startDate));
 			checkRental.setDate(2, convertDate(endDate));
