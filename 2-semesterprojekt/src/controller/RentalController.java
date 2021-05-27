@@ -45,7 +45,7 @@ public class RentalController {
 		rental.setEmployee(employee);
 	}
 
-	public String setResident(String ssn) throws DataAccessException {
+	public void setResident(String ssn) throws DataAccessException {
 		Resident resident = null;
 		boolean residentNotFound = true;
 		while (residentNotFound && ssn != null) {
@@ -59,7 +59,6 @@ public class RentalController {
 		}
 
 		rental.setResident(resident);
-		return "Added " + resident.getSsn();
 
 	}
 
