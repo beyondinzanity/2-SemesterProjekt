@@ -55,7 +55,6 @@ public class RentalController {
 			for (int i = 0; i <= residentList.size() - 1; i++) {
 				if (ssn.equals(residentList.get(i).getSsn())) {
 					residentNotFound = false;
-					System.out.println("Found resident --> " + ssn);
 					resident = residentList.get(i);
 				}
 			}
@@ -83,7 +82,7 @@ public class RentalController {
 		boolean assistiveDeviceNotFound = true;
 		boolean assistiveDeviceInstanceNotFound = true;
 		while (assistiveDeviceNotFound && hmi != 0 && barcode != null) {
-			System.out.println(assistiveDeviceList.size());
+		
 			for (int i = 0; i <= assistiveDeviceList.size() - 1; i++) {
 
 				if (hmi == assistiveDeviceList.get(i).getHmiNumber()) {
@@ -105,7 +104,6 @@ public class RentalController {
 		}
 
 		rental.addAssistiveDeviceInstance(instance);
-		System.out.println("Added Instance --> " + instance.getBarcode());
 		return instance;
 
 	}

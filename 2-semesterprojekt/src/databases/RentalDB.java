@@ -30,13 +30,7 @@ public class RentalDB implements IRentalDB {
 	}
 
 	public void endRental(Rental rental) throws Exception {
-		System.out.println("RentalNr - " + rental.getRentalNumber());
-		System.out.println("Start Date - " + convertDate(rental.getStartDate()));
-		System.out.println("End Date - " + convertDate(rental.getEndDate()));
-		System.out.println("Employee ID - " + rental.getEmployee().getEmployeeId());
-		System.out.println("AssistiveDeviceInstance ID - " + rental.getAssistiveDeviceInstance().getId());
-		System.out.println("Resident ID - " + rental.getResident().getResidentId());
-
+	
 		try {
 			// START TRANSACTION
 			DBConnection.getInstance().startTransaction();
