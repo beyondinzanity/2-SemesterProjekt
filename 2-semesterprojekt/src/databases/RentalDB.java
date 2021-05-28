@@ -29,7 +29,7 @@ public class RentalDB implements IRentalDB {
 	 * This method executes the PreparedStatement
 	 * "insert into Rental values (?, ?, ?, ?, ?, ?)"
 	 * which inserts a Rental in the database
-	 * @param rental
+	 * @param rental a Rental object
 	 * @throws Exception
 	 */
 	public void endRental(Rental rental) throws Exception {
@@ -38,7 +38,7 @@ public class RentalDB implements IRentalDB {
 			// START TRANSACTION
 			DBConnection.getInstance().startTransaction();
 			con.setTransactionIsolation(SQLServerConnection.TRANSACTION_REPEATABLE_READ);
-			List<Rental> rentList = findRentalsByDateAndAssistiveDeviceId(rental.getAssistiveDeviceInstance().getId(),
+			List<Rental> rentList = findRentalsByDateAndAssistiveDeviceInstanceId(rental.getAssistiveDeviceInstance().getId(),
 					rental.getStartDate(), rental.getEndDate());
 
 			if (rentList.size() == 0) {
@@ -109,12 +109,28 @@ public class RentalDB implements IRentalDB {
 		return res;
 	}
 
+	/**
+	 * Returns a list of Rental objects
+	 * This method executes the PreparedStatement
+	 * "select * from Rental where (endDate > ? AND startDate < ?) AND (FKassistiveDeviceInstanceId = ?)"
+	 * which selects all the rentals on the specific AssistiveDeviceInstance within the chosen timeperiod
+	 * If there is a clash between dates and the user selected dates overlap an already existing 
+	 * rental, the method will return values to the list. If there is no overlap and the 
+	 * AssistiveDeviceInstance is free to rent in the chosen time period, the method will return an 
+	 * empty list.
+	 * 
+	 * @param assistiveDeviceInstanceId
+	 * @param startDate
+	 * @param endDate
+	 * @return List<Rental> List of rental objects
+	 * @throws DataAccessException
+	 */
 	@Override
-	public List<Rental> findRentalsByDateAndAssistiveDeviceId(int assistiveDeviceId, LocalDate startDate, LocalDate endDate) throws DataAccessException {
+	public List<Rental> findRentalsByDateAndAssistiveDeviceInstanceId(int assistiveDeviceInstanceId, LocalDate startDate, LocalDate endDate) throws DataAccessException {
 		try {
 			checkRental.setDate(1, convertDate(startDate));
 			checkRental.setDate(2, convertDate(endDate));
-			checkRental.setInt(3, assistiveDeviceId);
+			checkRental.setInt(3, assistiveDeviceInstanceId);
 			ResultSet rs = checkRental.executeQuery();
 			List<Rental> res = buildObjects(rs);
 			return res;
@@ -123,6 +139,15 @@ public class RentalDB implements IRentalDB {
 		}
 	}
 
+	/**
+	 * Returns a list of Rental objects.
+	 * This method loops through the ResultSet and builds a
+	 * list of all objects returned in the ResultSet.
+	 * 
+	 * @param rs ResultSet 
+	 * @return List<Rental> List of Rental objects
+	 * @throws SQLException If a SQL exception occurred
+	 */
 	private List<Rental> buildObjects(ResultSet rs) throws SQLException {
 		List<Rental> res = new ArrayList<>();
 		while (rs.next()) {
@@ -131,6 +156,14 @@ public class RentalDB implements IRentalDB {
 		return res;
 	}
 
+	/**
+	 * Returns a Rental object.
+	 * This method builds a Rental object from the first result
+	 * it finds from the ResultSet
+	 * 
+	 * @param rs ResultSet
+	 * @return Rental object
+	 */
 	private Rental buildRentalObject(ResultSet rs) throws SQLException {
 		Rental rental = null;
 		try {

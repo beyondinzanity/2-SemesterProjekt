@@ -55,7 +55,7 @@ public class AssistiveDeviceInstanceDB implements IAssistiveDeviceInstanceDB {
 	 * list of all objects returned in the ResultSet.
 	 * 
 	 * @param rs ResultSet 
-	 * @return List of AssistiveDeviceInstance objects
+	 * @return List<AssistiveDeviceInstance> List of AssistiveDeviceInstance objects
 	 * @throws SQLException If a SQL exception occurred
 	 */
 	private List<AssistiveDeviceInstance> buildObjects(ResultSet rs) throws SQLException {
@@ -69,7 +69,7 @@ public class AssistiveDeviceInstanceDB implements IAssistiveDeviceInstanceDB {
 	
 	/**
 	 * Returns an AssistiveDeviceInstance object.
-	 * This method builds an AssistiveDeviceInstance from the first result
+	 * This method builds an AssistiveDeviceInstance object from the first result
 	 * it finds from the ResultSet
 	 * 
 	 * @param rs ResultSet
