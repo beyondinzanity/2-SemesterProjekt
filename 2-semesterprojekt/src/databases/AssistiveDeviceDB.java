@@ -29,7 +29,7 @@ public class AssistiveDeviceDB implements IAssistiveDeviceDB {
 	 * and searches the database for AssistiveDevices.
 	 * The questionmarks are replaced by whatever input the user enters
 	 * @param userSearch is the input from the user
-	 * @return List of AssistiveDevice objects
+	 * @return List<AssistiveDevice> List of AssistiveDevice objects
 	 */
 	@Override
 	public List<AssistiveDevice> findAssistiveDevices(String userSearch) throws DataAccessException {
@@ -53,7 +53,7 @@ public class AssistiveDeviceDB implements IAssistiveDeviceDB {
 	 * list of all objects returned in the ResultSet
 	 * 
 	 * @param rs ResultSet
-	 * @return	List of AssistiveDevice objects
+	 * @return	List<AssistiveDevice> List of AssistiveDevice objects
 	 * @throws SQLException If a SQL exception occurred
 	 * @throws DataAccessException If a data access exception occurred
 	 */

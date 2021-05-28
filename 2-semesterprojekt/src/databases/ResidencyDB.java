@@ -22,6 +22,17 @@ public class ResidencyDB implements IResidencyDB {
 		findResidencyByResidentIdPS = con.prepareStatement(FIND_BY_ID);
 	}
 
+	/**
+	 * Returns list of Residency objects
+	 * This method searches the database with the PreparedStatement
+	 * "select * from Residency where FKresidentId = ?"
+	 * and returns a ResultSet of all matching values where FKresidentId equals ("?").
+	 * The questionmark is replaced by the parameter "id".
+	 * 
+	 * @param
+	 * @return List<Residency> 
+	 * @throws DataAccessException
+	 */
 	@Override
 	public List<Residency> findResidencyByResidentId(int id) throws DataAccessException {
 		try {

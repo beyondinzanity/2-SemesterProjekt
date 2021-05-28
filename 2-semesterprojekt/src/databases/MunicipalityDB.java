@@ -18,6 +18,16 @@ public class MunicipalityDB implements IMunicipalityDB {
 		findMunicipalityById = con.prepareStatement(FIND_BY_ID);
 	}
 
+	/**
+	 * Returns a Resident object
+	 * This method executes the PreparedStatement
+	 * "select * from Municipality where id = ?"
+	 * where it replaces the questionmark ("?") with the user input (id)
+	 * and returns the matching Municipality from the database with the given id.
+	 * @param id Surrogate key of Municipality 
+	 * @return Municipality
+	 * @throws DataAccessException 
+	 */
 	@Override
 	public Municipality findMunicipality(int id) throws DataAccessException {
 
@@ -33,6 +43,15 @@ public class MunicipalityDB implements IMunicipalityDB {
 
 	}
 
+	/**
+	 * Returns a Municipality object after the object has been built.
+	 * The constructor takes values from the database ResultSet and
+	 * enters builds the object with the returned values
+	 * @param rs ResultSet
+	 * @return Municipality object
+	 * @throws SQLException
+	 * @throws DataAccessException
+	 */
 	private Municipality buildResidentObject(ResultSet rs) throws SQLException, DataAccessException {
 
 		Municipality municipality = null;

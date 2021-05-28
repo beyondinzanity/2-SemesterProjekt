@@ -31,9 +31,11 @@ public class ResidentDB implements IResidentDB {
 	 * Returns a Resident object
 	 * This method builds a Resident object from the first result
 	 * it finds from the ResultSet
-	 * It builds the ResidentObject and adds the 
-	 * @param rs
-	 * @return
+	 * It builds the ResidentObject and adds a list containing residensies
+	 * and a ZipCity object to the Resident.
+	 * 
+	 * @param rs ResultSet
+	 * @return Resident
 	 * @throws SQLException
 	 * @throws DataAccessException
 	 */
@@ -68,6 +70,17 @@ public class ResidentDB implements IResidentDB {
 		return res;
 	}
 
+	/**
+	 * Returns a list of resident objects
+	 * This method executes the PreparedStatement
+	 * "select * from Resident where ssn like ?"
+	 * where it replaces the questionmark ("?") with the user input (ssn)
+	 * and returns all Residents where it finds a ssn match in the database. 
+	 * 
+	 * @param ssn User input which the PreparedStatement uses to search the database
+	 * @return List<Resident> List of resident objects
+	 * @throws DataAccessException
+	 */
 	@Override
 	public List<Resident> findResidentBySsn(String ssn) throws DataAccessException {
 		ssn = "%" + ssn + "%";
@@ -81,13 +94,17 @@ public class ResidentDB implements IResidentDB {
 			throw new DataAccessException("Could not retrieve data from Resident", s);
 		}
 	}
-
-	@Override
-	public List<Resident> findResidentByName(String name) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
+	/**
+	 * Returns a Resident object
+	 * This method executes the PreparedStatement
+	 * "select * from Resident where id = ?"
+	 * where it replaces the questionmark ("?") with the user input (id)
+	 * and returns the matching Residents from the database with that id. 
+	 * @param id
+	 * @return Resident
+	 * @throws DataAccessException
+	 */
 	public Resident findResidentById(int id) throws DataAccessException {
 		
 		Resident res = null; 

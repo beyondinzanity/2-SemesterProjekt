@@ -25,10 +25,6 @@ public class RentalDB implements IRentalDB {
 		checkRental = con.prepareStatement(CHECK_RENTAL_DATE);
 	}
 
-	public void checkRentalDate() {
-
-	}
-
 	public void endRental(Rental rental) throws Exception {
 	
 		try {
