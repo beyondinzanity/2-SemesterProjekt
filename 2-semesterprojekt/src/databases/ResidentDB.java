@@ -27,6 +27,16 @@ public class ResidentDB implements IResidentDB {
 		residencyDB = new ResidencyDB();
 	}
 
+	/**
+	 * Returns a Resident object
+	 * This method builds a Resident object from the first result
+	 * it finds from the ResultSet
+	 * It builds the ResidentObject and adds the 
+	 * @param rs
+	 * @return
+	 * @throws SQLException
+	 * @throws DataAccessException
+	 */
 	private Resident buildResidentObject(ResultSet rs) throws SQLException, DataAccessException {
 		Resident resident = null;
 		//ZipCity zipCity = zipCityDB.findZipCityById(rs.getInt("FKZipCityId"));

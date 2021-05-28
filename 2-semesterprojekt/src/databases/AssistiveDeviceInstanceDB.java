@@ -51,7 +51,7 @@ public class AssistiveDeviceInstanceDB implements IAssistiveDeviceInstanceDB {
 	
 	/**
 	 * Returns a list of AssistiveDeviceInstance objects.
-	 * This method loops through the the ResultSet and builds a
+	 * This method loops through the ResultSet and builds a
 	 * list of all objects returned in the ResultSet.
 	 * 
 	 * @param rs ResultSet 
@@ -69,7 +69,9 @@ public class AssistiveDeviceInstanceDB implements IAssistiveDeviceInstanceDB {
 	
 	/**
 	 * Returns an AssistiveDeviceInstance object.
-	 * This method builds the first AssistiveDeviceInstance object it finds from the ResultSet
+	 * This method builds an AssistiveDeviceInstance from the first result
+	 * it finds from the ResultSet
+	 * 
 	 * @param rs ResultSet
 	 * @return AssistiveDeviceInstance object
 	 */

@@ -24,10 +24,12 @@ public class AssistiveDeviceDB implements IAssistiveDeviceDB {
 	
 	/**
 	 * Returns a list of AssistiveDevice objects
-	 * 
-	 * 
-	 * @param userSearch
-	 * @return 
+	 * This method executes the PreparedStatent in the SQL database
+	 * "select * from AssistiveDevice where name like ? or hmiNumber like ?"
+	 * and searches the database for AssistiveDevices.
+	 * The questionmarks are replaced by whatever input the user enters
+	 * @param userSearch is the input from the user
+	 * @return List of AssistiveDevice objects
 	 */
 	@Override
 	public List<AssistiveDevice> findAssistiveDevices(String userSearch) throws DataAccessException {
@@ -45,6 +47,16 @@ public class AssistiveDeviceDB implements IAssistiveDeviceDB {
 		}
 	}
 	
+	/**
+	 * Returns a list of AssistiveDevice objects
+	 * This method loops through the ResultSet and builds a 
+	 * list of all objects returned in the ResultSet
+	 * 
+	 * @param rs ResultSet
+	 * @return	List of AssistiveDevice objects
+	 * @throws SQLException If a SQL exception occurred
+	 * @throws DataAccessException If a data access exception occurred
+	 */
 	private List<AssistiveDevice> buildObjects(ResultSet rs) throws SQLException, DataAccessException {
 		List<AssistiveDevice> res = new ArrayList<>();
 		while(rs.next()) {
@@ -53,7 +65,16 @@ public class AssistiveDeviceDB implements IAssistiveDeviceDB {
 		return res;
 	}  
 	
-	
+	/**
+	 * Returns a list of AssistiveDevice objects
+	 * This method builds an AssistiveDeviceInstance from the first result
+	 * it finds from the ResultSet
+	 * 
+	 * @param rs ResultSet
+	 * @return AssistiveDevice
+	 * @throws DataAccessException If a data access exception occurred
+	 * @throws SQLException If a SQL exception occurred
+	 */
 	private AssistiveDevice buildAssistiveDeviceObject(ResultSet rs) throws DataAccessException, SQLException {
 		AssistiveDevice assistiveDevice = null;
 		assistiveDeviceInstanceDB = new AssistiveDeviceInstanceDB();
