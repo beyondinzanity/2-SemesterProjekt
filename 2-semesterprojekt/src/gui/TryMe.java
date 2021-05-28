@@ -8,11 +8,9 @@ import databases.AssistiveDeviceDB;
 import databases.AssistiveDeviceInstanceDB;
 import databases.DataAccessException;
 import databases.ResidentDB;
-import databases.ZipCityDB;
 import model.AssistiveDevice;
 import model.AssistiveDeviceInstance;
 import model.Resident;
-import model.ZipCity;
 
 public class TryMe {
 	// private static AssistiveDeviceInstanceDB ass;
@@ -36,9 +34,9 @@ public class TryMe {
 		}
 
 		RentalController rentalController = new RentalController();
-		List<Resident> a1 = rentalController.getResidentController().findResidentBySsn("2");
+		List<Resident> a1 = rentalController.findResidentBySsn("2");
 		for (Resident res : a1) {
-			System.out.println(res.getEmail() + " " + res.getZipCity().getCity());			
+			System.out.println(res.getEmail() + " " + res.getZipCity().getCity());
 		}
 
 	}
