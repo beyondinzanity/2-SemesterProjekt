@@ -25,6 +25,13 @@ public class RentalDB implements IRentalDB {
 		checkRental = con.prepareStatement(CHECK_RENTAL_DATE);
 	}
 
+	/**
+	 * This method executes the PreparedStatement
+	 * "insert into Rental values (?, ?, ?, ?, ?, ?)"
+	 * which inserts a Rental in the database
+	 * @param rental
+	 * @throws Exception
+	 */
 	public void endRental(Rental rental) throws Exception {
 	
 		try {
