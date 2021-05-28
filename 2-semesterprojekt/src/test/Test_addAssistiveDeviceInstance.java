@@ -34,12 +34,11 @@ public class Test_addAssistiveDeviceInstance {
 	void testid2() throws DataAccessException, SQLException {
 		RentalController rtc = new RentalController();
 
-		System.out.println(rtc.addAssistiveDeviceInstance(0, null));
+		assertEquals(null, rtc.addAssistiveDeviceInstance(0, null));
 
 //		Assertions.assertThrows(NullPointerException.class, () -> {
 //			rtc.addAssistiveDeviceInstance(0, null);
 //		});
 
-		assertEquals(null, rtc.addAssistiveDeviceInstance(0, null));
 	}
 }
