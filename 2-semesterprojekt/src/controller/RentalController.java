@@ -39,8 +39,8 @@ public class RentalController {
 		rental = new Rental();
 		int randomRentalNumber = (int) (System.currentTimeMillis() * -1);
 		setRentalNumber(randomRentalNumber);
-		setEmployee(); 
-		
+		setEmployee();
+
 	}
 
 	public void setEmployee() {
@@ -75,6 +75,17 @@ public class RentalController {
 		rental.setDate(localSDate, localEDate);
 	}
 
+	/**
+	 * Loops through list of AssistiveDevices and then loops through AssistiveDevice
+	 * Instances of same description, until the device with same hmiNumber and
+	 * barcode is found
+	 * 
+	 * @param hmi      , number belonging to a AssistiveDevice
+	 * @param barcode, number belonging to a AssistiveDevice instance
+	 * @return object of AssistiveDevice Instance
+	 * @throws SQLException        If a SQL exception occurred
+	 * @throws DataAccessException If a data access exception occurred
+	 */
 	public AssistiveDeviceInstance addAssistiveDeviceInstance(int hmi, String barcode)
 			throws DataAccessException, SQLException {
 		AssistiveDevice assistiveDevice = null;
@@ -82,7 +93,7 @@ public class RentalController {
 		boolean assistiveDeviceNotFound = true;
 		boolean assistiveDeviceInstanceNotFound = true;
 		while (assistiveDeviceNotFound && hmi != 0 && barcode != null) {
-		
+
 			for (int i = 0; i <= assistiveDeviceList.size() - 1; i++) {
 
 				if (hmi == assistiveDeviceList.get(i).getHmiNumber()) {
@@ -118,6 +129,9 @@ public class RentalController {
 		residentList = residentController.findResidentBySsn(ssn);
 		return residentList;
 	}
+	
+	
+	
 
 	public void endRental() throws Exception {
 		rentalDB.endRental(this.rental);
@@ -128,23 +142,23 @@ public class RentalController {
 	public Rental getRental() {
 		return rental;
 	}
-
-//	public ResidentController getResidentController() throws DataAccessException, SQLException {
-//		residentController = new ResidentController();
-//		return residentController;
-//	}
-
-//	public AssistiveDeviceController getAssistiveDeviceController() throws DataAccessException, SQLException {
-//		assistiveDeviceController = new AssistiveDeviceController();
-//		return assistiveDeviceController;
-//	}
+	
+	/**
+	 * Gives rental object a unique number for identification 
+	 * @param rentalNumber, an int that will be used as rental number on a rental object
+	 */
 
 	public void setRentalNumber(int rentalNumber) {
 		// TODO Auto-generated method stub
 		rental.setRentalNumber(rentalNumber);
-		
 
 	}
+
+	/**
+	 * Returns a boolean result, depending on receiving access to database.
+	 * 
+	 * @return true, if method gets access to database. Returns false otherwise
+	 */
 
 	public boolean isDbConnected() {
 		connectedToDB = DBConnection.getInstance().isDbConnected();

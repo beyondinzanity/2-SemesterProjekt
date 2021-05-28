@@ -17,6 +17,13 @@ public class AssistiveDeviceController {
 		assistiveDeviceDB = new AssistiveDeviceDB();
 	}
 
+	/**
+	 * Gives access to finding and building AssistiveDevices through database class
+	 * 
+	 * @param userSearch String
+	 * @return	List of AssistiveDevice objects
+	 * @throws DataAccessException If a data access exception occurred
+	 */
 	public List<AssistiveDevice> findAssistiveDevices(String userSearch) throws DataAccessException {
 		return assistiveDeviceDB.findAssistiveDevices(userSearch); 
 
