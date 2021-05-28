@@ -32,18 +32,18 @@ public class TabGui extends JFrame {
 	public static TextField rentalAssistiveDeviceIdTxt;
 	private ArrayList<String> ssnList = new ArrayList<>();
 	private JPanel contentPane;
-	JLabel connectionLblSearch;
-	JLabel connectionLblRental;
-	TextField rentalUserSearchTxt;
-	List rentalUserSearchList;
-	TextField rentalRentalIdTxt;
-	TextField rentalResidentNameTxt;
-	TextField rentalResidentSsnTxt;
-	TextField rentalResidentAddressTxt;
-	TextField rentalResidentApartmentNrTxt;
-	TextField rentalResidentMunicipalityTxt; 
-	TextField rentalStartDateTxt; 
-	TextField rentalEndDateTxt; 
+	private JLabel connectionLblSearch;
+	private JLabel connectionLblRental;
+	private TextField rentalUserSearchTxt;
+	private List rentalUserSearchList;
+	private TextField rentalRentalIdTxt;
+	private TextField rentalResidentNameTxt;
+	private TextField rentalResidentSsnTxt;
+	private TextField rentalResidentAddressTxt;
+	private TextField rentalResidentApartmentNrTxt;
+	private TextField rentalResidentMunicipalityTxt; 
+	private TextField rentalStartDateTxt; 
+	private TextField rentalEndDateTxt; 
 	
 
 	/**
