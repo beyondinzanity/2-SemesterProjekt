@@ -35,6 +35,13 @@ public class RentalController {
 		residentList = new ArrayList<>();
 	}
 
+	
+	/**
+	 * Used to create new Rental object, and then gives the Rental object, a random rental number, 
+	 * and a employee witch is hard coded
+	 *   
+	 */
+	
 	public void createRental() {
 		rental = new Rental();
 		int randomRentalNumber = (int) (System.currentTimeMillis() * -1);
@@ -42,11 +49,26 @@ public class RentalController {
 		setEmployee();
 
 	}
+	
+	
+	/**
+	 * Used for hard coding an Employee witch is will be connected to a Rental
+	 * 
+	 */
 
 	public void setEmployee() {
 		employee = new Employee(1, 1432, "Hans", "Nielsen", "1211650337", "12345678", "hansNiels@gmail.com");
 		rental.setEmployee(employee);
 	}
+	
+	
+	/**
+	 * Used to setting renting period for a rental object
+	 * Method also converts string to LocalDate
+	 * 
+	 * @param startDate , A String written in LocalDate format to represent starting date of rental object 
+	 * @param endDate , A String written in LocalDate format to represent ending date of rental object   
+	 */
 
 	public void setResident(String ssn) throws DataAccessException {
 		Resident resident = null;

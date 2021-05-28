@@ -14,6 +14,12 @@ public class ResidentController {
 		residentDB = new ResidentDB();
 	}
 
+	/**
+	 * Used to find residents based on a ssn search
+	 * 
+	 * @return Method Returns list of residents, based an ssn numbers matching user search. 
+	 * @param ssn , A String meant to represent a social security number
+	 */
 
 	public List<Resident> findResidentBySsn(String ssn) throws DataAccessException {
 		

@@ -65,17 +65,34 @@ public class TabGui extends JFrame {
 		});
 	}
 	
-//	public JFrame getMain() {
-//		return TabGui.this;
-//	}
+
+	/**
+	 * addAssistiveDeviceInstance method is used to add AssistiveDeviceInstance to rental object
+	 * @param hmi, An int used to represent an hmi number that is connected to a AssistiveDevice
+	 * @param barcode, A string used to represent a barcode, that is connected to a AssistiveDeviceInstance
+	 * @throws DataAccesException if DataAccesException occurs
+	 * @throws SQLException if SQLException occurs
+	 *  
+	 */
 	
 	public static void addAssistiveDeviceInstance(int hmi, String barcode) throws DataAccessException, SQLException {
 		rentalController.addAssistiveDeviceInstance(hmi, barcode);
 	}
 	
+	/**
+	 * Used to create new Rental object
+	 *  
+	 */
+	
 	private void createRental() {
 		rentalController.createRental();
 	}
+	
+	/**
+	 * Used to setting Resident object on Rental, by ssn search in RentalController
+	 * @param ssn, A String used to represent a social security number
+	 * @throws DataAccessException if DataAccesExeption occurs
+	 */
 	
 	public void setResident(String ssn) throws DataAccessException {
 		
@@ -268,20 +285,7 @@ public class TabGui extends JFrame {
 		Button rentalSearchButton = new Button("S\u00F8g");
 		rentalSearchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				try {
-//					rentalUserSearchList.removeAll();
-////					for (Resident res : TabGui.rentalController.findResidentBySsn(rentalUserSearchTxt.getText())) {
-////						rentalUserSearchList.add(res.getSsn() + " - " + res.getFname() + " " + res.getLname());
-////						ssnList.add(res.getSsn());
-////					}
-//					
-//				} catch (DataAccessException e1) {
-//					// TODO Auto-generated catch block
-//					e1.printStackTrace();
-//				} catch (SQLException e1) {
-//					// TODO Auto-generated catch block
-//					e1.printStackTrace(); 
-//				}
+		
 				
 				try {
 					findResidentBySsn();
@@ -366,15 +370,9 @@ public class TabGui extends JFrame {
 		Button rentalButton_2 = new Button("Gem udlejning");
 		rentalButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-//				rentalController.setDate(rentalStartDateTxt.getText(), rentalEndDateTxt.getText());
 
 				setDate();
-//				System.out.println("Resident: " + rentalController.getRental().getResident());
-//				System.out.println("AssistiveDeviceInstance: " + rentalController.getRental().getAssistiveDeviceInstance());
-//				System.out.println("Employee: " + rentalController.getRental().getEmployee());
-//				System.out.println("StartDate: " + rentalController.getRental().getStartDate());
-//				System.out.println("EndDate: " + rentalController.getRental().getEndDate());
-//				System.out.println("RentalNumber: " + rentalController.getRental().getRentalNumber());
+
 				
 				try {
 					endRental();
@@ -445,9 +443,7 @@ public class TabGui extends JFrame {
 		Button button_3 = new Button("Tilf\u00F8j valgt person");
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//rentalController.createRental();
-//				int randomRentalNumber = (int) (System.currentTimeMillis() * -1);
-//				rentalController.setRentalNumber(randomRentalNumber);
+
 				String ssn = ssnList.get(rentalUserSearchList.getSelectedIndex());
 				try {
 					createRental();
@@ -456,13 +452,7 @@ public class TabGui extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-//				rentalRentalIdTxt.setText(String.valueOf(rentalController.getRental().getRentalNumber()));
-//				rentalResidentNameTxt.setText(rentalController.getRental().getResident().getFname() + " " + rentalController.getRental().getResident().getLname());
-//				rentalResidentSsnTxt.setText(rentalController.getRental().getResident().getSsn());
-//				rentalResidentAddressTxt.setText(rentalController.getRental().getResident().getStreetName());
-//				rentalResidentApartmentNrTxt.setText(String.valueOf(rentalController.getRental().getResident().getHouseNumber()));
-//				rentalResidentMunicipalityTxt.setText(rentalController.getRental().getResident().getResidencyList().get(rentalController.getRental().getResident().getResidencyList().size() - 1).getMunicipality().getName());
-//				
+			
 			}
 		});
 		button_3.setBounds(433, 172, 106, 22);
@@ -483,6 +473,14 @@ public class TabGui extends JFrame {
 		
 	}
 	
+	
+	/**
+	 * findResidentBySsn() method is used to search and find Residents in data base, and then adding elements to list
+	 * 
+	 * @throws DataAccesEception if DataAccesException occurs 
+	 * @throws SQLException if SQLException occurs
+	 */
+	
 	public void findResidentBySsn() throws DataAccessException, SQLException {
 		
 			rentalUserSearchList.removeAll();
@@ -494,15 +492,32 @@ public class TabGui extends JFrame {
 			
 	}
 	
+	/**
+	 * Used to setting renting period for a rental object
+	 * Method also converts string to LocalDate
+	 *  
+	 */
+	
 	public void setDate() {
 		rentalController.setDate(rentalStartDateTxt.getText(), rentalEndDateTxt.getText());
 	}
+	
+	
+	/**
+	 * endRental() method is used to end a save a rental object to database.
+	 * @throws Exception if exception occurs   
+	 */
 	
 	public void endRental() throws Exception {
 		rentalController.endRental();
 	}
 	
 	
+	
+	/**
+	 * ConnectionThread anonymous class, is used to create a thread, which updates a text field regarding 
+	 * if connection to database is successful. The thread created by this class, checks connection every three seconds.   
+	 */
 
 
 	public class ConnectionThread extends Thread {
