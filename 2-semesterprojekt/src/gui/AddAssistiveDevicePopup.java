@@ -26,27 +26,6 @@ public class AddAssistiveDevicePopup extends JFrame {
 	List userSearchList;
 	TextField userSearchTxt;
 
-	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					AddAssistiveDevicePopup frame = new AddAssistiveDevicePopup();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-
-	/**
-	 * Create the frame.
-	 * @throws SQLException 
-	 * @throws DataAccessException 
-	 */
 	public AddAssistiveDevicePopup() throws DataAccessException, SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 400);
@@ -80,8 +59,7 @@ public class AddAssistiveDevicePopup extends JFrame {
 		Button cancelButton = new Button("Annuller");
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO Close Window
-				//frame.setVisible(false);
+				
 			}
 		});
 		cancelButton.setBounds(328, 314, 70, 22);
@@ -108,6 +86,14 @@ public class AddAssistiveDevicePopup extends JFrame {
 		contentPane.add(searchButton);
 	}
 	
+	/**
+	 * findAssistiveDevices method loops through AssistiveDevices based on user search, 
+	 * and then loops through AssistiveDeviceInstances belonging to the same AssistiveDevice, 
+	 * and saves info into lists
+	 *  @throws DataAccesException if DataAccesException occurs
+	 *  @throws SQLException if SQLException occurs
+	 */
+	
 	public void findAssistiveDevices() throws DataAccessException, SQLException {
 		userSearchList.removeAll();
 		for (AssistiveDevice q : TabGui.getRentalController().findAssistiveDevices(userSearchTxt.getText())) {
@@ -122,6 +108,13 @@ public class AddAssistiveDevicePopup extends JFrame {
 			}
 		}
 	}
+	
+	
+	/**
+	 * addAssistiveDeviceInstance method is used to add AssistiveDeviceInstance to Rental object
+	 *  @throws DataAccesException if DataAccesException occurs
+	 *  @throws SQLException if SQLException occurs
+	 */
 	
 	public void addAssistiveDeviceInstance() throws DataAccessException, SQLException {
 		
