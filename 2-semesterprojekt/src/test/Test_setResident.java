@@ -1,10 +1,9 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 import java.sql.SQLException;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -36,8 +35,11 @@ public class Test_setResident {
 	void testid2() throws DataAccessException, SQLException {
 		RentalController rtc = new RentalController();
 
-		Assertions.assertThrows(NullPointerException.class, () -> {
-			rtc.setResident(null);
-		});
+		rtc.setResident(null);
+		assertEquals(null, rtc.getRental().getResident());
+
+//		Assertions.assertThrows(NullPointerException.class, () -> {
+//			rtc.setResident(null);
+//		});
 	}
 }

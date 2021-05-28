@@ -63,14 +63,15 @@ public class RentalController {
 		rental.setResident(resident);
 
 	}
-	
-	
+
 	/**
-	 * Used to setting renting period for a rental object
-	 * Method also converts string to LocalDate
+	 * Used to setting renting period for a rental object Method also converts
+	 * string to LocalDate
 	 * 
-	 * @param startDate , A String written in LocalDate format to represent starting date of rental object 
-	 * @param endDate , A String written in LocalDate format to represent ending date of rental object   
+	 * @param startDate , A String written in LocalDate format to represent starting
+	 *                  date of rental object
+	 * @param endDate   , A String written in LocalDate format to represent ending
+	 *                  date of rental object
 	 */
 
 	public void setDate(String startDate, String endDate) {
@@ -84,12 +85,12 @@ public class RentalController {
 		rental.setDate(localSDate, localEDate);
 	}
 
-	
 	/**
-	 * Loops through list of AssistiveDevices by hmi search,
-	 * and then loops through instances of that same AssistiveDevice by using barcodes. 
+	 * Loops through list of AssistiveDevices by hmi search, and then loops through
+	 * instances of that same AssistiveDevice by using barcodes.
 	 * 
-	 * Loops stops when an AssistiveDeviceInstance with  matching hmiNumber and barcode is found.  
+	 * Loops stops when an AssistiveDeviceInstance with matching hmiNumber and
+	 * barcode is found.
 	 * 
 	 * @param hmi      , used to identify an AssistiveDevice
 	 * @param barcode, used to identify an AssistiveDeviceInstance
@@ -127,45 +128,41 @@ public class RentalController {
 
 		rental.addAssistiveDeviceInstance(instance);
 		return instance;
-
 	}
 
-	
 	/**
-	 * Returns a list of AssistiveDevice objects by calling AssistiveDeviceController
+	 * Returns a list of AssistiveDevice objects by calling
+	 * AssistiveDeviceController
 	 * 
-	 * @param userInput , A String 
-	 * @return	List of AssistiveDevice objects
-	 * @throws SQLException If a SQL exception occurred
+	 * @param userInput , A String
+	 * @return List of AssistiveDevice objects
+	 * @throws SQLException        If a SQL exception occurred
 	 * @throws DataAccessException If a data access exception occurred
 	 */
-	
+
 	public List<AssistiveDevice> findAssistiveDevices(String userInput) throws DataAccessException, SQLException {
 		assistiveDeviceList = assistiveDeviceController.findAssistiveDevices(userInput);
 		return assistiveDeviceList;
 
 	}
-	
-	
-   /**
+
+	/**
 	 * Returns a list of Resident objects by calling ResidentController
 	 * 
-	 * @param ssn , A String meant to represent a social security number 
-	 * @return	List of Resident objects
-	 * @throws SQLException If a SQL exception occurred
+	 * @param ssn , A String meant to represent a social security number
+	 * @return List of Resident objects
+	 * @throws SQLException        If a SQL exception occurred
 	 * @throws DataAccessException If a data access exception occurred
 	 */
-	
+
 	public List<Resident> findResidentBySsn(String ssn) throws DataAccessException, SQLException {
 		residentList = residentController.findResidentBySsn(ssn);
 		return residentList;
 	}
-	
-	
-	
 
 	/**
 	 * Saves a rental object to database, and creates new rental object to be build
+	 * 
 	 * @throws Exception, if exceptions occurred.
 	 */
 	public void endRental() throws Exception {
@@ -177,10 +174,12 @@ public class RentalController {
 	public Rental getRental() {
 		return rental;
 	}
-	
+
 	/**
-	 * Gives rental object a unique number for identification 
-	 * @param rentalNumber, an int that will be used as rental number on a rental object
+	 * Gives rental object a unique number for identification
+	 * 
+	 * @param rentalNumber, an int that will be used as rental number on a rental
+	 *                      object
 	 */
 
 	public void setRentalNumber(int rentalNumber) {
