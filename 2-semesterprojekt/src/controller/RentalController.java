@@ -77,7 +77,7 @@ public class RentalController {
 				}
 			}
 		}
-
+		
 		rental.setResident(resident);
 
 	}
@@ -129,9 +129,7 @@ public class RentalController {
 					assistiveDeviceNotFound = false;
 					assistiveDevice = assistiveDeviceList.get(i);
 
-				} else {
-					assistiveDeviceNotFound = false;
-				}
+				} 
 			}
 		}
 
