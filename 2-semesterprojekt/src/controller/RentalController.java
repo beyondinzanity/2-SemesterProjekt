@@ -26,7 +26,7 @@ public class RentalController {
 	private boolean connectedToDB;
 
 	public RentalController() throws DataAccessException, SQLException {
-		rental = new Rental();
+		rental = new Rental(); //Er ikke nødvendig da vi opretter rental når vi tilføjer en person (Bør fjernes) [Minor mistake]
 
 		assistiveDeviceController = new AssistiveDeviceController();
 		residentController = new ResidentController();
