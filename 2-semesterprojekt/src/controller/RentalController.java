@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -26,7 +26,7 @@ public class RentalController {
 	private boolean connectedToDB;
 
 	public RentalController() throws DataAccessException, SQLException {
-		rental = new Rental(); //Er ikke nødvendig da vi opretter rental når vi tilføjer en person (Bør fjernes) [Minor mistake]
+		rental = new Rental(); //Er ikke nï¿½dvendig da vi opretter rental nï¿½r vi tilfï¿½jer en person (Bï¿½r fjernes) [Minor mistake]
 
 		assistiveDeviceController = new AssistiveDeviceController();
 		residentController = new ResidentController();
