@@ -22,7 +22,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
-import controller.RentalController;
+import Controller.RentalController;
 import databases.DataAccessException;
 import model.Resident;
 

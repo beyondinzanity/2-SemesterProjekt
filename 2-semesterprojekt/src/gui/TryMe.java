@@ -3,7 +3,7 @@ package gui;
 import java.sql.SQLException;
 import java.util.List;
 
-import controller.RentalController;
+import Controller.RentalController;
 import databases.AssistiveDeviceDB;
 import databases.AssistiveDeviceInstanceDB;
 import databases.DataAccessException;
